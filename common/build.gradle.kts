@@ -18,6 +18,8 @@ dependencies {
     compileOnly("org.spongepowered:mixin:0.8.5")
     modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
     modApi(files("${rootProject.rootDir}/jars/molang-${property("molang_version")}.jar"))
+    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
+    modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")

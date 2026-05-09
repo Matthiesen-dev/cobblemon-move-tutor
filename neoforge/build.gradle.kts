@@ -30,18 +30,15 @@ dependencies {
     minecraft("net.minecraft:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())
     neoForge("net.neoforged:neoforge:${property("neoforge_version")}")
-
+    implementation(project(":common", configuration = "namedElements"))
+    "developmentNeoForge"(project(":common", configuration = "namedElements")) { isTransitive = false }
+    shadowBundle(project(":common", configuration = "transformProductionNeoForge"))
     modImplementation("com.cobblemon:neoforge:${property("cobblemon_version")}") { isTransitive = false }
-    //Needed for cobblemon
     forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
         exclude("net.neoforged.fancymodloader", "loader")
     }
-
-    implementation(project(":common", configuration = "namedElements"))
-    "developmentNeoForge"(project(":common", configuration = "namedElements")) {
-        isTransitive = false
-    }
-    shadowBundle(project(":common", configuration = "transformProductionNeoForge"))
+    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Neoforge-neoforge,1.21.1")
+    modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-neoforge,1.21.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
