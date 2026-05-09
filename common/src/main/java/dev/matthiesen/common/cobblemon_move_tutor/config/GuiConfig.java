@@ -17,6 +17,12 @@ public class GuiConfig {
     @SerializedName("navigationItemId")
     public String navigationItemId = "minecraft:arrow";
 
+    @SerializedName("confirmItemId")
+    public String confirmItemId = "minecraft:green_stained_glass_pane";
+
+    @SerializedName("cancelItemId")
+    public String cancelItemId = "minecraft:red_stained_glass_pane";
+
     @SuppressWarnings("unused")
     public static final Gson GSON = new GsonBuilder()
             .disableHtmlEscaping()

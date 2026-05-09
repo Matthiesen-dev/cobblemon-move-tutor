@@ -1,0 +1,64 @@
+package dev.matthiesen.common.cobblemon_move_tutor.util;
+
+import ca.landonjw.gooeylibs2.api.UIManager;
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.moves.BenchedMove;
+import com.cobblemon.mod.common.api.moves.MoveTemplate;
+import com.cobblemon.mod.common.pokemon.Pokemon;
+import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+
+public class MoveManager {
+    public static boolean validatePokemon(Pokemon oldPokemon, ServerPlayer player) {
+        if (Cobblemon.INSTANCE.getStorage().getParty(player).get(oldPokemon.getUuid()) == null) {
+            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.unknownPokemon"));
+            UIManager.closeUI(player);
+            return false;
+        }
+
+        return true;
+    }
+
+    public static void learnMove(ServerPlayer player, Pokemon pokemon, MoveTemplate move, Runnable returnToSelect) {
+        var serverConfig = CobblemonMoveTutorCommon.getCommonConfig();
+
+        if (!validatePokemon(pokemon, player)) {
+            return;
+        }
+
+        var moveset = pokemon.getMoveSet();
+
+        if (PokemonUtility.isLearnedMove(pokemon, move)) {
+            player.sendSystemMessage(Component.translatable(
+                    "cobblemon_move_tutor.gui.alreadyKnowsMove",
+                    pokemon.getDisplayName(false).getString(),
+                    move.getDisplayName().getString()
+            ));
+            returnToSelect.run();
+            return;
+        }
+
+        var currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
+
+        if (currencyProvider == null) {
+            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.invalidCurrency", serverConfig.currencyConfig.currencyType));
+            return;
+        }
+
+        var price = PokemonUtility.getMovePrice(pokemon, move);
+
+        if (!currencyProvider.buy(player, pokemon, move, price)) {
+            return;
+        }
+
+        if (!moveset.hasSpace()) {
+            pokemon.getBenchedMoves().add(new BenchedMove(move, 0));
+        } else {
+            moveset.add(move.create());
+        }
+
+        returnToSelect.run();
+        currencyProvider.successfulBuyMessage(player, pokemon, move, price);
+    }
+}

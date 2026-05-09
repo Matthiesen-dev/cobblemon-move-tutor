@@ -36,14 +36,12 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(item)
-                                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot")
-                                        .withStyle(ChatFormatting.GRAY))
+                                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot").withStyle(ChatFormatting.GRAY))
                                 .hideAdditional()
                                 .build()
                 )
                 .onClick(action ->
-                        new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT)
-                                .play(action.getPlayer()))
+                        new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT).play(action.getPlayer()))
                 .build();
     }
 

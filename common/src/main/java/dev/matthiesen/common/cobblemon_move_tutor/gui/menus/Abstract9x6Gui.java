@@ -26,13 +26,13 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
         List<Button> buttons = getButtons();
 
         LinkedPageButton previous = LinkedPageButton.builder()
-                .display(getNavItem("Previous"))
+                .display(getNavItem("cobblemon_move_tutor.gui.button.previousPage"))
                 .linkType(LinkType.Previous)
                 .onClick((action) -> new SoundsPlayer(CobblemonSounds.PC_CLICK).play(action.getPlayer()))
                 .build();
 
         LinkedPageButton next = LinkedPageButton.builder()
-                .display(getNavItem("Next"))
+                .display(getNavItem("cobblemon_move_tutor.gui.button.nextPage"))
                 .linkType(LinkType.Next)
                 .onClick((action) -> new SoundsPlayer(CobblemonSounds.PC_CLICK).play(action.getPlayer()))
                 .build();
@@ -54,7 +54,11 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
     public static ItemStack getPageItem(int currentPage, int pageLength) {
         return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().currentPageItemId))
                 .setCustomName(
-                        Component.literal("Page " + currentPage + "/" + pageLength).withStyle(style -> style.withColor(ChatFormatting.GOLD))
+                        Component.translatable(
+                                "cobblemon_move_tutor.gui.button.pageIndicator",
+                                String.valueOf(currentPage),
+                                String.valueOf(pageLength)
+                        ).withStyle(ChatFormatting.GOLD)
                 )
                 .build();
     }
@@ -62,12 +66,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
     public static ItemStack getNavItem(String label) {
         return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().navigationItemId))
                 .hideAdditional()
-                .setCustomName(
-                        Component.literal(label)
-                                .withStyle(
-                                        style -> style.withColor(ChatFormatting.AQUA)
-                                )
-                )
+                .setCustomName(Component.translatable(label).withStyle(ChatFormatting.AQUA))
                 .build();
     }
 

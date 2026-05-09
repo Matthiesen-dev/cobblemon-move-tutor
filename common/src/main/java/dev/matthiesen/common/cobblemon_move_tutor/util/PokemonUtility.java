@@ -84,6 +84,15 @@ public class PokemonUtility {
 
         return itemStack;
     }
+    public static List<MoveTemplate> getAllMoves(Learnset moves) {
+        List<MoveTemplate> allMoveList = new ArrayList<>();
+
+        allMoveList.addAll(moves.getAllLegalMoves());
+        allMoveList.addAll(moves.getLegacyMoves());
+        allMoveList.addAll(moves.getSpecialMoves());
+
+        return allMoveList;
+    }
 
     public static boolean isLearnedMove(Pokemon pokemon, MoveTemplate move) {
         Set<MoveTemplate> moves = new HashSet<>(pokemon.getAllAccessibleMoves());
@@ -117,5 +126,13 @@ public class PokemonUtility {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.eggMovePrice;
         }
         return 0;
+    }
+
+    public static String formatStatMove(double stat) {
+        if (stat <= 0) {
+            return "-";
+        }
+
+        return String.valueOf(stat);
     }
 }
