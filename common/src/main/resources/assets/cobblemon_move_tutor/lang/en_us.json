@@ -1,4 +1,6 @@
 {
+  "cobblemon_move_tutor.cmd.openedForOther": "You opened the Move Tutor Menu for %s.",
+
   "cobblemon_move_tutor.gui.selectPokemonTitle": "Select a Pokemon",
   "cobblemon_move_tutor.gui.selectMoveTitle": "Select a Move",
   "cobblemon_move_tutor.gui.emptySlot": "Empty",

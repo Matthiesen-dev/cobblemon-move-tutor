@@ -1,6 +1,12 @@
 {
   "initializationAction": [
-    "c.npc.set_chatting();"
+    "c.npc.set_chatting();",
+    "v.slot1 = q.player.party.get_pokemon(0);",
+    "v.slot2 = q.player.party.get_pokemon(1);",
+    "v.slot3 = q.player.party.get_pokemon(2);",
+    "v.slot4 = q.player.party.get_pokemon(3);",
+    "v.slot5 = q.player.party.get_pokemon(4);",
+    "v.slot6 = q.player.party.get_pokemon(5);"
   ],
   "speakers": {
     "npc": {
@@ -23,19 +29,95 @@
       "id": "greeting",
       "speaker": "npc",
       "lines": [
-        "Select an option"
+        "Hello, I'm a move tutor! I can help teach your Pokemon new moves.",
+        "Let's get started! Would you like to see the move tutor options?"
+      ],
+      "input": "q.dialogue.set_page('options');"
+    },
+    {
+      "id": "options",
+      "speaker": "npc",
+      "lines": [
+        "Select a Pokemon to teach a move to."
       ],
       "input": {
         "type": "option",
         "vertical": true,
         "options": [
           {
-            "text": "Yes",
-            "value": "yes",
-            "action": "q.dialogue.set_page('okhi');"
+            "text": {
+              "type": "expression",
+              "expression": "v.slot1.species.name;"
+            },
+            "isVisible": "v.slot1 != 0",
+            "value": "s1",
+            "action": [
+              "q.player.open_admin_tutor(0);",
+              "q.dialogue.close();"
+            ]
           },
           {
-            "text": "No",
+            "text": {
+              "type": "expression",
+              "expression": "v.slot2.species.name;"
+            },
+            "isVisible": "v.slot2 != 0",
+            "value": "s2",
+            "action": [
+              "q.player.open_admin_tutor(1);",
+              "q.dialogue.close();"
+            ]
+          },
+          {
+            "text": {
+              "type": "expression",
+              "expression": "v.slot3.species.name;"
+            },
+            "isVisible": "v.slot3 != 0",
+            "value": "s3",
+            "action": [
+              "q.player.open_admin_tutor(2);",
+              "q.dialogue.close();"
+            ]
+          },
+          {
+            "text": {
+              "type": "expression",
+              "expression": "v.slot4.species.name;"
+            },
+            "isVisible": "v.slot4 != 0",
+            "value": "s4",
+            "action": [
+              "q.player.open_admin_tutor(3);",
+              "q.dialogue.close();"
+            ]
+          },
+          {
+            "text": {
+              "type": "expression",
+              "expression": "v.slot5.species.name;"
+            },
+            "isVisible": "v.slot5 != 0",
+            "value": "s5",
+            "action": [
+              "q.player.open_admin_tutor(4);",
+              "q.dialogue.close();"
+            ]
+          },
+          {
+            "text": {
+              "type": "expression",
+              "expression": "v.slot6.species.name;"
+            },
+            "isVisible": "v.slot6 != 0",
+            "value": "s6",
+            "action": [
+              "q.player.open_admin_tutor(5);",
+              "q.dialogue.close();"
+            ]
+          },
+          {
+            "text": "§cCancel§r",
             "value": "no",
             "action": "q.dialogue.set_page('okbye');"
           }
@@ -47,14 +129,6 @@
       "speaker": "npc",
       "lines": [
         "Alright, see you later!"
-      ],
-      "input": "q.dialogue.close();"
-    },
-    {
-      "id": "okhi",
-      "speaker": "npc",
-      "lines": [
-        "Great, you selected yes!"
       ],
       "input": "q.dialogue.close();"
     }

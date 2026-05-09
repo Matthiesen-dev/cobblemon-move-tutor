@@ -1,6 +1,7 @@
 package dev.matthiesen.common.cobblemon_move_tutor;
 
 import com.mojang.brigadier.CommandDispatcher;
+import dev.matthiesen.common.cobblemon_move_tutor.molang.PlayerFunctionsExtension;
 import dev.matthiesen.common.cobblemon_move_tutor.providers.*;
 import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.*;
@@ -62,6 +63,8 @@ public class CobblemonMoveTutorCommon {
         ItemRegistry.init();
         CriterionTriggerRegistry.init();
         loadCurrencyProviders();
+        // Extend Cobblemon's Molang functions
+        PlayerFunctionsExtension.register();
     }
 
     private static void loadCurrencyProviders() {

@@ -1,4 +1,4 @@
-package dev.matthiesen.common.cobblemon_move_tutor.gui.menus;
+package dev.matthiesen.common.cobblemon_move_tutor.gui;
 
 import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
@@ -21,9 +21,11 @@ import java.util.List;
 
 public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     public ServerPlayer player;
+    private final String type;
 
-    public PlayerPokemonSelectionGui(ServerPlayer player) {
+    public PlayerPokemonSelectionGui(ServerPlayer player, String type) {
         this.player = player;
+        this.type = type;
     }
 
     @Override
@@ -58,7 +60,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
                                 .onClick(action -> {
                                     ServerPlayer sender = action.getPlayer();
                                     new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sender);
-                                    // TODO
+                                    new SelectMoveGui(sender, pokemon, this.type).open();
                                 })
                                 .build()
                 );

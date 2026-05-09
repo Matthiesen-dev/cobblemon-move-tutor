@@ -8,17 +8,17 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerPlayer;
 
 public class ModPermissions {
-    public final ModPermission EXAMPLE_PERMISSION;
-    public final ModPermission EXAMPLE_COOL_PERMISSION;
+    public final ModPermission MOVE_TUTOR_PERMISSION;
+    public final ModPermission MOVE_TUTOR_OTHER_PERMISSION;
 
     public ModPermissions() {
-        this.EXAMPLE_PERMISSION = new ModPermission(
-                Constants.MOD_ID + ".command.example",
-                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_EXAMPLE_PERMISSION_LEVEL)
+        this.MOVE_TUTOR_PERMISSION = new ModPermission(
+                Constants.MOD_ID + ".command.move-tutor",
+                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_PERMISSION_LEVEL)
         );
-        this.EXAMPLE_COOL_PERMISSION = new ModPermission(
-                Constants.MOD_ID + ".command.example-cool",
-                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_EXAMPLE_COOL_PERMISSION_LEVEL)
+        this.MOVE_TUTOR_OTHER_PERMISSION = new ModPermission(
+                Constants.MOD_ID + ".command.move-tutor.other",
+                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_OTHER_PERMISSION_LEVEL)
         );
     }
 
