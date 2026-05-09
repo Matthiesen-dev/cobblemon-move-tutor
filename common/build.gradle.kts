@@ -17,6 +17,7 @@ dependencies {
     mappings(loom.officialMojangMappings())
     compileOnly("org.spongepowered:mixin:0.8.5")
     modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
+    modApi(files("${rootProject.rootDir}/jars/molang-${property("molang_version")}.jar"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
