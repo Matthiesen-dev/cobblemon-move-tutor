@@ -1,5 +1,5 @@
 {
-  "resourceIdentifier": "cobblemon_move_tutor:village_tutor",
+  "resourceIdentifier": "cobblemon_move_tutor:tutor",
   "hitbox": "player",
   "canDespawn": true,
   "isInvulnerable": false,
@@ -22,7 +22,7 @@
     "dialogue": "cobblemon_move_tutor:tutor_dialogue"
   },
   "variations": {
-    "village_tutor": [
+    "tutor": [
       "red",
       "blue",
       "green"

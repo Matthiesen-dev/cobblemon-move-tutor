@@ -1,0 +1,25 @@
+{
+  "name": "cobblemon_move_tutor:tutor",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon_move_tutor:tutor",
+      "model": "cobblemon_move_tutor:tutor.geo",
+      "texture": "cobblemon_move_tutor:textures/npcs/tutor/base.png",
+      "layers": []
+    },
+    {
+      "aspects": ["red"],
+      "texture": "cobblemon_move_tutor:textures/npcs/tutor/red.png"
+    },
+    {
+      "aspects": ["blue"],
+      "texture": "cobblemon_move_tutor:textures/npcs/tutor/blue.png"
+    },
+    {
+      "aspects": ["green"],
+      "texture": "cobblemon_move_tutor:textures/npcs/tutor/green.png"
+    }
+  ]
+}
