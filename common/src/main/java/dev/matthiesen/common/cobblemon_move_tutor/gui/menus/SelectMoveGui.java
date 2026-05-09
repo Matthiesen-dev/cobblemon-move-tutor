@@ -134,7 +134,10 @@ public class SelectMoveGui extends Abstract9x6Gui {
     private Set<MoveTemplate> getFilteredMoves(Learnset moves) {
         var config = getTutorConfig();
         return PokemonUtility.getAllMoves(moves).stream()
+                .filter(move -> config.levelMove || moves.getLevelUpMoves().values().stream().noneMatch(list -> list.contains(move)))
                 .filter(move -> config.eggMove || !moves.getEggMoves().contains(move))
+                .filter(move -> config.tutorMove || !moves.getTutorMoves().contains(move))
+                .filter(move -> config.tmMove || !moves.getTmMoves().contains(move))
                 .filter(move -> config.legacyMove || !moves.getLegacyMoves().contains(move))
                 .filter(move -> config.specialMove || !moves.getSpecialMoves().contains(move))
                 .filter(move -> !config.hideAlreadyKnownMoves || !PokemonUtility.isLearnedMove(this.selectedPokemon, move))

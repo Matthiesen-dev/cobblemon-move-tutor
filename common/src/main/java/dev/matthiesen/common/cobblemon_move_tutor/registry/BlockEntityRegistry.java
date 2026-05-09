@@ -12,9 +12,6 @@ import java.util.function.Supplier;
 public class BlockEntityRegistry {
     public static void init() {}
 
-//    public static final Supplier<BlockEntityType<PokestopEntity>> POKESTOP_BE =
-//            register("pokestop", () -> buildType(PokestopEntity::new, BlockRegistry.POKESTOPS));
-
     private static Block[] resolveBlocks(Map<String, ? extends Supplier<? extends Block>> registeredBlocks) {
         return registeredBlocks.values()
                 .stream()
