@@ -1,31 +1,18 @@
 {
   "resourceIdentifier": "cobblemon_move_tutor:tutor",
-  "hitbox": "player",
-  "canDespawn": true,
-  "isInvulnerable": false,
-  "canBeLeashed": true,
-  "allowProjectileHits": true,
-  "names": [
-    "Move Tutor"
+  "presets": [
+    "cobblemon_move_tutor:tutor_base",
+    "cobblemon_move_tutor:admin_tutor"
   ],
-  "hideNameTag": true,
   "ai": [
     {
       "type": "apply_behaviours",
       "behaviours": [
-        "cobblemon:core"
+        "cobblemon:core",
+        "cobblemon:name_tag_display",
+        "cobblemon:looks_in_one_direction",
+        "cobblemon:looks_at_players"
       ]
     }
-  ],
-  "interaction": {
-    "type": "dialogue",
-    "dialogue": "cobblemon_move_tutor:tutor_dialogue"
-  },
-  "variations": {
-    "tutor": [
-      "red",
-      "blue",
-      "green"
-    ]
-  }
+  ]
 }

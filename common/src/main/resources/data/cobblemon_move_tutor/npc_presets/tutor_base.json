@@ -1,0 +1,17 @@
+{
+  "hitbox": "player",
+  "names": [
+    "Move Tutor"
+  ],
+  "variations": {
+    "tutor": [
+      "red",
+      "blue",
+      "green"
+    ]
+  },
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "cobblemon_move_tutor:tutor_dialogue"
+  }
+}

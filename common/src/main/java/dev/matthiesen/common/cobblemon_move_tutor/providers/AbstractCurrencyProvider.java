@@ -13,7 +13,7 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
 
     @Override
     public @NotNull Component lore(int price) {
-        return Component.translatable("gui.cobblemon_move_tutor.priceLore", String.valueOf(price), currencyName());
+        return Component.translatable("cobblemon_move_tutor.gui.priceLore", String.valueOf(price), currencyName());
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
         if (price > 0) {
             player.sendSystemMessage(
                     Component.translatable(
-                            "gui.cobblemon_move_tutor.buyMove",
+                            "cobblemon_move_tutor.gui.buyMove",
                             move.getDisplayName(),
                             pokemon.getDisplayName(false).getString(),
                             String.valueOf(price),
@@ -31,7 +31,7 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
         } else {
             player.sendSystemMessage(
                     Component.translatable(
-                            "gui.cobblemon_move_tutor.buyMoveFree",
+                            "cobblemon_move_tutor.gui.buyMoveFree",
                             move.getDisplayName(),
                             pokemon.getDisplayName(false).getString()
                     )

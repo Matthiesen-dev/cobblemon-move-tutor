@@ -1,31 +1,21 @@
 {
   "resourceIdentifier": "cobblemon_move_tutor:village_tutor",
-  "hitbox": "player",
-  "canDespawn": true,
-  "isInvulnerable": false,
-  "canBeLeashed": true,
-  "allowProjectileHits": true,
-  "names": [
-    "Move Tutor"
+  "presets": [
+    "cobblemon_move_tutor:tutor_base",
+    "cobblemon_move_tutor:natural_tutor"
   ],
-  "hideNameTag": true,
   "ai": [
     {
       "type": "apply_behaviours",
       "behaviours": [
-        "cobblemon:core"
+        "cobblemon:avoids_water",
+        "cobblemon:core",
+        "cobblemon:floats",
+        "cobblemon:looks_around",
+        "cobblemon:looks_at_players",
+        "cobblemon:panics",
+        "cobblemon:wanders"
       ]
     }
-  ],
-  "interaction": {
-    "type": "dialogue",
-    "dialogue": "cobblemon_move_tutor:tutor_dialogue"
-  },
-  "variations": {
-    "village_tutor": [
-      "red",
-      "blue",
-      "green"
-    ]
-  }
+  ]
 }
