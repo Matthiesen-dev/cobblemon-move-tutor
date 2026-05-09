@@ -124,14 +124,4 @@ public record CancelConfirmGuiBuilder(
     public void open() {
         UIManager.openUIForcefully(player, getPage());
     }
-
-    @Override
-    public void close() {
-        UIManager.closeUI(player);
-    }
-
-    @Override
-    public void sendPlayerMessage(Component message) {
-        player.sendSystemMessage(message);
-    }
 }

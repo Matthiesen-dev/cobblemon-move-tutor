@@ -84,14 +84,4 @@ public abstract class Abstract9x3Gui implements IGui {
     public void open() {
         UIManager.openUIForcefully(getPlayer(), getPage());
     }
-
-    @Override
-    public void close() {
-        UIManager.closeUI(getPlayer());
-    }
-
-    @Override
-    public void sendPlayerMessage(Component message) {
-        getPlayer().sendSystemMessage(message);
-    }
 }

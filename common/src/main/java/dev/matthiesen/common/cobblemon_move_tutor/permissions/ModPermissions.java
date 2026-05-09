@@ -34,8 +34,4 @@ public class ModPermissions {
     public static boolean checkPermission(CommandSourceStack source, ModPermission permission) {
         return Cobblemon.INSTANCE.getPermissionValidator().hasPermission(source, permission);
     }
-
-    public static boolean checkPlayerPermission(ServerPlayer player, ModPermission permission) {
-        return Cobblemon.INSTANCE.getPermissionValidator().hasPermission(player, permission);
-    }
 }
