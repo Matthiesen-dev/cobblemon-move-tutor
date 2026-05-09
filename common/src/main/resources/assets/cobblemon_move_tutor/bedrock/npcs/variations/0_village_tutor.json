@@ -17,7 +17,6 @@
     },
     {
       "aspects": ["red"],
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
       "layers": [
         {
           "name": "outfit",
@@ -28,7 +27,6 @@
     },
     {
       "aspects": ["blue"],
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
       "layers": [
         {
           "name": "outfit",
@@ -39,7 +37,6 @@
     },
     {
       "aspects": ["green"],
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
       "layers": [
         {
           "name": "outfit",
