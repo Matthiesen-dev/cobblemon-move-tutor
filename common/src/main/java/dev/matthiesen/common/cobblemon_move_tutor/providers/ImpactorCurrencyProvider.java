@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.impactdev.impactor.api.economy.EconomyService;
 import net.impactdev.impactor.api.economy.currency.Currency;
 import net.impactdev.impactor.api.economy.accounts.Account;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,11 +27,10 @@ public class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
-        var account = getAccount(player.getUUID());
+        Account account = getAccount(player.getUUID());
 
         if (account.balance().intValue() < price) {
-            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.notEnoughMoney", String.valueOf(price), currencyDisplayName()));
-            return false;
+            return notEnoughFunds(player, price);
         }
 
         return account.withdraw(new BigDecimal(price)).successful();

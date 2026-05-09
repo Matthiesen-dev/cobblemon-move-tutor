@@ -11,6 +11,11 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
     public abstract String currencyName();
     public abstract String currencyDisplayName();
 
+    public boolean notEnoughFunds(ServerPlayer player, int price) {
+        player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.notEnoughMoney", String.valueOf(price), currencyDisplayName()));
+        return false;
+    }
+
     @Override
     public @NotNull Component lore(int price) {
         return Component.translatable("cobblemon_move_tutor.gui.priceLore", String.valueOf(price), currencyName());
