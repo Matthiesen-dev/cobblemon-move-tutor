@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
+// TODO: Implement this
 public class ItemCurrencyProvider extends AbstractCurrencyProvider {
     @Override
     public String currencyName() {
@@ -13,7 +14,7 @@ public class ItemCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public String currencyDisplayName() {
-        return "Rare Candy";
+        return "Rare Candy"; // TODO Setup a config option for this
     }
 
     @Override
