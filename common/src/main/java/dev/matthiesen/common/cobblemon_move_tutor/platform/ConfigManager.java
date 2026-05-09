@@ -1,9 +1,6 @@
 package dev.matthiesen.common.cobblemon_move_tutor.platform;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 
 import java.io.File;
@@ -23,7 +20,7 @@ public class ConfigManager<T> {
      * @param configClass The class of the config to manage
      * @param configName The name of the config file (without .json extension)
      */
-    public ConfigManager(Class<T> configClass, String configName) {
+    public ConfigManager(String configName, Class<T> configClass) {
         this.configClass = configClass;
         this.configName = configName;
         this.gson = getGsonFromConfigClass();
@@ -40,7 +37,10 @@ public class ConfigManager<T> {
             return (Gson) gsonField.get(null);
         } catch (NoSuchFieldException | IllegalAccessException | ClassCastException e) {
             Constants.createInfoLog("No GSON field found in " + configClass.getSimpleName() + ", using default Gson instance");
-            return new Gson();
+            return new GsonBuilder()
+                    .disableHtmlEscaping()
+                    .setPrettyPrinting()
+                    .create();
         }
     }
 
@@ -56,7 +56,7 @@ public class ConfigManager<T> {
         }
     }
 
-    public T loadConfig() {
+    public void loadConfig() {
         String configFileLoc = System.getProperty("user.dir") + File.separator + "config" +
                 File.separator + Constants.MOD_ID + File.separator + configName + ".json";
         Constants.createInfoLog("Loading config file found at: " + configFileLoc);
@@ -102,7 +102,6 @@ public class ConfigManager<T> {
 
         saveConfig();
 
-        return config;
     }
 
     public JsonElement mergeConfigs(JsonObject defaultConfig, JsonObject fileConfig) {
@@ -145,5 +144,9 @@ public class ConfigManager<T> {
             Constants.createErrorLog("Failed to save config");
             e.printStackTrace();
         }
+    }
+
+    public T getConfig() {
+        return config;
     }
 }

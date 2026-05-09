@@ -1,8 +1,10 @@
 package dev.matthiesen.common.cobblemon_move_tutor.config;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
-public class CurrencyProvidersConfig extends ConfigBase {
+public class CurrencyProvidersConfig {
     @SerializedName("cobbleDollarsProvider")
     public CobbleDollarsProvider cobbleDollarsProvider = new CobbleDollarsProvider();
 
@@ -19,7 +21,7 @@ public class CurrencyProvidersConfig extends ConfigBase {
 
     public static class ImpactorProvider {
         @SerializedName("currencyDisplayName")
-        public String currencyDisplayName = "Money";
+        public String currencyDisplayName = "Dollars";
 
         @SerializedName("currency")
         public String impactorCurrency = "impactor:dollars";
@@ -32,4 +34,10 @@ public class CurrencyProvidersConfig extends ConfigBase {
         @SerializedName("itemId")
         public String itemId = "cobblemon:rare_candy";
     }
+
+    @SuppressWarnings("unused")
+    public static final Gson GSON = new GsonBuilder()
+            .disableHtmlEscaping()
+            .setPrettyPrinting()
+            .create();
 }

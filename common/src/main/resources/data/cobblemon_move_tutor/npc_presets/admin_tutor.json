@@ -3,5 +3,9 @@
   "isMovable": false,
   "isInvulnerable": true,
   "isLeashable": false,
-  "allowProjectileHits": false
+  "allowProjectileHits": false,
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "cobblemon_move_tutor:admin_tutor_dialogue"
+  }
 }

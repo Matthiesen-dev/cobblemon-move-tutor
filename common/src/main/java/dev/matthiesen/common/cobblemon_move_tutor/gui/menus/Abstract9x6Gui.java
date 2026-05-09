@@ -52,7 +52,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
     }
 
     public static ItemStack getPageItem(int currentPage, int pageLength) {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.guiConfig.currentPageItemId))
+        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().currentPageItemId))
                 .setCustomName(
                         Component.literal("Page " + currentPage + "/" + pageLength).withStyle(style -> style.withColor(ChatFormatting.GOLD))
                 )
@@ -60,7 +60,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
     }
 
     public static ItemStack getNavItem(String label) {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.guiConfig.navigationItemId))
+        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().navigationItemId))
                 .hideAdditional()
                 .setCustomName(
                         Component.literal(label)

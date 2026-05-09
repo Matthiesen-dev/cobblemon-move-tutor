@@ -25,6 +25,6 @@ public class ItemCurrencyProvider extends AbstractCurrencyProvider {
     }
 
     private CurrencyProvidersConfig.ItemProvider getConfig() {
-        return CobblemonMoveTutorCommon.currencyProvidersConfig.itemProvider;
+        return CobblemonMoveTutorCommon.getCurrencyProvidersConfig().itemProvider;
     }
 }

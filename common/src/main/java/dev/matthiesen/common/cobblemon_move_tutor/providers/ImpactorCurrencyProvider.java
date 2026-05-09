@@ -51,7 +51,7 @@ public class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
     }
 
     private CurrencyProvidersConfig.ImpactorProvider getConfig() {
-        return CobblemonMoveTutorCommon.currencyProvidersConfig.impactorProvider;
+        return CobblemonMoveTutorCommon.getCurrencyProvidersConfig().impactorProvider;
     }
 
     private Account getAccount(@NotNull UUID playerUUID) {

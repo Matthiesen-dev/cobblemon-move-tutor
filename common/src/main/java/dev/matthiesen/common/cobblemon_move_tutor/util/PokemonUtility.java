@@ -99,22 +99,22 @@ public class PokemonUtility {
         Learnset moves = pokemon.getForm().getMoves();
 
         if (moves.getLevelUpMoves().values().stream().anyMatch(list -> list.contains(move))) {
-            return CobblemonMoveTutorCommon.config.currencyConfig.levelMovePrice;
+            return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.levelMovePrice;
         }
         if (moves.getTmMoves().contains(move)) {
-            return CobblemonMoveTutorCommon.config.currencyConfig.tmMovePrice;
+            return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.tmMovePrice;
         }
         if (moves.getLegacyMoves().contains(move)) {
-            return CobblemonMoveTutorCommon.config.currencyConfig.legacyMovePrice;
+            return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.legacyMovePrice;
         }
         if (moves.getTutorMoves().contains(move)) {
-            return CobblemonMoveTutorCommon.config.currencyConfig.tutorMovePrice;
+            return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.tutorMovePrice;
         }
         if (moves.getSpecialMoves().contains(move)) {
-            return CobblemonMoveTutorCommon.config.currencyConfig.specialMovePrice;
+            return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.specialMovePrice;
         }
         if (moves.getEggMoves().contains(move)) {
-            return CobblemonMoveTutorCommon.config.currencyConfig.eggMovePrice;
+            return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.eggMovePrice;
         }
         return 0;
     }

@@ -14,11 +14,11 @@ public class ModPermissions {
     public ModPermissions() {
         this.EXAMPLE_PERMISSION = new ModPermission(
                 Constants.MOD_ID + ".command.example",
-                toPermLevel(CobblemonMoveTutorCommon.config.permissionLevels.COMMAND_EXAMPLE_PERMISSION_LEVEL)
+                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_EXAMPLE_PERMISSION_LEVEL)
         );
         this.EXAMPLE_COOL_PERMISSION = new ModPermission(
                 Constants.MOD_ID + ".command.example-cool",
-                toPermLevel(CobblemonMoveTutorCommon.config.permissionLevels.COMMAND_EXAMPLE_COOL_PERMISSION_LEVEL)
+                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_EXAMPLE_COOL_PERMISSION_LEVEL)
         );
     }
 

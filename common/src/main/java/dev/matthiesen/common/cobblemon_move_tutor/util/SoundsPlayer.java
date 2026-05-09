@@ -19,10 +19,4 @@ public class SoundsPlayer {
                 () -> player.playNotifySound(this.soundEvent, this.soundSource, this.volume, this.pitch)
         );
     }
-
-    public void playIfMatchesRequirements(ServerPlayer player, boolean bool) {
-        if (bool) {
-            play(player);
-        }
-    }
 }

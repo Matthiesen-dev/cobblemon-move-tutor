@@ -4,5 +4,9 @@
   "isInvulnerable": false,
   "isLeashable": true,
   "allowProjectileHits": true,
-  "hideNameTag": true
+  "hideNameTag": true,
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "cobblemon_move_tutor:tutor_dialogue"
+  }
 }

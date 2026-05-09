@@ -35,6 +35,6 @@ public class CobbleDollarsCurrencyProvider extends AbstractCurrencyProvider {
     }
 
     private CurrencyProvidersConfig.CobbleDollarsProvider getConfig() {
-        return CobblemonMoveTutorCommon.currencyProvidersConfig.cobbleDollarsProvider;
+        return CobblemonMoveTutorCommon.getCurrencyProvidersConfig().cobbleDollarsProvider;
     }
 }

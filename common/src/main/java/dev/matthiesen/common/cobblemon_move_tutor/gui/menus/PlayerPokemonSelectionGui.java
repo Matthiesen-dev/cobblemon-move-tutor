@@ -32,7 +32,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     }
 
     private Button getEmptyPokemonButton() {
-        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.guiConfig.emptyPokemonId);
+        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId);
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(item)

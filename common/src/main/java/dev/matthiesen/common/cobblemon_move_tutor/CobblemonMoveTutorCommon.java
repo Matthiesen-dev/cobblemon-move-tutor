@@ -19,21 +19,37 @@ public class CobblemonMoveTutorCommon {
             new CurrencyProviderRegistry();
 
     public static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
-            new ConfigManager<>(CommonConfig.class, "common");
+            new ConfigManager<>("common", CommonConfig.class);
     public static final ConfigManager<CurrencyProvidersConfig> CURRENCY_PROVIDERS_CONFIG_MANGER =
-            new ConfigManager<>(CurrencyProvidersConfig.class, "currency_providers");
+            new ConfigManager<>("currency_providers", CurrencyProvidersConfig.class);
     public static final ConfigManager<GuiConfig> GUI_CONFIG_MANAGER =
-            new ConfigManager<>(GuiConfig.class, "gui_config");
+            new ConfigManager<>("gui_config", GuiConfig.class);
+    public static final ConfigManager<PermissionsConfig> PERMISSIONS_CONFIG_MANAGER =
+            new ConfigManager<>("permissions", PermissionsConfig.class);
+
+    public static CommonConfig getCommonConfig() {
+        return COMMON_CONFIG_MANAGER.getConfig();
+    }
+
+    public static CurrencyProvidersConfig getCurrencyProvidersConfig() {
+        return CURRENCY_PROVIDERS_CONFIG_MANGER.getConfig();
+    }
+
+    public static GuiConfig getGuiConfig() {
+        return GUI_CONFIG_MANAGER.getConfig();
+    }
+
+    public static PermissionsConfig getPermissionsConfig() {
+        return PERMISSIONS_CONFIG_MANAGER.getConfig();
+    }
 
     public static ModPermissions permissions;
-    public static CommonConfig config;
-    public static CurrencyProvidersConfig currencyProvidersConfig;
-    public static GuiConfig guiConfig;
 
     public static void loadConfig() {
-        config = COMMON_CONFIG_MANAGER.loadConfig();
-        currencyProvidersConfig = CURRENCY_PROVIDERS_CONFIG_MANGER.loadConfig();
-        guiConfig = GUI_CONFIG_MANAGER.loadConfig();
+        COMMON_CONFIG_MANAGER.loadConfig();
+        CURRENCY_PROVIDERS_CONFIG_MANGER.loadConfig();
+        GUI_CONFIG_MANAGER.loadConfig();
+        PERMISSIONS_CONFIG_MANAGER.loadConfig();
     }
 
     public static void initialize() {
@@ -71,6 +87,7 @@ public class CobblemonMoveTutorCommon {
         COMMON_CONFIG_MANAGER.saveConfig();
         CURRENCY_PROVIDERS_CONFIG_MANGER.saveConfig();
         GUI_CONFIG_MANAGER.saveConfig();
+        PERMISSIONS_CONFIG_MANAGER.saveConfig();
     }
 
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {

@@ -25,7 +25,7 @@ public abstract class Abstract9x3Gui implements IGui {
     public abstract Component getTitle();
 
     public static String getFrameIdentifier() {
-        return CobblemonMoveTutorCommon.guiConfig.frameItemId;
+        return CobblemonMoveTutorCommon.getGuiConfig().frameItemId;
     }
 
     public static Button getFrame() {

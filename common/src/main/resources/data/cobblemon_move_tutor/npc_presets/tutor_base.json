@@ -21,9 +21,5 @@
         }
       ]
     }
-  },
-  "interaction": {
-    "type": "dialogue",
-    "dialogue": "cobblemon_move_tutor:tutor_dialogue"
   }
 }
