@@ -4,8 +4,8 @@
   "variations": [
     {
       "aspects": [],
-      "poser": "cobblemon_move_tutor:tutor",
-      "model": "cobblemon_move_tutor:tutor.geo",
+      "poser": "cobblemon:standard",
+      "model": "cobblemon:steve.geo",
       "texture": "cobblemon_move_tutor:textures/npcs/tutor/base.png",
       "layers": []
     },
