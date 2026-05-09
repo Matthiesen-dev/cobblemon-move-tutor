@@ -57,11 +57,7 @@ public class CobblemonMoveTutorCommon {
         Constants.createInfoLog("Initializing common logic");
         permissions = new ModPermissions();
         SoundRegistry.init();
-        StatsRegistry.init();
-        BlockRegistry.init();
-        BlockEntityRegistry.init();
         ItemRegistry.init();
-        CriterionTriggerRegistry.init();
         loadCurrencyProviders();
         // Extend Cobblemon's Molang functions
         PlayerFunctionsExtension.register();
