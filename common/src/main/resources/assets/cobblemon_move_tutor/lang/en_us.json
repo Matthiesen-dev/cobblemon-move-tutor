@@ -1,6 +1,6 @@
 {
   "cobblemon_move_tutor.gui.priceLore": "Price: %s %s",
-  "cobblemon_move_tutor.gui.buyMove": "§eTaught %s to %s for %s %s.",
-  "cobblemon_move_tutor.gui.buyMoveFree": "§eTaught %s to %s for free.",
-  "cobblemon_move_tutor.gui.notEnoughMoney": "§cNot enough funds, You need %s %s to buy this move"
+  "cobblemon_move_tutor.gui.buyMove": "Taught %s to %s for %s %s.",
+  "cobblemon_move_tutor.gui.buyMoveFree": "Taught %s to %s for free.",
+  "cobblemon_move_tutor.gui.notEnoughMoney": "Not enough funds, You need %s %s to buy this move"
 }
