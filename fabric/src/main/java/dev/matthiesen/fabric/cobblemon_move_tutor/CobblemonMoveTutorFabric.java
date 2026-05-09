@@ -13,6 +13,7 @@ public class CobblemonMoveTutorFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         Constants.createInfoLog("Loading for Fabric Mod Loader");
+        CobblemonMoveTutorCommon.loadConfig();
         CobblemonMoveTutorCommon.initialize();
         CommandRegistrationCallback.EVENT.register(CobblemonMoveTutorCommon::registerCommands);
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {

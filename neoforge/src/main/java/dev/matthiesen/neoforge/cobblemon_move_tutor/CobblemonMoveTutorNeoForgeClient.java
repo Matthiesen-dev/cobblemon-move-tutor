@@ -10,7 +10,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod(value = Constants.MOD_ID, dist = Dist.CLIENT)
 public class CobblemonMoveTutorNeoForgeClient {
     public CobblemonMoveTutorNeoForgeClient(IEventBus modBus) {
-        Constants.createInfoLog("Loading client-side for NeoForge Mod Loader");
         modBus.addListener(this::clientSetup);
     }
 

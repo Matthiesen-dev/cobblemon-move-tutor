@@ -21,9 +21,12 @@ public class CobblemonMoveTutorCommon {
     public static ModPermissions permissions;
     public static CommonConfig config;
 
-    public static void initialize() {
-        Constants.createInfoLog("Initialized");
+    public static void loadConfig() {
         config = COMMON_CONFIG_MANAGER.loadConfig();
+    }
+
+    public static void initialize() {
+        Constants.createInfoLog("Initializing common logic");
         permissions = new ModPermissions();
         SoundRegistry.init();
         StatsRegistry.init();

@@ -34,6 +34,7 @@ public class CobblemonMoveTutorNeoForge {
 
     public CobblemonMoveTutorNeoForge(IEventBus modBus) {
         Constants.createInfoLog("Loading for NeoForge Mod Loader");
+        CobblemonMoveTutorCommon.loadConfig();
         STATS.register(modBus);
         SOUND_EVENTS.register(modBus);
         BLOCKS.register(modBus);
