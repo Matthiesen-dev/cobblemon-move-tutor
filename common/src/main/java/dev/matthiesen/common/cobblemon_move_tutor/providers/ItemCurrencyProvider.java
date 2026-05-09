@@ -6,7 +6,6 @@ import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemCurrencyProvider extends AbstractCurrencyProvider {
-
     @Override
     public String currencyName() {
         return "item";
