@@ -3,11 +3,13 @@ package dev.matthiesen.common.cobblemon_move_tutor.gui.menus;
 import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
+import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -41,6 +43,9 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
                                 .hideAdditional()
                                 .build()
                 )
+                .onClick(action ->
+                        new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT)
+                                .play(action.getPlayer()))
                 .build();
     }
 
@@ -54,7 +59,9 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
                 buttons.add(
                         GooeyButton.builder()
                                 .display(PokemonUtility.pokemonToItem(pokemon))
-                                .onClick((action) -> {
+                                .onClick(action -> {
+                                    ServerPlayer sender = action.getPlayer();
+                                    new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sender);
                                     // TODO
                                 })
                                 .build()
