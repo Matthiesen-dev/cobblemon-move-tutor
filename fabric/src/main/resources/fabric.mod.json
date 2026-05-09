@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.matthiesen.fabric.template_cobblemon_sidemod.ExampleModFabric"
+      "dev.matthiesen.fabric.cobblemon_move_tutor.CobblemonMoveTutorFabric"
     ],
     "client": [
-      "dev.matthiesen.fabric.template_cobblemon_sidemod.ExampleModFabricClient"
+      "dev.matthiesen.fabric.cobblemon_move_tutor.CobblemonMoveTutorFabricClient"
     ]
   },
   "depends": {
