@@ -4,11 +4,23 @@
     "Move Tutor"
   ],
   "variations": {
-    "tutor": [
-      "red",
-      "blue",
-      "green"
-    ]
+    "tutor": {
+      "type": "weighted",
+      "options": [
+        {
+          "aspect": "red",
+          "weight": 20
+        },
+        {
+          "aspect": "blue",
+          "weight": 20
+        },
+        {
+          "aspect": "green",
+          "weight": 20
+        }
+      ]
+    }
   },
   "interaction": {
     "type": "dialogue",

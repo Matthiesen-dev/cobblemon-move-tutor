@@ -7,19 +7,46 @@
       "poser": "cobblemon_move_tutor:village_tutor",
       "model": "cobblemon_move_tutor:village_tutor.geo",
       "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "outfit",
+          "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base_outfit.png",
+          "emissive": false
+        }
+      ]
     },
     {
       "aspects": ["red"],
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/red.png"
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
+      "layers": [
+        {
+          "name": "outfit",
+          "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/red_outfit.png",
+          "emissive": false
+        }
+      ]
     },
     {
       "aspects": ["blue"],
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/blue.png"
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
+      "layers": [
+        {
+          "name": "outfit",
+          "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/blue_outfit.png",
+          "emissive": false
+        }
+      ]
     },
     {
       "aspects": ["green"],
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/green.png"
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
+      "layers": [
+        {
+          "name": "outfit",
+          "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/green_outfit.png",
+          "emissive": false
+        }
+      ]
     }
   ]
 }
