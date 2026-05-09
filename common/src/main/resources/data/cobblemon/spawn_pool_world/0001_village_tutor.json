@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "village_tutor-1",
+      "npc": "village_tutor",
+      "presets": [
+        "natural"
+      ],
+      "type": "npc",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "weight": 20,
+      "condition": {
+        "timeRange": "day",
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ],
+        "structures": [
+          "#minecraft:village"
+        ]
+      }
+    }
+  ]
+}

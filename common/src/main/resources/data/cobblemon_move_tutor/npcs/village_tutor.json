@@ -1,0 +1,22 @@
+{
+  "resourceIdentifier": "cobblemon_move_tutor:village_tutor",
+  "hitbox": "player",
+  "canDespawn": true,
+  "isInvulnerable": false,
+  "canBeLeashed": true,
+  "allowProjectileHits": true,
+  "names": [
+    "Move Tutor"
+  ],
+  "hideNameTag": true,
+  "ai": [],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "cobblemon_move_tutor:tutor_dialogue"
+  },
+  "variations": {
+    "village_tutor": [
+      "base"
+    ]
+  }
+}

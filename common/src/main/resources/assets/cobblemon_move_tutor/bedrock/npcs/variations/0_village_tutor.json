@@ -1,0 +1,13 @@
+{
+  "name": "cobblemon_move_tutor:village_tutor",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": ["base"],
+      "poser": "cobblemon_move_tutor:village_tutor",
+      "model": "cobblemon_move_tutor:village_tutor.geo",
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
+      "layers": []
+    }
+  ]
+}

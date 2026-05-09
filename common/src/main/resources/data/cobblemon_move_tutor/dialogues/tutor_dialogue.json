@@ -1,0 +1,62 @@
+{
+  "initializationAction": [
+    "c.npc.set_chatting();"
+  ],
+  "speakers": {
+    "npc": {
+      "name": {
+        "type": "expression",
+        "expression": "q.npc.name"
+      },
+      "face": "q.npc.face();"
+    },
+    "player": {
+      "face": "q.player.face();",
+      "name": {
+        "type": "expression",
+        "expression": "q.player.username"
+      }
+    }
+  },
+  "pages": [
+    {
+      "id": "greeting",
+      "speaker": "npc",
+      "lines": [
+        "Select an option"
+      ],
+      "input": {
+        "type": "option",
+        "vertical": true,
+        "options": [
+          {
+            "text": "Yes",
+            "value": "yes",
+            "action": "q.dialogue.set_page('okhi');"
+          },
+          {
+            "text": "No",
+            "value": "no",
+            "action": "q.dialogue.set_page('okbye');"
+          }
+        ]
+      }
+    },
+    {
+      "id": "okbye",
+      "speaker": "npc",
+      "lines": [
+        "Alright, see you later!"
+      ],
+      "input": "q.dialogue.close();"
+    },
+    {
+      "id": "okhi",
+      "speaker": "npc",
+      "lines": [
+        "Great, you selected yes!"
+      ],
+      "input": "q.dialogue.close();"
+    }
+  ]
+}
