@@ -16,7 +16,9 @@
   },
   "variations": {
     "village_tutor": [
-      "base"
+      "red",
+      "blue",
+      "green"
     ]
   }
 }

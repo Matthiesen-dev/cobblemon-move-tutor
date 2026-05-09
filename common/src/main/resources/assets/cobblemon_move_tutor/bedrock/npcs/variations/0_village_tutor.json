@@ -3,10 +3,24 @@
   "order": 0,
   "variations": [
     {
-      "aspects": ["base"],
+      "aspects": ["red"],
       "poser": "cobblemon_move_tutor:village_tutor",
       "model": "cobblemon_move_tutor:village_tutor.geo",
-      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/base.png",
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/red.png",
+      "layers": []
+    },
+    {
+      "aspects": ["blue"],
+      "poser": "cobblemon_move_tutor:village_tutor",
+      "model": "cobblemon_move_tutor:village_tutor.geo",
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/blue.png",
+      "layers": []
+    },
+    {
+      "aspects": ["green"],
+      "poser": "cobblemon_move_tutor:village_tutor",
+      "model": "cobblemon_move_tutor:village_tutor.geo",
+      "texture": "cobblemon_move_tutor:textures/npcs/village_tutor/green.png",
       "layers": []
     }
   ]
