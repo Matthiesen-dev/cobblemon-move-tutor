@@ -1,5 +1,6 @@
 {
-  "cobblemon_move_tutor.gui.title": "Move Tutor",
+  "cobblemon_move_tutor.gui.selectPokemonTitle": "Select a Pokemon",
+  "cobblemon_move_tutor.gui.emptySlot": "Empty",
 
   "cobblemon_move_tutor.gui.priceLore": "Price: %s %s",
   "cobblemon_move_tutor.gui.buyMove": "Taught %s to %s for %s %s.",

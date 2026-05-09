@@ -1,4 +1,4 @@
-package dev.matthiesen.common.cobblemon_move_tutor.gui;
+package dev.matthiesen.common.cobblemon_move_tutor.gui.menus;
 
 import ca.landonjw.gooeylibs2.api.UIManager;
 import ca.landonjw.gooeylibs2.api.button.Button;
