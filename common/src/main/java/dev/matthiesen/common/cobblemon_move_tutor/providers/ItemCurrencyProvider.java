@@ -2,6 +2,8 @@ package dev.matthiesen.common.cobblemon_move_tutor.providers;
 
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.config.CurrencyProvidersConfig;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,11 +16,15 @@ public class ItemCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public String currencyDisplayName() {
-        return "Rare Candy"; // TODO Setup a config option for this
+        return getConfig().currencyDisplayName;
     }
 
     @Override
     public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
         return false;
+    }
+
+    private CurrencyProvidersConfig.ItemProvider getConfig() {
+        return CobblemonMoveTutorCommon.currencyProvidersConfig.itemProvider;
     }
 }

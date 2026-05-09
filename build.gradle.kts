@@ -22,6 +22,7 @@ allprojects {
         maven("https://artefacts.cobblemon.com/releases/")
         maven("https://repo.spongepowered.org/repository/maven-public")
         maven("https://api.modrinth.com/maven")
+        maven("https://maven.impactdev.net/repository/development")
     }
 
     tasks {

@@ -13,18 +13,27 @@ import net.minecraft.commands.Commands;
 import java.util.ServiceLoader;
 
 public class CobblemonMoveTutorCommon {
-    public static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
-            new ConfigManager<>(CommonConfig.class, "config");
     public static final CommonPlatform COMMON_PLATFORM =
             ServiceLoader.load(CommonPlatform.class).findFirst().orElseThrow();
     public static final CurrencyProviderRegistry currencyProviderRegistry =
             new CurrencyProviderRegistry();
 
+    public static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
+            new ConfigManager<>(CommonConfig.class, "common");
+    public static final ConfigManager<CurrencyProvidersConfig> CURRENCY_PROVIDERS_CONFIG_MANGER =
+            new ConfigManager<>(CurrencyProvidersConfig.class, "currency_providers");
+    public static final ConfigManager<GuiConfig> GUI_CONFIG_MANAGER =
+            new ConfigManager<>(GuiConfig.class, "gui_config");
+
     public static ModPermissions permissions;
     public static CommonConfig config;
+    public static CurrencyProvidersConfig currencyProvidersConfig;
+    public static GuiConfig guiConfig;
 
     public static void loadConfig() {
         config = COMMON_CONFIG_MANAGER.loadConfig();
+        currencyProvidersConfig = CURRENCY_PROVIDERS_CONFIG_MANGER.loadConfig();
+        guiConfig = GUI_CONFIG_MANAGER.loadConfig();
     }
 
     public static void initialize() {
@@ -60,6 +69,8 @@ public class CobblemonMoveTutorCommon {
     public static void onShutdown() {
         Constants.createInfoLog("Server stopping, shutting down");
         COMMON_CONFIG_MANAGER.saveConfig();
+        CURRENCY_PROVIDERS_CONFIG_MANGER.saveConfig();
+        GUI_CONFIG_MANAGER.saveConfig();
     }
 
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {

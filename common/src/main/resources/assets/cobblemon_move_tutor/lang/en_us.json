@@ -1,4 +1,6 @@
 {
+  "cobblemon_move_tutor.gui.title": "Move Tutor",
+
   "cobblemon_move_tutor.gui.priceLore": "Price: %s %s",
   "cobblemon_move_tutor.gui.buyMove": "Taught %s to %s for %s %s.",
   "cobblemon_move_tutor.gui.buyMoveFree": "Taught %s to %s for free.",

@@ -2,6 +2,8 @@ package dev.matthiesen.common.cobblemon_move_tutor.providers;
 
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.config.CurrencyProvidersConfig;
 import fr.harmex.cobbledollars.common.utils.extensions.PlayerExtensionKt;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +19,7 @@ public class CobbleDollarsCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public String currencyDisplayName() {
-        return "Cobble Dollars";
+        return getConfig().currencyDisplayName;
     }
 
     @Override
@@ -30,5 +32,9 @@ public class CobbleDollarsCurrencyProvider extends AbstractCurrencyProvider {
 
         PlayerExtensionKt.setCobbleDollars(player, balance.subtract(new BigDecimal(price).toBigInteger()));
         return true;
+    }
+
+    private CurrencyProvidersConfig.CobbleDollarsProvider getConfig() {
+        return CobblemonMoveTutorCommon.currencyProvidersConfig.cobbleDollarsProvider;
     }
 }

@@ -20,6 +20,9 @@ dependencies {
     modApi(files("${rootProject.rootDir}/jars/molang-${property("molang_version")}.jar"))
     modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
+    modCompileOnly("ca.landonjw.gooeylibs:api:${property("gooeylibs_version")}")
+
+    implementation("net.kyori:adventure-key:4.13.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
