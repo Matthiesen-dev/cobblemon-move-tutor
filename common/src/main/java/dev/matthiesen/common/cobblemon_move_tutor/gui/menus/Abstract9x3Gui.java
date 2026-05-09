@@ -11,9 +11,8 @@ import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.interfaces.IGui;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
+import dev.matthiesen.common.cobblemon_move_tutor.util.ItemDecoder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -30,9 +29,7 @@ public abstract class Abstract9x3Gui implements IGui {
     }
 
     public static Button getFrame() {
-        ResourceLocation rsLoc = ResourceLocation.parse(getFrameIdentifier());
-        Item item = BuiltInRegistries.ITEM.get(rsLoc);
-
+        Item item = ItemDecoder.stringToItem(getFrameIdentifier());
         Item itemToDisplay;
 
         if (item != Items.AIR) {

@@ -8,12 +8,11 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
+import dev.matthiesen.common.cobblemon_move_tutor.util.ItemDecoder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
 import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 
@@ -33,8 +32,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     }
 
     private Button getEmptyPokemonButton() {
-        ResourceLocation rsLoc = ResourceLocation.parse(CobblemonMoveTutorCommon.guiConfig.emptyPokemonId);
-        Item item = BuiltInRegistries.ITEM.get(rsLoc);
+        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.guiConfig.emptyPokemonId);
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(item)
