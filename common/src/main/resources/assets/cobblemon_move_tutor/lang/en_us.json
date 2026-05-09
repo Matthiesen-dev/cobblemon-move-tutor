@@ -24,5 +24,6 @@
   "cobblemon_move_tutor.gui.buyMove": "Taught %s to %s for %s %s.",
   "cobblemon_move_tutor.gui.buyMoveFree": "Taught %s to %s for free.",
   "cobblemon_move_tutor.gui.notEnoughMoney": "Not enough funds, You need %s %s to buy this move",
-  "cobblemon_move_tutor.gui.invalidCurrency": "Type currency - %s not supported."
+  "cobblemon_move_tutor.gui.invalidCurrency": "Type currency - %s not supported.",
+  "cobblemon_move_tutor.gui.invalidCurrencyItem": "The item %s is not a valid currency."
 }
