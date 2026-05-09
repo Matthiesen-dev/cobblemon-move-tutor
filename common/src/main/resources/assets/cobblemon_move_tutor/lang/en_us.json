@@ -1,0 +1,5 @@
+{
+  "gui.cobblemon_move_tutor.priceLore": "Price: %s %s",
+  "gui.cobblemon_move_tutor.buyMove": "&eTaught %s to %s for %s %s.",
+  "gui.cobblemon_move_tutor.buyMoveFree": "&eTaught %s to %s for free."
+}
