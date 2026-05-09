@@ -11,7 +11,7 @@
       ],
       "type": "npc",
       "spawnablePositionType": "grounded",
-      "bucket": "uncommon",
+      "bucket": "common",
       "weight": 20,
       "condition": {
         "timeRange": "day",
