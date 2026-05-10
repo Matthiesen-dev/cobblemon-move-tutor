@@ -3,9 +3,12 @@ package dev.matthiesen.common.cobblemon_move_tutor.util;
 import ca.landonjw.gooeylibs2.api.UIManager;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.moves.BenchedMove;
+import com.cobblemon.mod.common.api.moves.MoveSet;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
+import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICurrencyProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -21,13 +24,13 @@ public class MoveManager {
     }
 
     public static void learnMove(ServerPlayer player, Pokemon pokemon, MoveTemplate move, Runnable returnToSelect) {
-        var serverConfig = CobblemonMoveTutorCommon.getCommonConfig();
+        CommonConfig serverConfig = CobblemonMoveTutorCommon.getCommonConfig();
 
         if (!validatePokemon(pokemon, player)) {
             return;
         }
 
-        var moveset = pokemon.getMoveSet();
+        MoveSet moveSet = pokemon.getMoveSet();
 
         if (PokemonUtility.isLearnedMove(pokemon, move)) {
             player.sendSystemMessage(Component.translatable(
@@ -39,23 +42,23 @@ public class MoveManager {
             return;
         }
 
-        var currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
+        ICurrencyProvider currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
 
         if (currencyProvider == null) {
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.invalidCurrency", serverConfig.currencyConfig.currencyType));
             return;
         }
 
-        var price = PokemonUtility.getMovePrice(pokemon, move);
+        int price = PokemonUtility.getMovePrice(pokemon, move);
 
         if (!currencyProvider.buy(player, pokemon, move, price)) {
             return;
         }
 
-        if (!moveset.hasSpace()) {
+        if (!moveSet.hasSpace()) {
             pokemon.getBenchedMoves().add(new BenchedMove(move, 0));
         } else {
-            moveset.add(move.create());
+            moveSet.add(move.create());
         }
 
         returnToSelect.run();

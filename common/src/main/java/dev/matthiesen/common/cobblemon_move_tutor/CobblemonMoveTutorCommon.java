@@ -59,6 +59,7 @@ public class CobblemonMoveTutorCommon {
         SoundRegistry.init();
         ItemRegistry.init();
         loadCurrencyProviders();
+
         // Extend Cobblemon's Molang functions
         PlayerFunctionsExtension.register();
     }

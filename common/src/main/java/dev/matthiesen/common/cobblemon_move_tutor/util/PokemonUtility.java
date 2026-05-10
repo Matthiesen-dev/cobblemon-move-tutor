@@ -1,19 +1,25 @@
 package dev.matthiesen.common.cobblemon_move_tutor.util;
 
+import ca.landonjw.gooeylibs2.api.button.Button;
+import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.api.pokemon.moves.Learnset;
 import com.cobblemon.mod.common.item.PokemonItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PokemonUtility {
     public static Component[] loreBuilder(Pokemon pokemon) {
@@ -134,5 +140,82 @@ public class PokemonUtility {
         }
 
         return String.valueOf(stat);
+    }
+
+    private static String getCategoryIcon(MoveTemplate Move) {
+        return switch (Move.getDamageCategory().getName()) {
+            case "PHYSICAL" -> " ⚔";
+            case "SPECIAL" -> " ⚡";
+            default -> " 🧪";
+        };
+    }
+
+    public static Component[] getMoveLore(Pokemon pokemon, MoveTemplate move) {
+        List<Component> lore = new ArrayList<>();
+
+        var type = move.getElementalType().getDisplayName().copy()
+                .withColor(move.getElementalType().getHue());
+        var typeLine = Component.translatable("cobblemon_move_tutor.gui.typeLore", type)
+                .append(getCategoryIcon(move));
+
+        lore.add(typeLine);
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.powerLore", PokemonUtility.formatStatMove(move.getPower())));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.accuracyLore", PokemonUtility.formatStatMove(move.getAccuracy())));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.ppLore", String.valueOf(move.getPp()), String.valueOf(move.getMaxPp())));
+
+        var price = PokemonUtility.getMovePrice(pokemon, move);
+
+        if (price > 0) {
+            var serverConfig = CobblemonMoveTutorCommon.getCommonConfig();
+            var currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
+
+            if (currencyProvider == null) {
+                lore.add(Component.translatable("cobblemon_move_tutor.gui.invalidCurrency", serverConfig.currencyConfig.currencyType));
+            } else {
+                lore.add(currencyProvider.lore(price));
+            }
+        } else {
+            lore.add(Component.translatable("cobblemon_move_tutor.gui.freeLore"));
+        }
+
+        return lore.toArray(new Component[0]);
+    }
+
+    public static Set<MoveTemplate> getFilteredMoves(Pokemon pokemon, CommonConfig.TutorConfig config) {
+        Learnset moves = pokemon.getForm().getMoves();
+        return PokemonUtility.getAllMoves(moves).stream()
+                .filter(move -> config.levelMove || moves.getLevelUpMoves().values().stream().noneMatch(list -> list.contains(move)))
+                .filter(move -> config.eggMove || !moves.getEggMoves().contains(move))
+                .filter(move -> config.tutorMove || !moves.getTutorMoves().contains(move))
+                .filter(move -> config.tmMove || !moves.getTmMoves().contains(move))
+                .filter(move -> config.legacyMove || !moves.getLegacyMoves().contains(move))
+                .filter(move -> config.specialMove || !moves.getSpecialMoves().contains(move))
+                .filter(move -> !config.hideAlreadyKnownMoves || !PokemonUtility.isLearnedMove(pokemon, move))
+                .collect(Collectors.toSet());
+    }
+
+    public static Button getEmptyPokemonButton() {
+        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId, CobblemonItems.POKE_BALL);
+        return GooeyButton.builder()
+                .display(
+                        new ItemBuilder(item)
+                                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot").withStyle(ChatFormatting.GRAY))
+                                .hideAdditional()
+                                .build()
+                )
+                .onClick(action ->
+                        new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT).play(action.getPlayer()))
+                .build();
+    }
+
+    public static ItemStack getMoveItem(MoveTemplate move, Pokemon selectedPokemon) {
+        return new ItemBuilder(PokemonUtility.getItemTM(move))
+                .setCustomName(move.getDisplayName())
+                .addLore(PokemonUtility.getMoveLore(selectedPokemon, move))
+                .build();
+    }
+
+    public static Button getDetailsButton(MoveTemplate move, Pokemon selectedPokemon) {
+        return GooeyButton.builder().display(getMoveItem(move, selectedPokemon)).build();
     }
 }

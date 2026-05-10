@@ -7,11 +7,23 @@ import net.minecraft.sounds.SoundSource;
 public class SoundsPlayer {
     private final SoundEvent soundEvent;
     private final SoundSource soundSource = SoundSource.MASTER;
-    private final Float volume = 1.0F;
-    private final Float pitch = 1.0F;
+    private Float volume = 1.0F;
+    private Float pitch = 1.0F;
 
     public SoundsPlayer(SoundEvent sound) {
         this.soundEvent = sound;
+    }
+
+    @SuppressWarnings("unused")
+    public SoundsPlayer setVolume(float volume) {
+        this.volume = volume;
+        return this;
+    }
+
+    @SuppressWarnings("unused")
+    public SoundsPlayer setPitch(float pitch) {
+        this.pitch = pitch;
+        return this;
     }
 
     public void play(ServerPlayer player) {

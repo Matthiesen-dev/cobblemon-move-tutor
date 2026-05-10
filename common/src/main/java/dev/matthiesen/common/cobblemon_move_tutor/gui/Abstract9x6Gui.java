@@ -52,7 +52,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
         return page;
     }
 
-    public static ItemStack getPageItem(int currentPage, int pageLength) {
+    public ItemStack getPageItem(int currentPage, int pageLength) {
         return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().currentPageItemId, Items.PAPER))
                 .setCustomName(
                         Component.translatable(
@@ -64,7 +64,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
                 .build();
     }
 
-    public static ItemStack getNavItem(String label) {
+    public ItemStack getNavItem(String label) {
         return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().navigationItemId, Items.ARROW))
                 .hideAdditional()
                 .setCustomName(Component.translatable(label).withStyle(ChatFormatting.AQUA))

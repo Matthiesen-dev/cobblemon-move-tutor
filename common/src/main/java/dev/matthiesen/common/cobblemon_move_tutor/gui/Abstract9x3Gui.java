@@ -24,12 +24,8 @@ public abstract class Abstract9x3Gui implements IGui {
     public abstract List<Button> getButtons();
     public abstract Component getTitle();
 
-    public static String getFrameIdentifier() {
-        return CobblemonMoveTutorCommon.getGuiConfig().frameItemId;
-    }
-
-    public static Button getFrame() {
-        Item itemToDisplay = ItemDecoder.stringToItem(getFrameIdentifier(), Items.GRAY_STAINED_GLASS_PANE);
+    public Button getFrame() {
+        Item itemToDisplay = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().frameItemId, Items.GRAY_STAINED_GLASS_PANE);
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(itemToDisplay)
@@ -40,21 +36,19 @@ public abstract class Abstract9x3Gui implements IGui {
                 .build();
     }
 
-    public static PlaceholderButton getPlaceholder() {
+    public PlaceholderButton getPlaceholder() {
         return new PlaceholderButton();
     }
 
     /**
      * Can be overridden to allow for a different center button, but by default it will just be the same as the frame
      */
-    public static Button getCenterButton() {
+    public Button getCenterButton() {
         return getFrame();
     }
 
-    public Page getPage() {
-        List<Button> buttons = getButtons();
-
-        ChestTemplate template = ChestTemplate.builder(3)
+    public ChestTemplate getTemplate() {
+        return ChestTemplate.builder(3)
                 .row(0, getFrame())
                 .row(1, getFrame())
                 .set(1, 1, getPlaceholder())
@@ -66,7 +60,11 @@ public abstract class Abstract9x3Gui implements IGui {
                 .set(1, 7, getPlaceholder())
                 .row(2, getFrame())
                 .build();
+    }
 
+    public Page getPage() {
+        List<Button> buttons = getButtons();
+        ChestTemplate template = getTemplate();
         GooeyPage page = PaginationHelper.createPagesFromPlaceholders(template, buttons, null);
         page.setTitle(getTitle());
         return page;

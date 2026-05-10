@@ -43,9 +43,7 @@ public class MoveTutorCMD implements ICommand {
 
     private int self(CommandContext<CommandSourceStack> ctx) {
         ServerPlayer player = ctx.getSource().getPlayer();
-        if (player == null) {
-            return 0;
-        }
+        if (player == null) return 0;
         new PlayerPokemonSelectionGui(player, SELECTION_TYPE).open();
         return 1;
     }
@@ -53,9 +51,7 @@ public class MoveTutorCMD implements ICommand {
     private int other(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayer();
         ServerPlayer targetPlayer = EntityArgument.getPlayer(ctx, "player");
-        if (player == null) {
-            return 0;
-        }
+        if (player == null) return 0;
         new PlayerPokemonSelectionGui(targetPlayer, SELECTION_TYPE).open();
         player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.openedForOther", targetPlayer.getDisplayName().getString()));
         return 1;
