@@ -54,6 +54,6 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
 
     @Override
     public Component getTitle() {
-        return Component.translatable("cobblemon_move_tutor.gui.selectPokemonTitle");
+        return Component.translatable("cobblemon_move_tutor.gui.title.selectPokemon");
     }
 }

@@ -161,13 +161,13 @@ public class PokemonUtility {
 
         var type = move.getElementalType().getDisplayName().copy()
                 .withColor(move.getElementalType().getHue());
-        var typeLine = Component.translatable("cobblemon_move_tutor.gui.typeLore", type)
+        var typeLine = Component.translatable("cobblemon_move_tutor.gui.lore.type", type)
                 .append(getCategoryIcon(move));
 
         lore.add(typeLine);
-        lore.add(Component.translatable("cobblemon_move_tutor.gui.powerLore", PokemonUtility.formatStatMove(move.getPower())));
-        lore.add(Component.translatable("cobblemon_move_tutor.gui.accuracyLore", PokemonUtility.formatStatMove(move.getAccuracy())));
-        lore.add(Component.translatable("cobblemon_move_tutor.gui.ppLore", String.valueOf(move.getPp()), String.valueOf(move.getMaxPp())));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.power", PokemonUtility.formatStatMove(move.getPower())));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.accuracy", PokemonUtility.formatStatMove(move.getAccuracy())));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.pp", String.valueOf(move.getPp()), String.valueOf(move.getMaxPp())));
 
         var price = PokemonUtility.getMovePrice(pokemon, move);
 
@@ -176,12 +176,12 @@ public class PokemonUtility {
             var currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
 
             if (currencyProvider == null) {
-                lore.add(Component.translatable("cobblemon_move_tutor.gui.invalidCurrency", serverConfig.currencyConfig.currencyType));
+                lore.add(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currencyConfig.currencyType));
             } else {
                 lore.add(currencyProvider.lore(price));
             }
         } else {
-            lore.add(Component.translatable("cobblemon_move_tutor.gui.freeLore"));
+            lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.free"));
         }
 
         return lore.toArray(new Component[0]);

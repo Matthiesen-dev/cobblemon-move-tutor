@@ -15,7 +15,7 @@ import net.minecraft.server.level.ServerPlayer;
 public class MoveManager {
     public static boolean validatePokemon(Pokemon oldPokemon, ServerPlayer player) {
         if (Cobblemon.INSTANCE.getStorage().getParty(player).get(oldPokemon.getUuid()) == null) {
-            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.unknownPokemon"));
+            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.unknownPokemon"));
             UIManager.closeUI(player);
             return false;
         }
@@ -34,7 +34,7 @@ public class MoveManager {
 
         if (PokemonUtility.isLearnedMove(pokemon, move)) {
             player.sendSystemMessage(Component.translatable(
-                    "cobblemon_move_tutor.gui.alreadyKnowsMove",
+                    "cobblemon_move_tutor.msg.alreadyKnowsMove",
                     pokemon.getDisplayName(false).getString(),
                     move.getDisplayName().getString()
             ));
@@ -45,7 +45,7 @@ public class MoveManager {
         ICurrencyProvider currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
 
         if (currencyProvider == null) {
-            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.invalidCurrency", serverConfig.currencyConfig.currencyType));
+            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currencyConfig.currencyType));
             return;
         }
 

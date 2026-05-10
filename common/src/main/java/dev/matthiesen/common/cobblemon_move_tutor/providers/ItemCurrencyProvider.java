@@ -30,7 +30,7 @@ public class ItemCurrencyProvider extends AbstractCurrencyProvider {
         var config = getConfig();
         Item currencyItem = ItemDecoder.stringToItem(config.itemId, CobblemonItems.RARE_CANDY);
         if (currencyItem == Items.AIR) {
-            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.invalidCurrencyItem", config.itemId).withStyle(ChatFormatting.RED));
+            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrencyItem", config.itemId).withStyle(ChatFormatting.RED));
             UIManager.closeUI(player);
             return false;
         }
