@@ -10,13 +10,7 @@ import net.minecraft.commands.Commands;
 import java.util.List;
 
 public class CommandRegistry {
-    public static final List<ICommand> COMMANDS = List.of(
-            new MoveTutorCMD()
-    );
-
     public static void init(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {
-        for (ICommand command : COMMANDS) {
-            command.register(dispatcher, registry, context);
-        }
+        new MoveTutorCMD().register(dispatcher, registry, context);
     }
 }
