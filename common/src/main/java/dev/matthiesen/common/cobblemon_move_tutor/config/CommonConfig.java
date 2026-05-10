@@ -48,13 +48,13 @@ public class CommonConfig {
         public boolean tmMove = false;
 
         @SerializedName("hmMove")
-        public boolean legacyMove = false;
+        public boolean legacyMove = true;
 
         @SerializedName("tutorMove")
         public boolean tutorMove = true;
 
         @SerializedName("specialMove")
-        public boolean specialMove = false;
+        public boolean specialMove = true;
 
         @SerializedName("eggMove")
         public boolean eggMove = false;

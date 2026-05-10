@@ -150,8 +150,8 @@ public class PokemonUtility {
 
     private static String getCategoryIcon(MoveTemplate Move) {
         return switch (Move.getDamageCategory().getName()) {
-            case "PHYSICAL" -> " ⚔";
-            case "SPECIAL" -> " ⚡";
+            case "physical" -> " ⚔";
+            case "special" -> " ⚡";
             default -> " 🧪";
         };
     }
@@ -161,13 +161,13 @@ public class PokemonUtility {
 
         var type = move.getElementalType().getDisplayName().copy()
                 .withColor(move.getElementalType().getHue());
-        var typeLine = Component.translatable("cobblemon_move_tutor.gui.lore.type", type)
+        var typeLine = Component.translatable("cobblemon_move_tutor.gui.lore.type", type).withStyle(ChatFormatting.GRAY)
                 .append(getCategoryIcon(move));
 
         lore.add(typeLine);
-        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.power", PokemonUtility.formatStatMove(move.getPower())));
-        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.accuracy", PokemonUtility.formatStatMove(move.getAccuracy())));
-        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.pp", String.valueOf(move.getPp()), String.valueOf(move.getMaxPp())));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.power", PokemonUtility.formatStatMove(move.getPower())).withStyle(ChatFormatting.GRAY));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.accuracy", PokemonUtility.formatStatMove(move.getAccuracy())).withStyle(ChatFormatting.GRAY));
+        lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.pp", String.valueOf(move.getPp()), String.valueOf(move.getMaxPp())).withStyle(ChatFormatting.GRAY));
 
         var price = PokemonUtility.getMovePrice(pokemon, move);
 
@@ -176,12 +176,12 @@ public class PokemonUtility {
             var currencyProvider = CobblemonMoveTutorCommon.currencyProviderRegistry.get(serverConfig.currencyConfig.currencyType);
 
             if (currencyProvider == null) {
-                lore.add(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currencyConfig.currencyType));
+                lore.add(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currencyConfig.currencyType).withStyle(ChatFormatting.RED));
             } else {
-                lore.add(currencyProvider.lore(price));
+                lore.add(currencyProvider.lore(price).copy().withStyle(ChatFormatting.YELLOW));
             }
         } else {
-            lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.free"));
+            lore.add(Component.translatable("cobblemon_move_tutor.gui.lore.free").withStyle(ChatFormatting.GREEN));
         }
 
         return lore.toArray(new Component[0]);
@@ -219,6 +219,7 @@ public class PokemonUtility {
 
     public static ItemStack getMoveItem(MoveTemplate move, Pokemon selectedPokemon) {
         return new ItemBuilder(PokemonUtility.getItemTM(move))
+                .hideAdditional()
                 .setCustomName(move.getDisplayName())
                 .addLore(PokemonUtility.getMoveLore(selectedPokemon, move))
                 .build();

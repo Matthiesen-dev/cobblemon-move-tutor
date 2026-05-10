@@ -8,7 +8,6 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
 import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     public ServerPlayer player;
-    private final String type;
+    public String type;
 
     public PlayerPokemonSelectionGui(ServerPlayer player, String type) {
         this.player = player;
@@ -32,7 +31,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     public List<Button> getButtons() {
         List<Button> buttons = new ArrayList<>();
         PlayerPartyStore playerParty = Cobblemon.INSTANCE.getStorage().getParty(player);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             Pokemon pokemon = playerParty.get(i);
             if (pokemon != null) {
                 buttons.add(
@@ -41,7 +40,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
                                 .onClick(action -> {
                                     ServerPlayer sender = action.getPlayer();
                                     new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sender);
-                                    new SelectMoveGui(sender, pokemon, this.type).open();
+                                    new SelectMoveGui(player, pokemon, type).open();
                                 })
                                 .build()
                 );
@@ -53,7 +52,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     }
 
     @Override
-    public Component getTitle() {
-        return Component.translatable("cobblemon_move_tutor.gui.title.selectPokemon");
+    public String getTitle() {
+        return "Select a Pokemon";
     }
 }

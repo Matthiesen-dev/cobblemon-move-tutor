@@ -15,14 +15,14 @@ import java.util.List;
 
 public class ConfirmationGui extends Abstract9x3Gui {
     private final ServerPlayer player;
-    private final Component title;
+    private final String title;
     private final Button optionalDetails;
     private final Button cancelButton;
     private final Button confirmButton;
 
     public ConfirmationGui(
             ServerPlayer player,
-            Component title,
+            String title,
             Runnable yesButtonAction,
             Runnable noButtonAction,
             Button optionalDetails
@@ -61,13 +61,13 @@ public class ConfirmationGui extends Abstract9x3Gui {
     }
 
     @Override
-    public List<Button> getButtons() {
-        return List.of();
+    public String getTitle() {
+        return title;
     }
 
     @Override
-    public Component getTitle() {
-        return title;
+    public List<Button> getButtons() {
+        return List.of(cancelButton, optionalDetails, confirmButton);
     }
 
     @Override
@@ -76,8 +76,9 @@ public class ConfirmationGui extends Abstract9x3Gui {
                 .row(0, getFrame())
                 .row(1, getFrame())
                 .row(2, getFrame())
-                .set(1, 3, cancelButton)
-                .set(1, 4, optionalDetails)
-                .set(1, 5, confirmButton).build();
+                .set(1, 3, getPlaceholder())
+                .set(1, 4, getPlaceholder())
+                .set(1, 5, getPlaceholder())
+                .build();
     }
 }

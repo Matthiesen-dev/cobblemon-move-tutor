@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public class ItemCurrencyProvider extends AbstractCurrencyProvider {
     @Override
     public String currencyName() {
-        return "item";
+        return getConfig().currencyDisplayName;
     }
 
     @Override

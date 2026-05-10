@@ -5,7 +5,7 @@
   "spawns": [
     {
       "id": "village_tutor-1",
-      "npc": "village_tutor",
+      "npc": "cobblemon_move_tutor:village_tutor",
       "presets": [
         "natural"
       ],

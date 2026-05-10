@@ -22,7 +22,7 @@ import java.util.List;
 public abstract class Abstract9x3Gui implements IGui {
     public abstract ServerPlayer getPlayer();
     public abstract List<Button> getButtons();
-    public abstract Component getTitle();
+    public abstract String getTitle();
 
     public Button getFrame() {
         Item itemToDisplay = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().frameItemId, Items.GRAY_STAINED_GLASS_PANE);
@@ -66,7 +66,7 @@ public abstract class Abstract9x3Gui implements IGui {
         List<Button> buttons = getButtons();
         ChestTemplate template = getTemplate();
         GooeyPage page = PaginationHelper.createPagesFromPlaceholders(template, buttons, null);
-        page.setTitle(getTitle());
+        page.setTitle(Component.literal(getTitle()));
         return page;
     }
 

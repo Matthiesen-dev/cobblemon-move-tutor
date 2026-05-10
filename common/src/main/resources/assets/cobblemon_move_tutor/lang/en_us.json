@@ -1,9 +1,6 @@
 {
   "cobblemon_move_tutor.cmd.openedForOther": "You opened the Move Tutor Menu for %s.",
   "cobblemon_move_tutor.gui.emptySlot": "Empty",
-  "cobblemon_move_tutor.gui.title.selectPokemon": "Select a Pokemon",
-  "cobblemon_move_tutor.gui.title.selectMove": "Select a Move",
-  "cobblemon_move_tutor.gui.title.confirmTeach": "Confirm Move Teaching",
   "cobblemon_move_tutor.gui.button.confirm": "Confirm",
   "cobblemon_move_tutor.gui.button.cancel": "Cancel",
   "cobblemon_move_tutor.gui.button.nextPage": "Next",
