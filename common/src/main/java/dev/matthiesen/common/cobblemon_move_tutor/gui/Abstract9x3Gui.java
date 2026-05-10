@@ -29,15 +29,7 @@ public abstract class Abstract9x3Gui implements IGui {
     }
 
     public static Button getFrame() {
-        Item item = ItemDecoder.stringToItem(getFrameIdentifier());
-        Item itemToDisplay;
-
-        if (item != Items.AIR) {
-            itemToDisplay = item;
-        } else {
-            itemToDisplay = Items.GRAY_STAINED_GLASS_PANE;
-        }
-
+        Item itemToDisplay = ItemDecoder.stringToItem(getFrameIdentifier(), Items.GRAY_STAINED_GLASS_PANE);
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(itemToDisplay)

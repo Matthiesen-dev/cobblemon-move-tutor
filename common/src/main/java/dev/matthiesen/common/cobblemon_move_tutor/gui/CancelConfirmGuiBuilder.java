@@ -53,15 +53,7 @@ public record CancelConfirmGuiBuilder(
     }
 
     public static Button getFrame() {
-        Item item = ItemDecoder.stringToItem(getFrameIdentifier());
-        Item itemToDisplay;
-
-        if (item != Items.AIR) {
-            itemToDisplay = item;
-        } else {
-            itemToDisplay = Items.GRAY_STAINED_GLASS_PANE;
-        }
-
+        Item itemToDisplay = ItemDecoder.stringToItem(getFrameIdentifier(), Items.GRAY_STAINED_GLASS_PANE);
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(itemToDisplay)
@@ -73,7 +65,7 @@ public record CancelConfirmGuiBuilder(
     }
 
     public static ItemStack getNoItem() {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().cancelItemId))
+        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().cancelItemId, Items.RED_STAINED_GLASS_PANE))
                 .hideAdditional()
                 .setCustomName(
                         Component.translatable("cobblemon_move_tutor.gui.button.cancel")
@@ -83,7 +75,7 @@ public record CancelConfirmGuiBuilder(
     }
 
     public static ItemStack getYesItem() {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().confirmItemId))
+        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().confirmItemId, Items.GREEN_STAINED_GLASS_PANE))
                 .hideAdditional()
                 .setCustomName(
                         Component.translatable("cobblemon_move_tutor.gui.button.confirm")
@@ -106,9 +98,9 @@ public record CancelConfirmGuiBuilder(
         ChestTemplate.Builder builder = ChestTemplate.builder(3)
                 .row(0, getFrame())
                 .row(1, getFrame())
+                .row(2, getFrame())
                 .set(1, 3, cancelButton)
-                .set(1, 5, confirmButton)
-                .row(2, getFrame());
+                .set(1, 5, confirmButton);
 
         if (optionalDetails != null) {
             builder = builder.set(1, 4, optionalDetails);

@@ -3,6 +3,7 @@ package dev.matthiesen.common.cobblemon_move_tutor.gui;
 import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -34,7 +35,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
     }
 
     private Button getEmptyPokemonButton() {
-        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId);
+        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId, CobblemonItems.POKE_BALL);
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(item)

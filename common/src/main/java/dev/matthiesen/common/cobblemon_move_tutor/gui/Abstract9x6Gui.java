@@ -17,6 +17,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
     }
 
     public static ItemStack getPageItem(int currentPage, int pageLength) {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().currentPageItemId))
+        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().currentPageItemId, Items.PAPER))
                 .setCustomName(
                         Component.translatable(
                                 "cobblemon_move_tutor.gui.button.pageIndicator",
@@ -64,7 +65,7 @@ public abstract class Abstract9x6Gui extends Abstract9x3Gui {
     }
 
     public static ItemStack getNavItem(String label) {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().navigationItemId))
+        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().navigationItemId, Items.ARROW))
                 .hideAdditional()
                 .setCustomName(Component.translatable(label).withStyle(ChatFormatting.AQUA))
                 .build();

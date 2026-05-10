@@ -61,13 +61,9 @@ public class SelectMoveGui extends Abstract9x6Gui {
                             .onClick(action -> {
                                 ServerPlayer sender = action.getPlayer();
                                 new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sender);
-                                new CancelConfirmGuiBuilder(
-                                        sender,
-                                        Component.translatable("cobblemon_move_tutor.gui.confirmTeach"),
+                                new CancelConfirmGuiBuilder(sender, Component.translatable("cobblemon_move_tutor.gui.confirmTeach"),
                                         () -> MoveManager.learnMove(sender, selectedPokemon, move, this::open),
-                                        this::open,
-                                        getDetailsButton(move)
-                                ).open();
+                                        this::open, getDetailsButton(move)).open();
                             })
                             .build()
             );

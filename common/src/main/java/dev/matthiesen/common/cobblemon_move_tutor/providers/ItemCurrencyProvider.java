@@ -1,6 +1,7 @@
 package dev.matthiesen.common.cobblemon_move_tutor.providers;
 
 import ca.landonjw.gooeylibs2.api.UIManager;
+import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
@@ -27,7 +28,7 @@ public class ItemCurrencyProvider extends AbstractCurrencyProvider {
     @Override
     public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
         var config = getConfig();
-        Item currencyItem = ItemDecoder.stringToItem(config.itemId);
+        Item currencyItem = ItemDecoder.stringToItem(config.itemId, CobblemonItems.RARE_CANDY);
         if (currencyItem == Items.AIR) {
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.gui.invalidCurrencyItem", config.itemId).withStyle(ChatFormatting.RED));
             UIManager.closeUI(player);
