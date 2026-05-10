@@ -9,7 +9,6 @@ architectury {
 
 loom {
     silentMojangMappingsLicense()
-    accessWidenerPath.set(project(":common").file("src/main/resources/cobblemon_move_tutor.accesswidener"))
 }
 
 dependencies {

@@ -29,28 +29,28 @@ public class CobblemonMoveTutorCommon {
             new ConfigManager<>("permissions", PermissionsConfig.class);
 
     public static CommonConfig getCommonConfig() {
-        return COMMON_CONFIG_MANAGER.getConfig();
+        return COMMON_CONFIG_MANAGER.get();
     }
 
     public static CurrencyProvidersConfig getCurrencyProvidersConfig() {
-        return CURRENCY_PROVIDERS_CONFIG_MANGER.getConfig();
+        return CURRENCY_PROVIDERS_CONFIG_MANGER.get();
     }
 
     public static GuiConfig getGuiConfig() {
-        return GUI_CONFIG_MANAGER.getConfig();
+        return GUI_CONFIG_MANAGER.get();
     }
 
     public static PermissionsConfig getPermissionsConfig() {
-        return PERMISSIONS_CONFIG_MANAGER.getConfig();
+        return PERMISSIONS_CONFIG_MANAGER.get();
     }
 
     public static ModPermissions permissions;
 
     public static void loadConfig() {
-        COMMON_CONFIG_MANAGER.loadConfig();
-        CURRENCY_PROVIDERS_CONFIG_MANGER.loadConfig();
-        GUI_CONFIG_MANAGER.loadConfig();
-        PERMISSIONS_CONFIG_MANAGER.loadConfig();
+        COMMON_CONFIG_MANAGER.load();
+        CURRENCY_PROVIDERS_CONFIG_MANGER.load();
+        GUI_CONFIG_MANAGER.load();
+        PERMISSIONS_CONFIG_MANAGER.load();
     }
 
     public static void initialize() {
@@ -84,10 +84,10 @@ public class CobblemonMoveTutorCommon {
 
     public static void onShutdown() {
         Constants.createInfoLog("Server stopping, shutting down");
-        COMMON_CONFIG_MANAGER.saveConfig();
-        CURRENCY_PROVIDERS_CONFIG_MANGER.saveConfig();
-        GUI_CONFIG_MANAGER.saveConfig();
-        PERMISSIONS_CONFIG_MANAGER.saveConfig();
+        COMMON_CONFIG_MANAGER.save();
+        CURRENCY_PROVIDERS_CONFIG_MANGER.save();
+        GUI_CONFIG_MANAGER.save();
+        PERMISSIONS_CONFIG_MANAGER.save();
     }
 
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {

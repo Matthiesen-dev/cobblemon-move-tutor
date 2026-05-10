@@ -15,7 +15,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
@@ -90,6 +89,7 @@ public class PokemonUtility {
 
         return itemStack;
     }
+
     public static List<MoveTemplate> getAllMoves(Learnset moves) {
         List<MoveTemplate> allMoveList = new ArrayList<>();
 
@@ -116,21 +116,27 @@ public class PokemonUtility {
         if (moves.getLevelUpMoves().values().stream().anyMatch(list -> list.contains(move))) {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.levelMovePrice;
         }
+
         if (moves.getTmMoves().contains(move)) {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.tmMovePrice;
         }
+
         if (moves.getLegacyMoves().contains(move)) {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.legacyMovePrice;
         }
+
         if (moves.getTutorMoves().contains(move)) {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.tutorMovePrice;
         }
+
         if (moves.getSpecialMoves().contains(move)) {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.specialMovePrice;
         }
+
         if (moves.getEggMoves().contains(move)) {
             return CobblemonMoveTutorCommon.getCommonConfig().currencyConfig.eggMovePrice;
         }
+
         return 0;
     }
 
@@ -195,10 +201,13 @@ public class PokemonUtility {
     }
 
     public static Button getEmptyPokemonButton() {
-        Item item = ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId, CobblemonItems.POKE_BALL);
         return GooeyButton.builder()
                 .display(
-                        new ItemBuilder(item)
+                        new ItemBuilder(
+                                ItemDecoder.stringToItem(
+                                        CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId,
+                                        CobblemonItems.POKE_BALL
+                                ))
                                 .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot").withStyle(ChatFormatting.GRAY))
                                 .hideAdditional()
                                 .build()

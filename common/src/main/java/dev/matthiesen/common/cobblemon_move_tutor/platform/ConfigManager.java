@@ -56,7 +56,7 @@ public class ConfigManager<T> {
         }
     }
 
-    public void loadConfig() {
+    public void load() {
         String configFileLoc = System.getProperty("user.dir") + File.separator + "config" +
                 File.separator + Constants.MOD_ID + File.separator + configName + ".json";
         Constants.createInfoLog("Loading config file found at: " + configFileLoc);
@@ -100,7 +100,7 @@ public class ConfigManager<T> {
             config = createDefaultConfig();
         }
 
-        saveConfig();
+        save();
 
     }
 
@@ -130,7 +130,7 @@ public class ConfigManager<T> {
         return fileConfig;
     }
 
-    public void saveConfig() {
+    public void save() {
         try {
             String configFileLoc = System.getProperty("user.dir") + File.separator + "config" +
                     File.separator + Constants.MOD_ID + File.separator + configName + ".json";
@@ -146,7 +146,7 @@ public class ConfigManager<T> {
         }
     }
 
-    public T getConfig() {
+    public T get() {
         return config;
     }
 }
