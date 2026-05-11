@@ -4,7 +4,7 @@ import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.util.CustomModels;
+import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -32,7 +32,7 @@ public class ConfirmationGui extends Abstract9x3Gui {
         this.cancelButton = GooeyButton.builder()
                 .display(
                         new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                                .setModelData(CustomModels.GUI_BUTTON.GUI_CANCEL)
+                                .setModelData(ModelData.GUI_BUTTON.GUI_CANCEL)
                                 .hideAdditional()
                                 .setCustomName(Component.translatable("cobblemon_move_tutor.gui.button.cancel")
                                         .withStyle(ChatFormatting.RED))
@@ -44,7 +44,7 @@ public class ConfirmationGui extends Abstract9x3Gui {
                 .display(
                         new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                                 .hideAdditional()
-                                .setModelData(CustomModels.GUI_BUTTON.GUI_CONFIRM)
+                                .setModelData(ModelData.GUI_BUTTON.GUI_CONFIRM)
                                 .setCustomName(Component.translatable("cobblemon_move_tutor.gui.button.confirm")
                                         .withStyle(ChatFormatting.GREEN))
                                 .build())
@@ -71,7 +71,7 @@ public class ConfirmationGui extends Abstract9x3Gui {
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                                .setModelData(CustomModels.GUI_TEXT.CONFIRM_TEACH)
+                                .setModelData(ModelData.GUI_TEXT.CONFIRM_TEACH)
                                 .hideAdditional()
                                 .setCustomName(Component.literal(" "))
                                 .build()

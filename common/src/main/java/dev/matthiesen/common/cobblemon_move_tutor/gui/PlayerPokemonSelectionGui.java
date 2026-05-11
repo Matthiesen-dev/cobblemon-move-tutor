@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.util.CustomModels;
+import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
 import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
@@ -36,7 +36,7 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                                .setModelData(CustomModels.GUI_TEXT.CHOOSE_POKEMON)
+                                .setModelData(ModelData.GUI_TEXT.CHOOSE_POKEMON)
                                 .hideAdditional()
                                 .setCustomName(Component.literal(" "))
                                 .build()

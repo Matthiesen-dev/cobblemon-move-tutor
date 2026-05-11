@@ -79,7 +79,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
         return GooeyButton.builder()
                 .display(
                         new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                                .setModelData(CustomModels.GUI_TEXT.SELECT_MOVE)
+                                .setModelData(ModelData.GUI_TEXT.SELECT_MOVE)
                                 .hideAdditional()
                                 .setCustomName(Component.literal(" "))
                                 .build()
@@ -92,13 +92,13 @@ public class SelectMoveGui extends Abstract9x3Gui {
         List<Button> buttons = getButtons();
 
         LinkedPageButton previous = LinkedPageButton.builder()
-                .display(getNavItem("cobblemon_move_tutor.gui.button.previousPage", CustomModels.GUI_BUTTON.GUI_PREVIOUS))
+                .display(getNavItem("cobblemon_move_tutor.gui.button.previousPage", ModelData.GUI_BUTTON.GUI_PREVIOUS))
                 .linkType(LinkType.Previous)
                 .onClick((action) -> new SoundsPlayer(CobblemonSounds.PC_CLICK).play(action.getPlayer()))
                 .build();
 
         LinkedPageButton next = LinkedPageButton.builder()
-                .display(getNavItem("cobblemon_move_tutor.gui.button.nextPage", CustomModels.GUI_BUTTON.GUI_NEXT))
+                .display(getNavItem("cobblemon_move_tutor.gui.button.nextPage", ModelData.GUI_BUTTON.GUI_NEXT))
                 .linkType(LinkType.Next)
                 .onClick((action) -> new SoundsPlayer(CobblemonSounds.PC_CLICK).play(action.getPlayer()))
                 .build();
@@ -126,7 +126,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
                                 String.valueOf(pageLength)
                         ).withStyle(ChatFormatting.GOLD)
                 )
-                .setModelData(CustomModels.GUI_BUTTON.GUI_PAGE)
+                .setModelData(ModelData.GUI_BUTTON.GUI_PAGE)
                 .build();
     }
 
