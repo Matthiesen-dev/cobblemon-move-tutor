@@ -8,7 +8,6 @@ import ca.landonjw.gooeylibs2.api.page.GooeyPage;
 import ca.landonjw.gooeylibs2.api.page.Page;
 import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
 import dev.matthiesen.common.cobblemon_move_tutor.interfaces.IGui;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -34,11 +33,19 @@ public abstract class Abstract9x3Gui implements IGui {
                 .build();
     }
 
+    public String titleBuilder() {
+        String fontDef = "cobblemon_move_tutor:gui";
+        String title = getTitle();
+        String format = "{\"text\": \"%s\", \"font\": \"%s\", \"color\": \"white\"}";
+        return String.format(format, title, fontDef);
+    }
+
     public Page getPage() {
         List<Button> buttons = getButtons();
         ChestTemplate template = getTemplate();
         GooeyPage page = PaginationHelper.createPagesFromPlaceholders(template, buttons, null);
-        page.setTitle(Component.literal(getTitle()).withStyle(ChatFormatting.WHITE));
+        Component titleComponent = Component.Serializer.fromJson(titleBuilder(), getPlayer().server.registryAccess());
+        page.setTitle(titleComponent);
         return page;
     }
 
