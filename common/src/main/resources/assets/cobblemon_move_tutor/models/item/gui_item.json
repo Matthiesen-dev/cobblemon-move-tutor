@@ -6,24 +6,6 @@
 	"overrides": [
 		{
 			"predicate": {
-				"custom_model_data": 2001
-			},
-			"model": "cobblemon_move_tutor:guis/choose_your_pokemon"
-		},
-		{
-			"predicate": {
-				"custom_model_data": 2002
-			},
-			"model": "cobblemon_move_tutor:guis/confirm_to_teach_move"
-		},
-		{
-			"predicate": {
-				"custom_model_data": 2003
-			},
-			"model": "cobblemon_move_tutor:guis/select_a_move"
-		},
-		{
-			"predicate": {
 				"custom_model_data": 1001
 			},
 			"model": "cobblemon_move_tutor:guis/confirm"
@@ -51,6 +33,24 @@
 				"custom_model_data": 1005
 			},
 			"model": "cobblemon_move_tutor:guis/page"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2001
+			},
+			"model": "cobblemon_move_tutor:guis/choose_your_pokemon"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2002
+			},
+			"model": "cobblemon_move_tutor:guis/confirm_to_teach_move"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2003
+			},
+			"model": "cobblemon_move_tutor:guis/select_a_move"
 		}
 	]
 }
