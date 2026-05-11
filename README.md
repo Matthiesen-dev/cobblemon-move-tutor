@@ -17,7 +17,6 @@ The configuration directory is located at `<game_directory>/config/cobblemon_mov
 
 - `common.json` - Contains the general configuration settings for the mod.
 - `currency_providers.json` - Contains the configuration settings for currency providers, which are used to determine how the Move Tutor charges for teaching moves.
-- `gui_config.json` - Contains the configuration settings for the Move Tutor's graphical user interface (GUI).
 - `permissions.json` - Contains the configuration settings for permissions related to the Move Tutor, which can be used to control access to certain features or moves.
 
 ## Commands

@@ -14,12 +14,12 @@ import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
+import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.util.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
                             .onClick(action -> {
                                 ServerPlayer sender = action.getPlayer();
                                 new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sender);
-                                new ConfirmationGui(sender, "Confirm Move Teaching",
+                                new ConfirmationGui(sender, "§f\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D6",
                                         () -> MoveManager.learnMove(sender, selectedPokemon, move, this::open),
                                         this::open, PokemonUtility.getDetailsButton(move, selectedPokemon)).open();
                             })
@@ -65,7 +65,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
 
     @Override
     public String getTitle() {
-        return "Select a Move";
+        return "§f\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D7";
     }
 
     private CommonConfig.TutorConfig getTutorConfig() {
@@ -75,29 +75,40 @@ public class SelectMoveGui extends Abstract9x3Gui {
         return CobblemonMoveTutorCommon.getCommonConfig().adminTutorConfig;
     }
 
+    public Button getTitleButton() {
+        return GooeyButton.builder()
+                .display(
+                        new ItemBuilder(ItemRegistry.GUI_ITEM.get())
+                                .setModelData(CustomModels.GUI_TEXT.SELECT_MOVE)
+                                .hideAdditional()
+                                .setCustomName(Component.literal(" "))
+                                .build()
+                )
+                .build();
+    }
+
     @Override
     public Page getPage() {
         List<Button> buttons = getButtons();
 
         LinkedPageButton previous = LinkedPageButton.builder()
-                .display(getNavItem("cobblemon_move_tutor.gui.button.previousPage"))
+                .display(getNavItem("cobblemon_move_tutor.gui.button.previousPage", CustomModels.GUI_BUTTON.GUI_PREVIOUS))
                 .linkType(LinkType.Previous)
                 .onClick((action) -> new SoundsPlayer(CobblemonSounds.PC_CLICK).play(action.getPlayer()))
                 .build();
 
         LinkedPageButton next = LinkedPageButton.builder()
-                .display(getNavItem("cobblemon_move_tutor.gui.button.nextPage"))
+                .display(getNavItem("cobblemon_move_tutor.gui.button.nextPage", CustomModels.GUI_BUTTON.GUI_NEXT))
                 .linkType(LinkType.Next)
                 .onClick((action) -> new SoundsPlayer(CobblemonSounds.PC_CLICK).play(action.getPlayer()))
                 .build();
 
         ChestTemplate template = ChestTemplate.builder(6)
-                .rectangle(0, 0, 5, 9, getPlaceholder())
-                .set(53, next)
-                .set(47, getCenterButton())
-                .set(49, getInfoButton(1, 1))
+                .rectangle(1, 1, 4, 7, getPlaceholder())
+                .set(0, 4, getTitleButton())
                 .set(45, previous)
-                .fill(getFrame())
+                .set(49, getInfoButton(1, 1))
+                .set(53, next)
                 .build();
 
         LinkedPage page = PaginationHelper.createPagesFromPlaceholders(template, buttons, null);
@@ -106,7 +117,8 @@ public class SelectMoveGui extends Abstract9x3Gui {
     }
 
     public ItemStack getPageItem(int currentPage, int pageLength) {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().currentPageItemId, Items.PAPER))
+        return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
+                .hideAdditional()
                 .setCustomName(
                         Component.translatable(
                                 "cobblemon_move_tutor.gui.button.pageIndicator",
@@ -114,13 +126,15 @@ public class SelectMoveGui extends Abstract9x3Gui {
                                 String.valueOf(pageLength)
                         ).withStyle(ChatFormatting.GOLD)
                 )
+                .setModelData(CustomModels.GUI_BUTTON.GUI_PAGE)
                 .build();
     }
 
-    public ItemStack getNavItem(String label) {
-        return new ItemBuilder(ItemDecoder.stringToItem(CobblemonMoveTutorCommon.getGuiConfig().navigationItemId, Items.ARROW))
+    public ItemStack getNavItem(String label, int model) {
+        return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                 .hideAdditional()
                 .setCustomName(Component.translatable(label).withStyle(ChatFormatting.AQUA))
+                .setModelData(model)
                 .build();
     }
 
@@ -137,7 +151,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
 
     public void setPageTitleInternal(LinkedPage page, int pageLength) {
         int currentPage = page.getCurrentPage();
-        page.setTitle(getTitle());
+        page.setTitle(Component.literal(getTitle()).withStyle(ChatFormatting.WHITE));
         page.getTemplate().setSlot(49, getInfoButtonTemplate(pageLength, currentPage));
     }
 

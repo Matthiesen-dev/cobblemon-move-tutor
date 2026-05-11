@@ -23,8 +23,6 @@ public class CobblemonMoveTutorCommon {
             new ConfigManager<>("common", CommonConfig.class);
     public static final ConfigManager<CurrencyProvidersConfig> CURRENCY_PROVIDERS_CONFIG_MANGER =
             new ConfigManager<>("currency_providers", CurrencyProvidersConfig.class);
-    public static final ConfigManager<GuiConfig> GUI_CONFIG_MANAGER =
-            new ConfigManager<>("gui_config", GuiConfig.class);
     public static final ConfigManager<PermissionsConfig> PERMISSIONS_CONFIG_MANAGER =
             new ConfigManager<>("permissions", PermissionsConfig.class);
 
@@ -36,10 +34,6 @@ public class CobblemonMoveTutorCommon {
         return CURRENCY_PROVIDERS_CONFIG_MANGER.get();
     }
 
-    public static GuiConfig getGuiConfig() {
-        return GUI_CONFIG_MANAGER.get();
-    }
-
     public static PermissionsConfig getPermissionsConfig() {
         return PERMISSIONS_CONFIG_MANAGER.get();
     }
@@ -49,7 +43,6 @@ public class CobblemonMoveTutorCommon {
     public static void loadConfig() {
         COMMON_CONFIG_MANAGER.load();
         CURRENCY_PROVIDERS_CONFIG_MANGER.load();
-        GUI_CONFIG_MANAGER.load();
         PERMISSIONS_CONFIG_MANAGER.load();
     }
 
@@ -86,7 +79,6 @@ public class CobblemonMoveTutorCommon {
         Constants.createInfoLog("Server stopping, shutting down");
         COMMON_CONFIG_MANAGER.save();
         CURRENCY_PROVIDERS_CONFIG_MANGER.save();
-        GUI_CONFIG_MANAGER.save();
         PERMISSIONS_CONFIG_MANAGER.save();
     }
 

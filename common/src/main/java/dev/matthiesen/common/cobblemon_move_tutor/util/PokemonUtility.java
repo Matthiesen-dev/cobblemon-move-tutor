@@ -203,11 +203,7 @@ public class PokemonUtility {
     public static Button getEmptyPokemonButton() {
         return GooeyButton.builder()
                 .display(
-                        new ItemBuilder(
-                                ItemDecoder.stringToItem(
-                                        CobblemonMoveTutorCommon.getGuiConfig().emptyPokemonId,
-                                        CobblemonItems.POKE_BALL
-                                ))
+                        new ItemBuilder(CobblemonItems.POKE_BALL)
                                 .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot").withStyle(ChatFormatting.GRAY))
                                 .hideAdditional()
                                 .build()

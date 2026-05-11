@@ -3,13 +3,12 @@ package dev.matthiesen.common.cobblemon_move_tutor.gui;
 import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import ca.landonjw.gooeylibs2.api.template.types.ChestTemplate;
-import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
+import dev.matthiesen.common.cobblemon_move_tutor.util.CustomModels;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
-import dev.matthiesen.common.cobblemon_move_tutor.util.ItemDecoder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Items;
 
 import java.util.List;
 
@@ -32,9 +31,8 @@ public class ConfirmationGui extends Abstract9x3Gui {
         this.optionalDetails = optionalDetails;
         this.cancelButton = GooeyButton.builder()
                 .display(
-                        new ItemBuilder(ItemDecoder.stringToItem(
-                                CobblemonMoveTutorCommon.getGuiConfig().cancelItemId,
-                                Items.RED_STAINED_GLASS_PANE))
+                        new ItemBuilder(ItemRegistry.GUI_ITEM.get())
+                                .setModelData(CustomModels.GUI_BUTTON.GUI_CANCEL)
                                 .hideAdditional()
                                 .setCustomName(Component.translatable("cobblemon_move_tutor.gui.button.cancel")
                                         .withStyle(ChatFormatting.RED))
@@ -44,10 +42,9 @@ public class ConfirmationGui extends Abstract9x3Gui {
                 .build();
         this.confirmButton = GooeyButton.builder()
                 .display(
-                        new ItemBuilder(ItemDecoder.stringToItem(
-                                CobblemonMoveTutorCommon.getGuiConfig().confirmItemId,
-                                Items.GREEN_STAINED_GLASS_PANE))
+                        new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                                 .hideAdditional()
+                                .setModelData(CustomModels.GUI_BUTTON.GUI_CONFIRM)
                                 .setCustomName(Component.translatable("cobblemon_move_tutor.gui.button.confirm")
                                         .withStyle(ChatFormatting.GREEN))
                                 .build())
@@ -70,12 +67,22 @@ public class ConfirmationGui extends Abstract9x3Gui {
         return List.of(cancelButton, optionalDetails, confirmButton);
     }
 
+    public Button getTitleButton() {
+        return GooeyButton.builder()
+                .display(
+                        new ItemBuilder(ItemRegistry.GUI_ITEM.get())
+                                .setModelData(CustomModels.GUI_TEXT.CONFIRM_TEACH)
+                                .hideAdditional()
+                                .setCustomName(Component.literal(" "))
+                                .build()
+                )
+                .build();
+    }
+
     @Override
     public ChestTemplate getTemplate() {
         return ChestTemplate.builder(3)
-                .row(0, getFrame())
-                .row(1, getFrame())
-                .row(2, getFrame())
+                .set(0, 4, getTitleButton())
                 .set(1, 3, getPlaceholder())
                 .set(1, 4, getPlaceholder())
                 .set(1, 5, getPlaceholder())

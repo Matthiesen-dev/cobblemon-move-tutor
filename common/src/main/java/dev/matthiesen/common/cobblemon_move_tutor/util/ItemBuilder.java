@@ -6,6 +6,7 @@ import net.minecraft.util.Unit;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.component.ItemLore;
 
 import java.util.Arrays;
@@ -45,6 +46,11 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder setModelData(int value) {
+        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(value));
+        return this;
+    }
+
     public ItemBuilder hideAdditional() {
         stack.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
         stack.set(DataComponents.RARITY, Rarity.COMMON);
@@ -52,7 +58,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setCustomName(Component customName) {
-        stack.set(DataComponents.CUSTOM_NAME, customName);
+        stack.set(DataComponents.CUSTOM_NAME, customName.copy().withStyle(customName.getStyle().withItalic(false)));
         return this;
     }
 

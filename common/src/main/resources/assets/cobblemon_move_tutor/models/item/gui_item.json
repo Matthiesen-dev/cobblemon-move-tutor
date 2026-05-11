@@ -1,0 +1,56 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "cobblemon_move_tutor:item/pixel"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"custom_model_data": 1
+			},
+			"model": "cobblemon_move_tutor:guis/confirm"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2
+			},
+			"model": "cobblemon_move_tutor:guis/cancel"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 3
+			},
+			"model": "cobblemon_move_tutor:guis/choose_your_pokemon"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 4
+			},
+			"model": "cobblemon_move_tutor:guis/confirm_to_teach_move"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 5
+			},
+			"model": "cobblemon_move_tutor:guis/select_a_move"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 6
+			},
+			"model": "cobblemon_move_tutor:guis/previous"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 7
+			},
+			"model": "cobblemon_move_tutor:guis/next"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 8
+			},
+			"model": "cobblemon_move_tutor:guis/page"
+		}
+	]
+}
