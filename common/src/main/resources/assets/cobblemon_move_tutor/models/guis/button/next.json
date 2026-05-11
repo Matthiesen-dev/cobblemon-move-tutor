@@ -1,7 +1,7 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "cobblemon_move_tutor:item/previous"
+		"layer0": "cobblemon_move_tutor:item/gui/button/next"
 	},
 	"display": {
 		"gui": {

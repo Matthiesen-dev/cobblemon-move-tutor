@@ -1,56 +1,56 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "cobblemon_move_tutor:item/pixel"
+		"layer0": "cobblemon_move_tutor:item/gui/pixel"
 	},
 	"overrides": [
 		{
 			"predicate": {
 				"custom_model_data": 1001
 			},
-			"model": "cobblemon_move_tutor:guis/confirm"
+			"model": "cobblemon_move_tutor:guis/button/confirm"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1002
 			},
-			"model": "cobblemon_move_tutor:guis/cancel"
+			"model": "cobblemon_move_tutor:guis/button/cancel"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1003
 			},
-			"model": "cobblemon_move_tutor:guis/previous"
+			"model": "cobblemon_move_tutor:guis/button/previous"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1004
 			},
-			"model": "cobblemon_move_tutor:guis/next"
+			"model": "cobblemon_move_tutor:guis/button/next"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1005
 			},
-			"model": "cobblemon_move_tutor:guis/page"
+			"model": "cobblemon_move_tutor:guis/button/page"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 2001
 			},
-			"model": "cobblemon_move_tutor:guis/choose_your_pokemon"
+			"model": "cobblemon_move_tutor:guis/text/choose_your_pokemon"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 2002
 			},
-			"model": "cobblemon_move_tutor:guis/confirm_to_teach_move"
+			"model": "cobblemon_move_tutor:guis/text/confirm_to_teach_move"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 2003
 			},
-			"model": "cobblemon_move_tutor:guis/select_a_move"
+			"model": "cobblemon_move_tutor:guis/text/select_a_move"
 		}
 	]
 }

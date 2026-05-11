@@ -1,7 +1,7 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "cobblemon_move_tutor:item/cancel"
+		"layer0": "cobblemon_move_tutor:item/gui/button/previous"
 	},
 	"display": {
 		"gui": {
