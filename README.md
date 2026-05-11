@@ -5,6 +5,7 @@ near Minecraft villages, offers a variety of moves that your Pokemon can learn, 
 them more versatile in battles.
 
 ## Requirements
+- [Cobblemon](https://modrinth.com/mod/cobblemon)
 - [Gooeylibs](https://modrinth.com/mod/gooeylibs)
 
 ### Optional compatibility
