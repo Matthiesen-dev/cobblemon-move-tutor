@@ -83,6 +83,6 @@ public class PlayerPokemonSelectionGui extends Abstract9x3Gui {
 
     @Override
     public String getTitle() {
-        return "§f\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D5";
+        return "\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D5";
     }
 }

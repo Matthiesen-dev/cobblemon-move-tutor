@@ -53,7 +53,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
                             .onClick(action -> {
                                 ServerPlayer sender = action.getPlayer();
                                 new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sender);
-                                new ConfirmationGui(sender, "§f\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D6",
+                                new ConfirmationGui(sender, "\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D6",
                                         () -> MoveManager.learnMove(sender, selectedPokemon, move, this::open),
                                         this::open, PokemonUtility.getDetailsButton(move, selectedPokemon)).open();
                             })
@@ -65,7 +65,7 @@ public class SelectMoveGui extends Abstract9x3Gui {
 
     @Override
     public String getTitle() {
-        return "§f\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D7";
+        return "\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D4\uF8D7";
     }
 
     private CommonConfig.TutorConfig getTutorConfig() {

@@ -1,11 +1,85 @@
 {
-	"parent": "item/generated",
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [1000, 320],
 	"textures": {
-		"layer0": "cobblemon_move_tutor:item/gui/button/page"
+		"0": "cobblemon_move_tutor:item/gui/map_font"
 	},
-	"display": {
-		"gui": {
-			"scale": [0.8, 0.8, 1]
+	"elements": [
+		{
+			"from": [1.2, 0.28, 8],
+			"to": [1.88, 13.88, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [10.976, 4.2, 10.944, 6.2], "texture": "#0"},
+				"south": {"uv": [10.944, 4.2, 10.976, 6.2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1.88, 0.28, 8],
+			"to": [14.12, 13.88, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [6.048, 0, 5.472, 2], "texture": "#0"},
+				"south": {"uv": [5.472, 0, 6.048, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [14.12, 0.28, 8],
+			"to": [14.8, 13.88, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [11.04, 4.2, 11.008, 6.2], "texture": "#0"},
+				"south": {"uv": [11.008, 4.2, 11.04, 6.2], "texture": "#0"}
+			}
+		},
+		{
+			"name": "border",
+			"from": [15.48, 13.88, 8.68],
+			"to": [0.52, 2.32, 7.32],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [0.016, 6.3, 0, 6.35], "texture": "#0"},
+				"east": {"uv": [0.016, 6.3, 0, 6.35], "texture": "#0"},
+				"south": {"uv": [0.016, 6.3, 0, 6.35], "texture": "#0"},
+				"west": {"uv": [0.016, 6.3, 0, 6.35], "texture": "#0"},
+				"up": {"uv": [0.016, 6.3, 0, 6.35], "texture": "#0"},
+				"down": {"uv": [0.016, 6.3, 0, 6.35], "texture": "#0"}
+			}
 		}
-	}
+	],
+	"gui_light": "front",
+	"display": {},
+	"groups": [
+		{
+			"name": "i",
+			"origin": [8, 0, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [
+				{
+					"name": "open_terminator",
+					"origin": [8, 0, 8],
+					"scope": 0,
+					"color": 0,
+					"children": [0]
+				},
+				{
+					"name": "i",
+					"origin": [8, 0, 8],
+					"scope": 0,
+					"color": 0,
+					"children": [1]
+				},
+				{
+					"name": "close_terminator",
+					"origin": [8, 0, 8],
+					"scope": 0,
+					"color": 0,
+					"children": [2]
+				},
+				3
+			]
+		}
+	]
 }
