@@ -151,7 +151,8 @@ public class SelectMoveGui extends Abstract9x3Gui {
 
     public void setPageTitleInternal(LinkedPage page, int pageLength) {
         int currentPage = page.getCurrentPage();
-        page.setTitle(Component.literal(getTitle()).withStyle(ChatFormatting.WHITE));
+        Component titleComponent = Component.Serializer.fromJson(titleBuilder(), getPlayer().server.registryAccess());
+        page.setTitle(titleComponent);
         page.getTemplate().setSlot(49, getInfoButtonTemplate(pageLength, currentPage));
     }
 
