@@ -7,6 +7,8 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.architectury.registry.menu.MenuRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
@@ -17,14 +19,12 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PokemonSelectionMenu extends AbstractContainerMenu {
+public class PokemonSelectionMenu extends AbstractMenu {
 
     public static final int TITLE_SLOT        = 0;
     public static final int FIRST_POKEMON_SLOT = 1; // slots 1-6 → party indices 0-5
@@ -67,17 +67,10 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
     }
 
     private void addDisplaySlots() {
-        addSlot(new Slot(container, TITLE_SLOT, TITLE_X, TITLE_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-            @Override public boolean isHighlightable() { return false; }
-        });
+        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
         for (int i = 0; i < 6; i++) {
             final int si = FIRST_POKEMON_SLOT + i;
-            addSlot(new Slot(container, si, POKEMON_X[i], POKEMON_Y) {
-                @Override public boolean mayPickup(Player p) { return false; }
-                @Override public boolean mayPlace(ItemStack s) { return false; }
-            });
+            addSlot(new Button(container, si, POKEMON_X[i], POKEMON_Y));
         }
     }
 
@@ -113,16 +106,6 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
                 .hideAdditional()
                 .setCustomName(Component.literal(" "))
                 .build();
-    }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int i) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return true;
     }
 }
 

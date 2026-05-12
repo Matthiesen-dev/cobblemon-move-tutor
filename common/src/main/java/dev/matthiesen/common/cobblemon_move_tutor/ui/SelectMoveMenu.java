@@ -8,6 +8,8 @@ import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
 import dev.matthiesen.common.cobblemon_move_tutor.util.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -16,9 +18,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectMoveMenu extends AbstractContainerMenu {
+public class SelectMoveMenu extends AbstractMenu {
 
     public static final int PAGE_SIZE = 28;
 
@@ -72,11 +72,7 @@ public class SelectMoveMenu extends AbstractContainerMenu {
 
     private void addDisplaySlots() {
         // Title slot
-        addSlot(new Slot(container, TITLE_SLOT, TITLE_X, TITLE_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-            @Override public boolean isHighlightable() { return false; }
-        });
+        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
 
         // Move slots: rows 1-4, cols 1-7  →  28 display slots
         for (int row = 1; row <= 4; row++) {
@@ -84,27 +80,14 @@ public class SelectMoveMenu extends AbstractContainerMenu {
                 int si = (row - 1) * 7 + (col - 1) + FIRST_MOVE_SLOT;
                 int x  = 8 + col * 18;
                 int y  = 18 + row * 18;
-                addSlot(new Slot(container, si, x, y) {
-                    @Override public boolean mayPickup(Player p) { return false; }
-                    @Override public boolean mayPlace(ItemStack s) { return false; }
-                });
+                addSlot(new Button(container, si, x, y));
             }
         }
 
         // Navigation slots (row 5)
-        addSlot(new Slot(container, PREV_SLOT, PREV_X, NAV_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-        });
-        addSlot(new Slot(container, PAGE_SLOT, PAGE_X, NAV_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-            @Override public boolean isHighlightable() { return false; }
-        });
-        addSlot(new Slot(container, NEXT_SLOT, NEXT_X, NAV_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-        });
+        addSlot(new Button(container, PREV_SLOT, PREV_X, NAV_Y));
+        addSlot(new NoHighlightButton(container, PAGE_SLOT, PAGE_X, NAV_Y));
+        addSlot(new Button(container, NEXT_SLOT, NEXT_X, NAV_Y));
     }
 
     private void populatePage(int page) {
@@ -219,16 +202,6 @@ public class SelectMoveMenu extends AbstractContainerMenu {
                         String.valueOf(total)
                 ).withStyle(ChatFormatting.GOLD))
                 .build();
-    }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int i) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return true;
     }
 }
 

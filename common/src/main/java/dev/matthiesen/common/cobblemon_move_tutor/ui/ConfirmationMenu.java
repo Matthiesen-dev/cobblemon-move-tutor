@@ -4,6 +4,8 @@ import com.cobblemon.mod.common.CobblemonSounds;
 import dev.architectury.registry.menu.MenuRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
@@ -14,14 +16,12 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfirmationMenu extends AbstractContainerMenu {
+public class ConfirmationMenu extends AbstractMenu {
 
     // Slot indices
     public static final int CANCEL_SLOT  = 0;
@@ -70,24 +70,11 @@ public class ConfirmationMenu extends AbstractContainerMenu {
 
     private void addDisplaySlots() {
         // Display-only: players cannot pick up or place items
-        addSlot(new Slot(container, CANCEL_SLOT,  CANCEL_X,  SLOT_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-        });
-        addSlot(new Slot(container, DETAILS_SLOT, DETAILS_X, SLOT_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-        });
-        addSlot(new Slot(container, CONFIRM_SLOT, CONFIRM_X, SLOT_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-        });
+        addSlot(new Button(container, CANCEL_SLOT,  CANCEL_X,  SLOT_Y));
+        addSlot(new Button(container, DETAILS_SLOT, DETAILS_X, SLOT_Y));
+        addSlot(new Button(container, CONFIRM_SLOT, CONFIRM_X, SLOT_Y));
         // Title slot
-        addSlot(new Slot(container, TITLE_SLOT, TITLE_X, TITLE_Y) {
-            @Override public boolean mayPickup(Player p) { return false; }
-            @Override public boolean mayPlace(ItemStack s) { return false; }
-            @Override public boolean isHighlightable() { return false; }
-        });
+        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
     }
 
     // ── Slot click → callback ────────────────────────────────────────────────
@@ -155,15 +142,5 @@ public class ConfirmationMenu extends AbstractContainerMenu {
                 .hideAdditional()
                 .setCustomName(Component.literal(" "))
                 .build();
-    }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int i) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return true;
     }
 }
