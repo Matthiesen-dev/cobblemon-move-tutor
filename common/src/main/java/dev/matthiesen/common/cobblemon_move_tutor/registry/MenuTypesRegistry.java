@@ -7,7 +7,6 @@ import dev.matthiesen.common.cobblemon_move_tutor.ui.ConfirmationMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.PokemonSelectionMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.SelectMoveMenu;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.MenuType;
 

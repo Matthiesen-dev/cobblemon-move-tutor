@@ -6,7 +6,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICommand;
 import dev.matthiesen.common.cobblemon_move_tutor.permissions.ModPermissions;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.PokemonSelectionMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
