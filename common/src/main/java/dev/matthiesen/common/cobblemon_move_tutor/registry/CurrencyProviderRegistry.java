@@ -1,6 +1,6 @@
 package dev.matthiesen.common.cobblemon_move_tutor.registry;
 
-import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICurrencyProvider;
+import dev.matthiesen.common.cobblemon_move_tutor.platform.ICurrencyProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;

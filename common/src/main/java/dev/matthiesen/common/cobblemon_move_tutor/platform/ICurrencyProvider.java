@@ -1,4 +1,4 @@
-package dev.matthiesen.common.cobblemon_move_tutor.interfaces;
+package dev.matthiesen.common.cobblemon_move_tutor.platform;
 
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;

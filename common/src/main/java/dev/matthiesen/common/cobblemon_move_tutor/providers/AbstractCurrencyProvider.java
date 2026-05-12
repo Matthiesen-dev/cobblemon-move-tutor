@@ -1,11 +1,14 @@
 package dev.matthiesen.common.cobblemon_move_tutor.providers;
 
+import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICurrencyProvider;
+import dev.matthiesen.common.cobblemon_move_tutor.platform.ICurrencyProvider;
+import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
@@ -19,6 +22,7 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
                         String.valueOf(price),
                         currencyDisplayName()
                 ).withStyle(ChatFormatting.RED));
+        new SoundsPlayer(CobblemonSounds.PC_OFF).play(player);
         return false;
     }
 
@@ -48,5 +52,6 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
                     ).withStyle(ChatFormatting.GREEN)
             );
         }
+        new SoundsPlayer(CobblemonSounds.PC_ON).setVolume(0.5F).play(player);
     }
 }

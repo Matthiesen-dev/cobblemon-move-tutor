@@ -126,12 +126,16 @@ public class SelectMoveMenu extends AbstractMenu {
                 new SoundsPlayer(CobblemonSounds.PC_CLICK).play(sp);
                 populatePage(currentPage - 1);
                 broadcastChanges();
+            } else {
+                new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT).play(sp);
             }
         } else if (slotId == NEXT_SLOT) {
             if (currentPage < getTotalPages() - 1) {
                 new SoundsPlayer(CobblemonSounds.PC_CLICK).play(sp);
                 populatePage(currentPage + 1);
                 broadcastChanges();
+            } else {
+                new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT).play(sp);
             }
         } else if (slotId >= FIRST_MOVE_SLOT && slotId < FIRST_MOVE_SLOT + PAGE_SIZE) {
             int moveIdx = currentPage * PAGE_SIZE + (slotId - FIRST_MOVE_SLOT);

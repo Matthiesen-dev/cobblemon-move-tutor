@@ -1,5 +1,6 @@
 package dev.matthiesen.common.cobblemon_move_tutor;
 
+import dev.matthiesen.common.cobblemon_move_tutor.platform.ScreenRegistrar;
 import dev.matthiesen.common.cobblemon_move_tutor.platform.CommonClientPlatform;
 
 import java.util.ServiceLoader;
@@ -12,7 +13,7 @@ public class CobblemonMoveTutorCommonClient {
         Constants.createInfoLog("Initializing client logic");
     }
 
-    public static void registerMenuScreens(CommonClientPlatform.ScreenRegistrar registrar) {
+    public static void registerMenuScreens(ScreenRegistrar registrar) {
         COMMON_CLIENT_PLATFORM.registerMenuScreens(registrar);
     }
 }
