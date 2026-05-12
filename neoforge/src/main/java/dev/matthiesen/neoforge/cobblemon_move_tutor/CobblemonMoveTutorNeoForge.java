@@ -3,7 +3,6 @@ package dev.matthiesen.neoforge.cobblemon_move_tutor;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommonClient;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
-import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuScreenRegistry;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -65,7 +64,7 @@ public class CobblemonMoveTutorNeoForge {
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
-            MenuScreenRegistry.registerAll(event::register);
+            CobblemonMoveTutorCommonClient.registerMenuScreens(event::register);
         }
     }
 
