@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.molang.MoLangFunctions;
 import com.cobblemon.mod.common.api.storage.party.PartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
-import dev.matthiesen.common.cobblemon_move_tutor.gui.SelectMoveGui;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.SelectMoveMenu;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.HashMap;
@@ -47,6 +47,6 @@ public class PlayerFunctionsExtension {
         }
         PartyStore storage = Cobblemon.INSTANCE.getStorage().getParty(player);
         Pokemon pokemon = storage.get(slot);
-        new SelectMoveGui(player, pokemon, type).open();
+        SelectMoveMenu.openFor(player, pokemon, type);
     }
 }

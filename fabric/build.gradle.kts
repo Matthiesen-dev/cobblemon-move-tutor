@@ -33,7 +33,7 @@ dependencies {
     modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
 
-    modRuntimeOnly("ca.landonjw.gooeylibs:fabric:${property("gooeylibs_version")}")
+    modRuntimeOnly("dev.architectury:architectury-fabric:${property("architectury_version")}") { isTransitive = false }
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")

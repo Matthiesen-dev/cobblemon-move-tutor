@@ -51,6 +51,7 @@ public class CobblemonMoveTutorCommon {
         permissions = new ModPermissions();
         SoundRegistry.init();
         ItemRegistry.init();
+        MenuTypesRegistry.init();
         loadCurrencyProviders();
 
         // Extend Cobblemon's Molang functions

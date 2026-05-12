@@ -1,7 +1,12 @@
 package dev.matthiesen.neoforge.cobblemon_move_tutor;
 
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommonClient;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
+import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.client.ConfirmationScreen;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.client.PokemonSelectionScreen;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.client.SelectMoveScreen;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -11,10 +16,14 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -44,6 +53,22 @@ public class CobblemonMoveTutorNeoForge {
         ADVANCEMENT_TRIGGERS.register(modBus);
         CobblemonMoveTutorCommon.initialize();
         NeoForge.EVENT_BUS.register(this);
+    }
+
+    @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
+    public static class ClientModInitializer {
+
+        @SubscribeEvent
+        public static void clientSetup(FMLClientSetupEvent event) {
+            CobblemonMoveTutorCommonClient.initialize();
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(MenuTypesRegistry.CONFIRMATION_SCREEN.get(), ConfirmationScreen::new);
+            event.register(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), PokemonSelectionScreen::new);
+            event.register(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), SelectMoveScreen::new);
+        }
     }
 
     @SubscribeEvent

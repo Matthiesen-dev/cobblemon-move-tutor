@@ -1,6 +1,5 @@
 package dev.matthiesen.common.cobblemon_move_tutor.util;
 
-import ca.landonjw.gooeylibs2.api.UIManager;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.moves.BenchedMove;
 import com.cobblemon.mod.common.api.moves.MoveSet;
@@ -16,7 +15,7 @@ public class MoveManager {
     public static boolean validatePokemon(Pokemon oldPokemon, ServerPlayer player) {
         if (Cobblemon.INSTANCE.getStorage().getParty(player).get(oldPokemon.getUuid()) == null) {
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.unknownPokemon"));
-            UIManager.closeUI(player);
+            player.closeContainer();
             return false;
         }
 

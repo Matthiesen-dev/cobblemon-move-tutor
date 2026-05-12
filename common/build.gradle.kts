@@ -19,7 +19,7 @@ dependencies {
     modApi(files("${rootProject.rootDir}/jars/molang-${property("molang_version")}.jar"))
     modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
-    modCompileOnly("ca.landonjw.gooeylibs:api:${property("gooeylibs_version")}")
+    modApi("dev.architectury:architectury:${property("architectury_version")}") { isTransitive = false }
 
     implementation("net.kyori:adventure-key:4.13.0")
 
