@@ -77,7 +77,7 @@ public class FabricPlatformService implements CommonPlatform {
 
     @SuppressWarnings("unchecked")
     private static <T, R extends Registry<? super T>> Supplier<T> registerSupplier(R registry, String id, Supplier<T> object) {
-        final T registeredObject = Registry.register((Registry<T>) registry, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), object.get());
+        final T registeredObject = Registry.register((Registry<T>) registry, Constants.modResource(id), object.get());
 
         return () -> registeredObject;
     }
