@@ -17,10 +17,8 @@ dependencies {
     compileOnly("org.spongepowered:mixin:0.8.5")
     modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
     modApi(files("${rootProject.rootDir}/jars/molang-${property("molang_version")}.jar"))
-    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
-    modApi("dev.architectury:architectury:${property("architectury_version")}") { isTransitive = false }
-
+    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
     implementation("net.kyori:adventure-key:4.13.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")

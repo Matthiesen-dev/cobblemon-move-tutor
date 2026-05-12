@@ -4,6 +4,7 @@ import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -21,6 +22,7 @@ public interface CommonPlatform {
     <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab);
     <T extends CriterionTrigger<?>> Supplier<T> registerCriteriaTriggers(String id, Supplier<T> criterionTrigger);
     <T extends ResourceLocation> Supplier<T> registerStats(String id, Supplier<T> stats);
+    <T extends MenuType<?>> Supplier<T> registerMenuType(String id, Supplier<T> menuType);
 
     // General Utilities
     MinecraftServer server();

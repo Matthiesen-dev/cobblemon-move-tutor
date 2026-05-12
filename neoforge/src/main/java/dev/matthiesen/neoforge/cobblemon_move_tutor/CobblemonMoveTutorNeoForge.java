@@ -3,15 +3,13 @@ package dev.matthiesen.neoforge.cobblemon_move_tutor;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommonClient;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
-import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.client.ConfirmationScreen;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.client.PokemonSelectionScreen;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.client.SelectMoveScreen;
+import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuScreenRegistry;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -39,6 +37,7 @@ public class CobblemonMoveTutorNeoForge {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, Constants.MOD_ID);
     public static final DeferredRegister<CriterionTrigger<?>> ADVANCEMENT_TRIGGERS = DeferredRegister.create(Registries.TRIGGER_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<ResourceLocation> STATS = DeferredRegister.create(Registries.CUSTOM_STAT, Constants.MOD_ID);
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, Constants.MOD_ID);
     public static volatile MinecraftServer MC_SERVER;
 
     public CobblemonMoveTutorNeoForge(IEventBus modBus) {
@@ -50,6 +49,7 @@ public class CobblemonMoveTutorNeoForge {
         BLOCK_ENTITIES.register(modBus);
         CREATIVE_TABS.register(modBus);
         ITEMS.register(modBus);
+        MENU_TYPES.register(modBus);
         ADVANCEMENT_TRIGGERS.register(modBus);
         CobblemonMoveTutorCommon.initialize();
         NeoForge.EVENT_BUS.register(this);
@@ -65,9 +65,7 @@ public class CobblemonMoveTutorNeoForge {
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
-            event.register(MenuTypesRegistry.CONFIRMATION_SCREEN.get(), ConfirmationScreen::new);
-            event.register(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), PokemonSelectionScreen::new);
-            event.register(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), SelectMoveScreen::new);
+            MenuScreenRegistry.registerAll(event::register);
         }
     }
 

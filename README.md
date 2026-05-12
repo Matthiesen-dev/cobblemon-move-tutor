@@ -6,7 +6,6 @@ them more versatile in battles.
 
 ## Requirements
 - [Cobblemon](https://modrinth.com/mod/cobblemon)
-- [Architectury API](https://modrinth.com/mod/architectury-api)
 
 ### Optional compatibility
 - [CobbleDollars](https://modrinth.com/mod/cobbledollars)

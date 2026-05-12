@@ -11,6 +11,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -53,6 +54,11 @@ public class FabricPlatformService implements CommonPlatform {
     @Override
     public <T extends ResourceLocation> Supplier<T> registerStats(String id, Supplier<T> stats) {
         return registerSupplier(BuiltInRegistries.CUSTOM_STAT, id, stats);
+    }
+
+    @Override
+    public <T extends MenuType<?>> Supplier<T> registerMenuType(String id, Supplier<T> menuType) {
+        return registerSupplier(BuiltInRegistries.MENU, id, menuType);
     }
 
     @Override

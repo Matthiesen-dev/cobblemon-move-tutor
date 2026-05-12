@@ -37,10 +37,8 @@ dependencies {
     forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
         exclude("net.neoforged.fancymodloader", "loader")
     }
-    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Neoforge-neoforge,1.21.1")
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-neoforge,1.21.1")
-
-    modRuntimeOnly("dev.architectury:architectury-neoforge:${property("architectury_version")}") { isTransitive = false }
+    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Neoforge-neoforge,1.21.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
