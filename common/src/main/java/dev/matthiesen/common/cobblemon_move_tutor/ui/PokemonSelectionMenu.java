@@ -32,7 +32,7 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
     // Title: row 0, col 4 → x = 8 + 4*18 = 80, y = 18
     private static final int TITLE_X  = 80;
     private static final int TITLE_Y  = 18;
-    // Pokemon row: row 1, cols 1-3 and 5-7 (skip col 4 = centre gap) → y = 36
+    // Pokemon row: row 1, cols 1-3 and 5-7 (skip col 4 = center gap) → y = 36
     private static final int[] POKEMON_X = { 26, 44, 62, 98, 116, 134 };
     private static final int   POKEMON_Y = 36;
 
@@ -42,8 +42,9 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
     @Nullable private Pokemon[] cachedParty;
     @Nullable private String type;
 
+    @SuppressWarnings("unused")
     public PokemonSelectionMenu(int containerID, Inventory inventory,
-                                Pokemon[] party, String type) {
+                                Pokemon[] party, @NotNull String type) {
         super(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), containerID);
         this.cachedParty = party;
         this.type = type;
@@ -58,6 +59,7 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
         addDisplaySlots();
     }
 
+    @SuppressWarnings("unused")
     public PokemonSelectionMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), containerID);
         this.container = new SimpleContainer(7);

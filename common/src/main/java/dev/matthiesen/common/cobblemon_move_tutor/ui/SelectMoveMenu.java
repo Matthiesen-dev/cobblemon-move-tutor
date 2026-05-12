@@ -51,8 +51,9 @@ public class SelectMoveMenu extends AbstractContainerMenu {
     @Nullable private String type;
     private int currentPage = 0;
 
+    @SuppressWarnings("unused")
     public SelectMoveMenu(int containerID, Inventory inventory,
-                          ServerPlayer player, Pokemon pokemon, String type) {
+                          ServerPlayer player, @NotNull Pokemon pokemon, @NotNull String type) {
         super(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), containerID);
         this.selectedPokemon = pokemon;
         this.type            = type;
@@ -62,6 +63,7 @@ public class SelectMoveMenu extends AbstractContainerMenu {
         populatePage(0);
     }
 
+    @SuppressWarnings("unused")
     public SelectMoveMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), containerID);
         this.container = new SimpleContainer(32);

@@ -45,10 +45,11 @@ public class ConfirmationMenu extends AbstractContainerMenu {
     @Nullable private Runnable cancelCallback;
     private boolean resolved = false;
 
+    @SuppressWarnings("unused")
     public ConfirmationMenu(int containerID, Inventory inventory,
                             ItemStack detailsItem,
-                            Runnable confirmCallback,
-                            Runnable cancelCallback) {
+                            @NotNull Runnable confirmCallback,
+                            @NotNull Runnable cancelCallback) {
         super(MenuTypesRegistry.CONFIRMATION_SCREEN.get(), containerID);
         this.confirmCallback = confirmCallback;
         this.cancelCallback  = cancelCallback;
@@ -60,6 +61,7 @@ public class ConfirmationMenu extends AbstractContainerMenu {
         addDisplaySlots();
     }
 
+    @SuppressWarnings("unused")
     public ConfirmationMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.CONFIRMATION_SCREEN.get(), containerID);
         this.container = new SimpleContainer(4);
