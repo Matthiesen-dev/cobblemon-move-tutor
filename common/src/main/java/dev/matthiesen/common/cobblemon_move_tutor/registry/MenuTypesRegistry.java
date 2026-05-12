@@ -32,6 +32,6 @@ public class MenuTypesRegistry {
     }
 
     public static <T extends MenuType<?>> RegistrySupplier<T> register(String name, Supplier<T> menuType) {
-        return MENU_TYPES.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), menuType);
+        return MENU_TYPES.register(Constants.modResource(name), menuType);
     }
 }

@@ -10,7 +10,7 @@ public class SelectMoveScreen extends AbstractScreen<SelectMoveMenu> {
     private static final int BG_WIDTH  = 176;
     private static final int BG_HEIGHT = 138;
     private static final ResourceLocation BACKGROUND =
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/select_move.png");
+            Constants.modResource("textures/gui/select_move.png");
 
     @Override
     protected int getBgWidth() {

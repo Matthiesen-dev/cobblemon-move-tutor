@@ -15,7 +15,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
@@ -153,9 +152,8 @@ public class SelectMoveMenu extends AbstractMenu {
     }
 
     public static void openFor(ServerPlayer player, Pokemon pokemon, String type) {
-        MenuRegistry.openMenu(player, new SimpleMenuProvider(
-                (id, inv, p) -> new SelectMoveMenu(id, inv, player, pokemon, type),
-                Component.empty()
+        MenuRegistry.openMenu(player, TutorMenuProvider.create(
+                (id, inv, p) -> new SelectMoveMenu(id, inv, player, pokemon, type)
         ));
     }
 

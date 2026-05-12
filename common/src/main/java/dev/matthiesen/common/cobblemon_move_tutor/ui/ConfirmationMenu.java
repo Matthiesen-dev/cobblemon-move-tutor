@@ -9,11 +9,11 @@ import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
+import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
@@ -112,9 +112,8 @@ public class ConfirmationMenu extends AbstractMenu {
                                ItemStack detailsItem,
                                Runnable confirmCallback,
                                Runnable cancelCallback) {
-        MenuRegistry.openMenu(player, new SimpleMenuProvider(
-                (id, inv, p) -> new ConfirmationMenu(id, inv, detailsItem, confirmCallback, cancelCallback),
-                Component.empty()
+        MenuRegistry.openMenu(player, TutorMenuProvider.create(
+                (id, inv, p) -> new ConfirmationMenu(id, inv, detailsItem, confirmCallback, cancelCallback)
         ));
     }
 

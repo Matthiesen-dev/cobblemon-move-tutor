@@ -9,14 +9,10 @@ import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
-import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
-import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
-import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
-import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
+import dev.matthiesen.common.cobblemon_move_tutor.util.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
@@ -94,9 +90,8 @@ public class PokemonSelectionMenu extends AbstractMenu {
         Pokemon[] party = new Pokemon[6];
         for (int i = 0; i < 6; i++) party[i] = partyStore.get(i);
 
-        MenuRegistry.openMenu(player, new SimpleMenuProvider(
-                (id, inv, p) -> new PokemonSelectionMenu(id, inv, party, type),
-                Component.empty()
+        MenuRegistry.openMenu(player, TutorMenuProvider.create(
+                (id, inv, p) -> new PokemonSelectionMenu(id, inv, party, type)
         ));
     }
 
