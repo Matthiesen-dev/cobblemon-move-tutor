@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class SelectMoveScreen extends AbstractScreen<SelectMoveMenu> {
-    private static final int BG_WIDTH  = 176;
+    private static final int BG_WIDTH = 176;
     private static final int BG_HEIGHT = 138;
     private static final ResourceLocation BACKGROUND =
             Constants.modResource("textures/gui/select_move.png");

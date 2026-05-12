@@ -3,16 +3,13 @@ package dev.matthiesen.common.cobblemon_move_tutor.ui;
 import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import dev.architectury.registry.menu.MenuRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
-import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.StaticButtons;
 import dev.matthiesen.common.cobblemon_move_tutor.util.*;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -29,18 +26,18 @@ public class SelectMoveMenu extends AbstractMenu {
 
     public static final int PAGE_SIZE = 28;
 
-    public static final int TITLE_SLOT      = 0;
+    public static final int TITLE_SLOT = 0;
     public static final int FIRST_MOVE_SLOT = 1;   // 1 … 28
-    public static final int PREV_SLOT       = 29;
-    public static final int PAGE_SLOT       = 30;
-    public static final int NEXT_SLOT       = 31;
+    public static final int PREV_SLOT = 29;
+    public static final int PAGE_SLOT = 30;
+    public static final int NEXT_SLOT = 31;
 
     // Standard chest offsets: slot (row, col) → x = 8 + col*18, y = 18 + row*18
-    private static final int TITLE_X = 80, TITLE_Y = 18;    // row 0, col 4
-    private static final int NAV_Y   = 108;                  // row 5
-    private static final int PREV_X  = 8;                    //        col 0
-    private static final int PAGE_X  = 80;                   //        col 4
-    private static final int NEXT_X  = 152;                  //        col 8
+    private static final int TITLE_X = 80, TITLE_Y = 18; // row 0, col 4
+    private static final int NAV_Y   = 108; // row 5
+    private static final int PREV_X  = 8; //        col 0
+    private static final int PAGE_X  = 80; //        col 4
+    private static final int NEXT_X  = 152; //        col 8
 
     private final SimpleContainer container;
 
@@ -55,9 +52,9 @@ public class SelectMoveMenu extends AbstractMenu {
                           ServerPlayer player, @NotNull Pokemon pokemon, @NotNull String type) {
         super(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), containerID);
         this.selectedPokemon = pokemon;
-        this.type            = type;
-        this.allMoves        = new ArrayList<>(PokemonUtility.getFilteredMoves(pokemon, getTutorConfig()));
-        this.container       = new SimpleContainer(32);
+        this.type = type;
+        this.allMoves = new ArrayList<>(PokemonUtility.getFilteredMoves(pokemon, getTutorConfig()));
+        this.container = new SimpleContainer(32);
         addDisplaySlots();
         populatePage(0);
     }
@@ -103,14 +100,14 @@ public class SelectMoveMenu extends AbstractMenu {
             int moveIdx = start + i;
             if (allMoves != null && moveIdx < allMoves.size()) {
                 container.setItem(FIRST_MOVE_SLOT + i,
-                        PokemonUtility.getMoveItem(allMoves.get(moveIdx), selectedPokemon));
+                        StaticButtons.getMoveItem(allMoves.get(moveIdx), selectedPokemon));
             }
         }
         // Update nav + title items
-        container.setItem(TITLE_SLOT, buildTitleItem());
-        container.setItem(PREV_SLOT,  buildPrevItem());
-        container.setItem(PAGE_SLOT,  buildPageItem(page + 1, totalPages));
-        container.setItem(NEXT_SLOT,  buildNextItem());
+        container.setItem(TITLE_SLOT, StaticButtons.buildTitleItem(ModelData.GUI_TEXT.SELECT_MOVE));
+        container.setItem(PREV_SLOT, StaticButtons.buildPrevItem());
+        container.setItem(PAGE_SLOT, StaticButtons.buildPageItem(page + 1, totalPages));
+        container.setItem(NEXT_SLOT, StaticButtons.buildNextItem());
     }
 
     private int getTotalPages() {
@@ -141,20 +138,14 @@ public class SelectMoveMenu extends AbstractMenu {
             if (allMoves != null && moveIdx < allMoves.size()) {
                 MoveTemplate move = allMoves.get(moveIdx);
                 new SoundsPlayer(CobblemonSounds.POKEDEX_CLICK).play(sp);
-                ItemStack moveItem = PokemonUtility.getMoveItem(move, selectedPokemon);
-                ConfirmationMenu.openFor(sp, moveItem,
+                ItemStack moveItem = StaticButtons.getMoveItem(move, selectedPokemon);
+                TutorMenuProvider.open.confirmationMenu(sp, moveItem,
                         () -> MoveManager.learnMove(sp, selectedPokemon, move,
-                                () -> SelectMoveMenu.openFor(sp, selectedPokemon, type)),
-                        () -> SelectMoveMenu.openFor(sp, selectedPokemon, type)
+                                () -> TutorMenuProvider.open.selectMoveMenu(sp, selectedPokemon, type)),
+                        () -> TutorMenuProvider.open.selectMoveMenu(sp, selectedPokemon, type)
                 );
             }
         }
-    }
-
-    public static void openFor(ServerPlayer player, Pokemon pokemon, String type) {
-        MenuRegistry.openMenu(player, TutorMenuProvider.create(
-                (id, inv, p) -> new SelectMoveMenu(id, inv, player, pokemon, type)
-        ));
     }
 
     private CommonConfig.TutorConfig getTutorConfig() {
@@ -162,44 +153,6 @@ public class SelectMoveMenu extends AbstractMenu {
             return CobblemonMoveTutorCommon.getCommonConfig().villageTutorConfig;
         }
         return CobblemonMoveTutorCommon.getCommonConfig().adminTutorConfig;
-    }
-
-    private static ItemStack buildTitleItem() {
-        return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                .setModelData(ModelData.GUI_TEXT.SELECT_MOVE)
-                .hideAdditional()
-                .setCustomName(Component.literal(" "))
-                .build();
-    }
-
-    private static ItemStack buildPrevItem() {
-        return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                .setModelData(ModelData.GUI_BUTTON.GUI_PREVIOUS)
-                .hideAdditional()
-                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.button.previousPage")
-                        .withStyle(ChatFormatting.AQUA))
-                .build();
-    }
-
-    private static ItemStack buildNextItem() {
-        return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                .setModelData(ModelData.GUI_BUTTON.GUI_NEXT)
-                .hideAdditional()
-                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.button.nextPage")
-                        .withStyle(ChatFormatting.AQUA))
-                .build();
-    }
-
-    private static ItemStack buildPageItem(int current, int total) {
-        return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
-                .setModelData(ModelData.GUI_BUTTON.GUI_PAGE)
-                .hideAdditional()
-                .setCustomName(Component.translatable(
-                        "cobblemon_move_tutor.gui.button.pageIndicator",
-                        String.valueOf(current),
-                        String.valueOf(total)
-                ).withStyle(ChatFormatting.GOLD))
-                .build();
     }
 }
 

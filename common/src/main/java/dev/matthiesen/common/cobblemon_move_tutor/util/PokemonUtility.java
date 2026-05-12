@@ -196,19 +196,4 @@ public class PokemonUtility {
                 .filter(move -> !config.hideAlreadyKnownMoves || !PokemonUtility.isLearnedMove(pokemon, move))
                 .collect(Collectors.toSet());
     }
-
-    public static ItemStack getEmptyPokemonItem() {
-        return new ItemBuilder(CobblemonItems.POKE_BALL)
-                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot").withStyle(ChatFormatting.GRAY))
-                .hideAdditional()
-                .build();
-    }
-
-    public static ItemStack getMoveItem(MoveTemplate move, Pokemon selectedPokemon) {
-        return new ItemBuilder(PokemonUtility.getItemTM(move))
-                .hideAdditional()
-                .setCustomName(move.getDisplayName())
-                .addLore(PokemonUtility.getMoveLore(selectedPokemon, move))
-                .build();
-    }
 }

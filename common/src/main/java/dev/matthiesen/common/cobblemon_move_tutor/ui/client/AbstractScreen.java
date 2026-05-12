@@ -20,7 +20,7 @@ public abstract class AbstractScreen<T extends AbstractContainerMenu> extends Ab
 
     public AbstractScreen(T abstractContainerMenu, Inventory inventory, Component component) {
         super(abstractContainerMenu, inventory, component);
-        this.imageWidth  = BG_WIDTH;
+        this.imageWidth = BG_WIDTH;
         this.imageHeight = BG_HEIGHT;
     }
 

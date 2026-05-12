@@ -7,6 +7,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICommand;
 import dev.matthiesen.common.cobblemon_move_tutor.permissions.ModPermissions;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.PokemonSelectionMenu;
+import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -44,14 +45,14 @@ public class MoveTutorCMD implements ICommand {
     private int self(CommandContext<CommandSourceStack> ctx) {
         ServerPlayer player = ctx.getSource().getPlayer();
         if (player == null) return 0;
-        PokemonSelectionMenu.openFor(player, SELECTION_TYPE);
+        TutorMenuProvider.open.pokemonSelectionMenu(player, SELECTION_TYPE);
         return 1;
     }
 
     private int other(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayer();
         ServerPlayer targetPlayer = EntityArgument.getPlayer(ctx, "player");
-        PokemonSelectionMenu.openFor(targetPlayer, SELECTION_TYPE);
+        TutorMenuProvider.open.pokemonSelectionMenu(targetPlayer, SELECTION_TYPE);
         if (player != null)
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.openedForOther", targetPlayer.getDisplayName().getString()));
         return 1;

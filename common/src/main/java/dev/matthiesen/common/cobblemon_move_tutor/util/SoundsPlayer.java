@@ -27,8 +27,7 @@ public class SoundsPlayer {
     }
 
     public void play(ServerPlayer player) {
-        player.server.executeIfPossible(
-                () -> player.playNotifySound(this.soundEvent, this.soundSource, this.volume, this.pitch)
-        );
+        player.server.executeIfPossible(() ->
+                player.playNotifySound(this.soundEvent, this.soundSource, this.volume, this.pitch));
     }
 }
