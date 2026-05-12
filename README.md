@@ -6,7 +6,6 @@ them more versatile in battles.
 
 ## Requirements
 - [Cobblemon](https://modrinth.com/mod/cobblemon)
-- [Gooeylibs](https://modrinth.com/mod/gooeylibs)
 
 ### Optional compatibility
 - [CobbleDollars](https://modrinth.com/mod/cobbledollars)

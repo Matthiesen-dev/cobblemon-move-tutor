@@ -1,6 +1,5 @@
 package dev.matthiesen.common.cobblemon_move_tutor.util;
 
-import ca.landonjw.gooeylibs2.api.UIManager;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.moves.BenchedMove;
 import com.cobblemon.mod.common.api.moves.MoveSet;
@@ -8,7 +7,7 @@ import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
-import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICurrencyProvider;
+import dev.matthiesen.common.cobblemon_move_tutor.platform.ICurrencyProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -16,7 +15,7 @@ public class MoveManager {
     public static boolean validatePokemon(Pokemon oldPokemon, ServerPlayer player) {
         if (Cobblemon.INSTANCE.getStorage().getParty(player).get(oldPokemon.getUuid()) == null) {
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.unknownPokemon"));
-            UIManager.closeUI(player);
+            player.closeContainer();
             return false;
         }
 

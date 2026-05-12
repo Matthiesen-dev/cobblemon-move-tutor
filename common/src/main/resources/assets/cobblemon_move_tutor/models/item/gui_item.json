@@ -8,49 +8,49 @@
 			"predicate": {
 				"custom_model_data": 1001
 			},
-			"model": "cobblemon_move_tutor:guis/button/confirm"
+			"model": "cobblemon_move_tutor:gui/button/confirm"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1002
 			},
-			"model": "cobblemon_move_tutor:guis/button/cancel"
+			"model": "cobblemon_move_tutor:gui/button/cancel"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1003
 			},
-			"model": "cobblemon_move_tutor:guis/button/previous"
+			"model": "cobblemon_move_tutor:gui/button/previous"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1004
 			},
-			"model": "cobblemon_move_tutor:guis/button/next"
+			"model": "cobblemon_move_tutor:gui/button/next"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 1005
 			},
-			"model": "cobblemon_move_tutor:guis/button/page"
+			"model": "cobblemon_move_tutor:gui/button/page"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 2001
 			},
-			"model": "cobblemon_move_tutor:guis/text/choose_your_pokemon"
+			"model": "cobblemon_move_tutor:gui/text/choose_your_pokemon"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 2002
 			},
-			"model": "cobblemon_move_tutor:guis/text/confirm_to_teach_move"
+			"model": "cobblemon_move_tutor:gui/text/confirm_to_teach_move"
 		},
 		{
 			"predicate": {
 				"custom_model_data": 2003
 			},
-			"model": "cobblemon_move_tutor:guis/text/select_a_move"
+			"model": "cobblemon_move_tutor:gui/text/select_a_move"
 		}
 	]
 }

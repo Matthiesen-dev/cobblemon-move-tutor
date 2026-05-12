@@ -11,6 +11,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -56,6 +57,11 @@ public class FabricPlatformService implements CommonPlatform {
     }
 
     @Override
+    public <T extends MenuType<?>> Supplier<T> registerMenuType(String id, Supplier<T> menuType) {
+        return registerSupplier(BuiltInRegistries.MENU, id, menuType);
+    }
+
+    @Override
     public MinecraftServer server() {
         return CobblemonMoveTutorFabric.MC_SERVER;
     }
@@ -77,7 +83,7 @@ public class FabricPlatformService implements CommonPlatform {
 
     @SuppressWarnings("unchecked")
     private static <T, R extends Registry<? super T>> Supplier<T> registerSupplier(R registry, String id, Supplier<T> object) {
-        final T registeredObject = Registry.register((Registry<T>) registry, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), object.get());
+        final T registeredObject = Registry.register((Registry<T>) registry, Constants.modResource(id), object.get());
 
         return () -> registeredObject;
     }

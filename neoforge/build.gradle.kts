@@ -37,10 +37,8 @@ dependencies {
     forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
         exclude("net.neoforged.fancymodloader", "loader")
     }
-    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Neoforge-neoforge,1.21.1")
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-neoforge,1.21.1")
-
-    modRuntimeOnly("ca.landonjw.gooeylibs:neoforge:${property("gooeylibs_version")}")
+    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Neoforge-neoforge,1.21.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
@@ -58,6 +56,8 @@ tasks {
         inputs.property("mod_description", project.property("mod_description").toString())
         inputs.property("mod_license", project.property("mod_license").toString())
         inputs.property("mod_author", project.property("mod_author").toString())
+        inputs.property("github_url", project.property("github_url").toString())
+        inputs.property("modrinth_url", project.property("modrinth_url").toString())
 
         filesMatching("META-INF/neoforge.mods.toml") {
             expand(project.properties)

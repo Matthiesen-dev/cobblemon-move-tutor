@@ -4,9 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
-import dev.matthiesen.common.cobblemon_move_tutor.gui.PlayerPokemonSelectionGui;
-import dev.matthiesen.common.cobblemon_move_tutor.interfaces.ICommand;
+import dev.matthiesen.common.cobblemon_move_tutor.platform.ICommand;
 import dev.matthiesen.common.cobblemon_move_tutor.permissions.ModPermissions;
+import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -44,14 +44,14 @@ public class MoveTutorCMD implements ICommand {
     private int self(CommandContext<CommandSourceStack> ctx) {
         ServerPlayer player = ctx.getSource().getPlayer();
         if (player == null) return 0;
-        new PlayerPokemonSelectionGui(player, SELECTION_TYPE).open();
+        TutorMenuProvider.open.pokemonSelectionMenu(player, SELECTION_TYPE);
         return 1;
     }
 
     private int other(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayer();
         ServerPlayer targetPlayer = EntityArgument.getPlayer(ctx, "player");
-        new PlayerPokemonSelectionGui(targetPlayer, SELECTION_TYPE).open();
+        TutorMenuProvider.open.pokemonSelectionMenu(targetPlayer, SELECTION_TYPE);
         if (player != null)
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.openedForOther", targetPlayer.getDisplayName().getString()));
         return 1;

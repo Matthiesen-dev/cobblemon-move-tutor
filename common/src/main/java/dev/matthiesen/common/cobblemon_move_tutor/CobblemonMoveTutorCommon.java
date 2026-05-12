@@ -1,6 +1,7 @@
 package dev.matthiesen.common.cobblemon_move_tutor;
 
 import com.mojang.brigadier.CommandDispatcher;
+import dev.matthiesen.common.cobblemon_move_tutor.commands.MoveTutorCMD;
 import dev.matthiesen.common.cobblemon_move_tutor.molang.PlayerFunctionsExtension;
 import dev.matthiesen.common.cobblemon_move_tutor.providers.*;
 import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
@@ -49,8 +50,8 @@ public class CobblemonMoveTutorCommon {
     public static void initialize() {
         Constants.createInfoLog("Initializing common logic");
         permissions = new ModPermissions();
-        SoundRegistry.init();
         ItemRegistry.init();
+        MenuTypesRegistry.init();
         loadCurrencyProviders();
 
         // Extend Cobblemon's Molang functions
@@ -84,6 +85,6 @@ public class CobblemonMoveTutorCommon {
 
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {
         Constants.createInfoLog("Registering Commands");
-        CommandRegistry.init(dispatcher, registry, context);
+        new MoveTutorCMD().register(dispatcher, registry, context);
     }
 }

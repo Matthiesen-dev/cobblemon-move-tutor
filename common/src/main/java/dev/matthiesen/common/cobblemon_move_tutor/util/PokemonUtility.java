@@ -1,9 +1,6 @@
 package dev.matthiesen.common.cobblemon_move_tutor.util;
 
-import ca.landonjw.gooeylibs2.api.button.Button;
-import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import com.cobblemon.mod.common.CobblemonItems;
-import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.api.pokemon.moves.Learnset;
@@ -198,30 +195,5 @@ public class PokemonUtility {
                 .filter(move -> config.specialMove || !moves.getSpecialMoves().contains(move))
                 .filter(move -> !config.hideAlreadyKnownMoves || !PokemonUtility.isLearnedMove(pokemon, move))
                 .collect(Collectors.toSet());
-    }
-
-    public static Button getEmptyPokemonButton() {
-        return GooeyButton.builder()
-                .display(
-                        new ItemBuilder(CobblemonItems.POKE_BALL)
-                                .setCustomName(Component.translatable("cobblemon_move_tutor.gui.emptySlot").withStyle(ChatFormatting.GRAY))
-                                .hideAdditional()
-                                .build()
-                )
-                .onClick(action ->
-                        new SoundsPlayer(CobblemonSounds.POKE_BALL_HIT).play(action.getPlayer()))
-                .build();
-    }
-
-    public static ItemStack getMoveItem(MoveTemplate move, Pokemon selectedPokemon) {
-        return new ItemBuilder(PokemonUtility.getItemTM(move))
-                .hideAdditional()
-                .setCustomName(move.getDisplayName())
-                .addLore(PokemonUtility.getMoveLore(selectedPokemon, move))
-                .build();
-    }
-
-    public static Button getDetailsButton(MoveTemplate move, Pokemon selectedPokemon) {
-        return GooeyButton.builder().display(getMoveItem(move, selectedPokemon)).build();
     }
 }
