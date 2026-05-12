@@ -33,6 +33,9 @@ dependencies {
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
     modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")
 
+    modRuntimeOnly("maven.modrinth:modmenu:${property("modmenu_version")}")
+    modRuntimeOnly("maven.modrinth:placeholder-api:${property("placeholder_api_version")}")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
 }
@@ -49,6 +52,8 @@ tasks {
         inputs.property("mod_description", project.property("mod_description").toString())
         inputs.property("mod_license", project.property("mod_license").toString())
         inputs.property("mod_author", project.property("mod_author").toString())
+        inputs.property("github_url", project.property("github_url").toString())
+        inputs.property("modrinth_url", project.property("modrinth_url").toString())
 
         filesMatching("fabric.mod.json") {
             expand(project.properties)

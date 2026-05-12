@@ -8,11 +8,17 @@
     "${mod_author}"
   ],
   "license": "${mod_license}",
-  "icon": "icon.png",
+  "icon": "logo.png",
+  "contact": {
+    "homepage": "${github_url}",
+    "sources": "${github_url}",
+    "issues": "${github_url}/issues"
+  },
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.github_releases": "${github_url}"
+        "modmenu.github_releases": "${github_url}",
+        "modmenu.modrinth": "${modrinth_url}"
       }
     }
   },
