@@ -28,18 +28,14 @@ import java.util.List;
 
 public class SelectMoveMenu extends AbstractContainerMenu {
 
-    // ── Pagination constant ───────────────────────────────────────────────────
-    /** Move slots per page: rows 1-4 × cols 1-7 in the old 6-row chest grid. */
     public static final int PAGE_SIZE = 28;
 
-    // ── Slot indices ─────────────────────────────────────────────────────────
     public static final int TITLE_SLOT      = 0;
     public static final int FIRST_MOVE_SLOT = 1;   // 1 … 28
     public static final int PREV_SLOT       = 29;
     public static final int PAGE_SLOT       = 30;
     public static final int NEXT_SLOT       = 31;
 
-    // ── Pixel positions within the 176×138 background image ──────────────────
     // Standard chest offsets: slot (row, col) → x = 8 + col*18, y = 18 + row*18
     private static final int TITLE_X = 80, TITLE_Y = 18;    // row 0, col 4
     private static final int NAV_Y   = 108;                  // row 5
@@ -55,7 +51,6 @@ public class SelectMoveMenu extends AbstractContainerMenu {
     @Nullable private String type;
     private int currentPage = 0;
 
-    // ── Server-side constructor ──────────────────────────────────────────────
     public SelectMoveMenu(int containerID, Inventory inventory,
                           ServerPlayer player, Pokemon pokemon, String type) {
         super(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), containerID);
@@ -67,14 +62,12 @@ public class SelectMoveMenu extends AbstractContainerMenu {
         populatePage(0);
     }
 
-    // ── Client-side factory constructor ─────────────────────────────────────
     public SelectMoveMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), containerID);
         this.container = new SimpleContainer(32);
         addDisplaySlots();
     }
 
-    // ── Slot registration ────────────────────────────────────────────────────
     private void addDisplaySlots() {
         // Title slot
         addSlot(new Slot(container, TITLE_SLOT, TITLE_X, TITLE_Y) {
@@ -112,7 +105,6 @@ public class SelectMoveMenu extends AbstractContainerMenu {
         });
     }
 
-    // ── Pagination ───────────────────────────────────────────────────────────
     private void populatePage(int page) {
         this.currentPage = page;
         int totalPages   = getTotalPages();
@@ -144,7 +136,6 @@ public class SelectMoveMenu extends AbstractContainerMenu {
         return 1;
     }
 
-    // ── Slot click ───────────────────────────────────────────────────────────
     @Override
     public void clicked(int slotId, int button, ClickType clickType, Player player) {
         if (!(player instanceof ServerPlayer sp)) return;

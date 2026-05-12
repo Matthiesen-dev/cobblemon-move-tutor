@@ -45,7 +45,6 @@ public class ConfirmationMenu extends AbstractContainerMenu {
     @Nullable private Runnable cancelCallback;
     private boolean resolved = false;
 
-    // ── Server-side constructor (called via openFor) ─────────────────────────
     public ConfirmationMenu(int containerID, Inventory inventory,
                             ItemStack detailsItem,
                             Runnable confirmCallback,
@@ -61,14 +60,12 @@ public class ConfirmationMenu extends AbstractContainerMenu {
         addDisplaySlots();
     }
 
-    // ── Client-side factory constructor (bound to the MenuType) ──────────────
     public ConfirmationMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.CONFIRMATION_SCREEN.get(), containerID);
         this.container = new SimpleContainer(4);
         addDisplaySlots();
     }
 
-    // ── Slot registration ────────────────────────────────────────────────────
     private void addDisplaySlots() {
         // Display-only: players cannot pick up or place items
         addSlot(new Slot(container, CANCEL_SLOT,  CANCEL_X,  SLOT_Y) {
@@ -83,7 +80,7 @@ public class ConfirmationMenu extends AbstractContainerMenu {
             @Override public boolean mayPickup(Player p) { return false; }
             @Override public boolean mayPlace(ItemStack s) { return false; }
         });
-        // Title slot – mirrors getTitleButton() at old chest slot (row 0, col 4)
+        // Title slot
         addSlot(new Slot(container, TITLE_SLOT, TITLE_X, TITLE_Y) {
             @Override public boolean mayPickup(Player p) { return false; }
             @Override public boolean mayPlace(ItemStack s) { return false; }
@@ -122,7 +119,6 @@ public class ConfirmationMenu extends AbstractContainerMenu {
         }
     }
 
-    // ── Static factory to open the screen from server code ───────────────────
     public static void openFor(ServerPlayer player,
                                ItemStack detailsItem,
                                Runnable confirmCallback,
@@ -133,7 +129,6 @@ public class ConfirmationMenu extends AbstractContainerMenu {
         ));
     }
 
-    // ── Item builders ─────────────────────────────────────────────────────────
     private static ItemStack buildCancelItem() {
         return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                 .setModelData(ModelData.GUI_BUTTON.GUI_CANCEL)
@@ -152,7 +147,6 @@ public class ConfirmationMenu extends AbstractContainerMenu {
                 .build();
     }
 
-    /** Replicates the old {@code getTitleButton()} – invisible item that drives the CONFIRM_TEACH overlay. */
     private static ItemStack buildTitleItem() {
         return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                 .setModelData(ModelData.GUI_TEXT.CONFIRM_TEACH)
@@ -161,7 +155,6 @@ public class ConfirmationMenu extends AbstractContainerMenu {
                 .build();
     }
 
-    // ── Vanilla overrides ─────────────────────────────────────────────────────
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int i) {
         return ItemStack.EMPTY;

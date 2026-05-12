@@ -26,11 +26,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class PokemonSelectionMenu extends AbstractContainerMenu {
 
-    // ── Slot indices ─────────────────────────────────────────────────────────
     public static final int TITLE_SLOT        = 0;
     public static final int FIRST_POKEMON_SLOT = 1; // slots 1-6 → party indices 0-5
 
-    // ── Pixel positions within the 176×82 background image ──────────────────
     // Title: row 0, col 4 → x = 8 + 4*18 = 80, y = 18
     private static final int TITLE_X  = 80;
     private static final int TITLE_Y  = 18;
@@ -44,7 +42,6 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
     @Nullable private Pokemon[] cachedParty;
     @Nullable private String type;
 
-    // ── Server-side constructor ──────────────────────────────────────────────
     public PokemonSelectionMenu(int containerID, Inventory inventory,
                                 Pokemon[] party, String type) {
         super(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), containerID);
@@ -61,14 +58,12 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
         addDisplaySlots();
     }
 
-    // ── Client-side factory constructor ─────────────────────────────────────
     public PokemonSelectionMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), containerID);
         this.container = new SimpleContainer(7);
         addDisplaySlots();
     }
 
-    // ── Slot registration ────────────────────────────────────────────────────
     private void addDisplaySlots() {
         addSlot(new Slot(container, TITLE_SLOT, TITLE_X, TITLE_Y) {
             @Override public boolean mayPickup(Player p) { return false; }
@@ -84,7 +79,6 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
         }
     }
 
-    // ── Slot click ───────────────────────────────────────────────────────────
     @Override
     public void clicked(int slotId, int button, ClickType clickType, Player player) {
         if (!(player instanceof ServerPlayer sp)) return;
@@ -100,7 +94,6 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
         }
     }
 
-    // ── Static opener ────────────────────────────────────────────────────────
     public static void openFor(ServerPlayer player, String type) {
         PlayerPartyStore partyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
         Pokemon[] party = new Pokemon[6];
@@ -112,7 +105,6 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
         ));
     }
 
-    // ── Item builder ─────────────────────────────────────────────────────────
     private static ItemStack buildTitleItem() {
         return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                 .setModelData(ModelData.GUI_TEXT.CHOOSE_POKEMON)
@@ -121,7 +113,6 @@ public class PokemonSelectionMenu extends AbstractContainerMenu {
                 .build();
     }
 
-    // ── Vanilla overrides ─────────────────────────────────────────────────────
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int i) {
         return ItemStack.EMPTY;
