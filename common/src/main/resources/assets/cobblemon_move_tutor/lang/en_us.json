@@ -1,5 +1,6 @@
 {
   "cobblemon_move_tutor.cmd.openedForOther": "You opened the Move Tutor Menu for %s.",
+  "cobblemon_move_tutor.cmd.configReloaded": "Move Tutor config reloaded.",
   "cobblemon_move_tutor.gui.emptySlot": "Empty",
   "cobblemon_move_tutor.gui.button.confirm": "Confirm",
   "cobblemon_move_tutor.gui.button.cancel": "Cancel",

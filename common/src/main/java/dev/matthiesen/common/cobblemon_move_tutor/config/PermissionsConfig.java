@@ -17,6 +17,10 @@ public class PermissionsConfig {
         @SerializedName("command.move-tutor.other")
         public int COMMAND_MOVE_TUTOR_OTHER_PERMISSION_LEVEL =
                 Constants.PERMISSION_LEVELS.CHEAT_COMMANDS_AND_COMMAND_BLOCKS.getLevel();
+
+        @SerializedName("command.move-tutor.reload")
+        public int COMMAND_MOVE_TUTOR_RELOAD_PERMISSION_LEVEL =
+                Constants.PERMISSION_LEVELS.CHEAT_COMMANDS_AND_COMMAND_BLOCKS.getLevel();
     }
 
     @SuppressWarnings("unused")

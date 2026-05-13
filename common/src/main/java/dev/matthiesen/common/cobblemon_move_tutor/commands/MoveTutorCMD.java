@@ -38,6 +38,14 @@ public class MoveTutorCMD extends AbstractCommand {
                                                         .executes(this::other)
                                         )
                         )
+                        .then(
+                                Commands.literal("reload")
+                                        .requires(src -> ModPermissions.checkPermission(
+                                                src,
+                                                CobblemonMoveTutorCommon.permissions.MOVE_TUTOR_RELOAD_PERMISSION
+                                        ))
+                                        .executes(this::reload)
+                        )
         );
     }
 
@@ -55,6 +63,14 @@ public class MoveTutorCMD extends AbstractCommand {
         TutorMenuProvider.open.pokemonSelectionMenu(targetPlayer, SELECTION_TYPE);
         if (player != null)
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.openedForOther", targetPlayer.getDisplayName().getString()));
+        return 1;
+    }
+
+    private int reload(CommandContext<CommandSourceStack> ctx) {
+        ServerPlayer player = ctx.getSource().getPlayer();
+        CobblemonMoveTutorCommon.loadConfig();
+        if (player != null)
+            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.configReloaded"));
         return 1;
     }
 }

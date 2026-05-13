@@ -9,6 +9,7 @@ import net.minecraft.commands.CommandSourceStack;
 public class ModPermissions {
     public final ModPermission MOVE_TUTOR_PERMISSION;
     public final ModPermission MOVE_TUTOR_OTHER_PERMISSION;
+    public final ModPermission MOVE_TUTOR_RELOAD_PERMISSION;
 
     public ModPermissions() {
         this.MOVE_TUTOR_PERMISSION = new ModPermission(
@@ -18,6 +19,10 @@ public class ModPermissions {
         this.MOVE_TUTOR_OTHER_PERMISSION = new ModPermission(
                 Constants.MOD_ID + ".command.move-tutor.other",
                 toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_OTHER_PERMISSION_LEVEL)
+        );
+        this.MOVE_TUTOR_RELOAD_PERMISSION = new ModPermission(
+                Constants.MOD_ID + ".command.move-tutor.reload",
+                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_RELOAD_PERMISSION_LEVEL)
         );
     }
 
