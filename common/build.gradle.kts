@@ -8,6 +8,7 @@ architectury {
 }
 
 loom {
+    enableTransitiveAccessWideners.set(true)
     silentMojangMappingsLicense()
 }
 
@@ -15,6 +16,7 @@ dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())
     compileOnly("org.spongepowered:mixin:0.8.5")
+    modImplementation("dev.matthiesen:matthiesen-lib-common:${property("matthiesen_lib_version")}") { isTransitive = false }
     modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
     modApi(files("${rootProject.rootDir}/jars/molang-${property("molang_version")}.jar"))
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")

@@ -2,11 +2,11 @@ package dev.matthiesen.common.cobblemon_move_tutor.ui;
 
 import com.cobblemon.mod.common.CobblemonSounds;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.StaticButtons;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
-import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
+import dev.matthiesen.common.matthiesen_lib.menu.AbstractNoInventoryMenu;
+import dev.matthiesen.common.matthiesen_lib.menu.button.NoHighlightSlotButton;
+import dev.matthiesen.common.matthiesen_lib.menu.button.SlotButton;
+import dev.matthiesen.common.matthiesen_lib.utility.SoundsPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfirmationMenu extends AbstractMenu {
+public class ConfirmationMenu extends AbstractNoInventoryMenu {
 
     // Slot indices
     public static final int CANCEL_SLOT = 0;
@@ -65,11 +65,11 @@ public class ConfirmationMenu extends AbstractMenu {
 
     private void addDisplaySlots() {
         // Display-only: players cannot pick up or place items
-        addSlot(new Button(container, CANCEL_SLOT,  CANCEL_X,  SLOT_Y));
-        addSlot(new Button(container, DETAILS_SLOT, DETAILS_X, SLOT_Y));
-        addSlot(new Button(container, CONFIRM_SLOT, CONFIRM_X, SLOT_Y));
+        addSlot(new SlotButton(container, CANCEL_SLOT,  CANCEL_X,  SLOT_Y));
+        addSlot(new SlotButton(container, DETAILS_SLOT, DETAILS_X, SLOT_Y));
+        addSlot(new SlotButton(container, CONFIRM_SLOT, CONFIRM_X, SLOT_Y));
         // Title slot
-        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
+        addSlot(new NoHighlightSlotButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
     }
 
     // ── Slot click → callback ────────────────────────────────────────────────

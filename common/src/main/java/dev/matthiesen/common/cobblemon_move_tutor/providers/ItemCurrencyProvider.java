@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CurrencyProvidersConfig;
-import dev.matthiesen.common.cobblemon_move_tutor.util.ItemDecoder;
+import dev.matthiesen.common.matthiesen_lib.utility.ItemDecoder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

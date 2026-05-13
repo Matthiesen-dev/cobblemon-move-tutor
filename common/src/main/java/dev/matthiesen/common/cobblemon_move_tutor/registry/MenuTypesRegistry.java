@@ -1,17 +1,17 @@
 package dev.matthiesen.common.cobblemon_move_tutor.registry;
 
-import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.ConfirmationMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.PokemonSelectionMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.SelectMoveMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.TutorMenu;
+import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
 import net.minecraft.world.inventory.MenuType;
 
 import java.util.function.Supplier;
 
 public class MenuTypesRegistry {
-    public static void init() {
-    }
+    public static void init() {}
 
     public static Supplier<MenuType<ConfirmationMenu>> CONFIRMATION_SCREEN;
     public static Supplier<MenuType<PokemonSelectionMenu>> POKEMON_SELECTION_SCREEN;
@@ -24,6 +24,6 @@ public class MenuTypesRegistry {
     }
 
     public static <T extends MenuType<?>> Supplier<T> register(String name, Supplier<T> menuType) {
-        return CobblemonMoveTutorCommon.COMMON_PLATFORM.registerMenuType(name, menuType);
+        return MatthiesenLib.registerMenuType(Constants.modResource(name), menuType);
     }
 }

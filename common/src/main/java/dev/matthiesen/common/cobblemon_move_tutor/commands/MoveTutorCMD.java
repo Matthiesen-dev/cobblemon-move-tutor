@@ -4,9 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
-import dev.matthiesen.common.cobblemon_move_tutor.platform.ICommand;
 import dev.matthiesen.common.cobblemon_move_tutor.permissions.ModPermissions;
 import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
+import dev.matthiesen.common.matthiesen_lib.command.AbstractCommand;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -14,7 +14,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
-public class MoveTutorCMD implements ICommand {
+public class MoveTutorCMD extends AbstractCommand {
     public static final String SELECTION_TYPE = "admin";
 
     public MoveTutorCMD() {}
@@ -26,7 +26,7 @@ public class MoveTutorCMD implements ICommand {
                                 src,
                                 CobblemonMoveTutorCommon.permissions.MOVE_TUTOR_PERMISSION
                         ))
-                        .executes(this::self)
+                        .executes(this::action)
                         .then(
                                 Commands.literal("other")
                                         .requires(src -> ModPermissions.checkPermission(
@@ -41,7 +41,8 @@ public class MoveTutorCMD implements ICommand {
         );
     }
 
-    private int self(CommandContext<CommandSourceStack> ctx) {
+    @Override
+    public int action(CommandContext<CommandSourceStack> ctx) {
         ServerPlayer player = ctx.getSource().getPlayer();
         if (player == null) return 0;
         TutorMenuProvider.open.pokemonSelectionMenu(player, SELECTION_TYPE);

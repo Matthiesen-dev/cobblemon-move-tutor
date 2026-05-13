@@ -2,11 +2,12 @@ package dev.matthiesen.common.cobblemon_move_tutor.ui.client;
 
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.cobblemon_move_tutor.ui.ConfirmationMenu;
+import dev.matthiesen.common.matthiesen_lib.screen.AbstractSimpleScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class ConfirmationScreen extends AbstractScreen<ConfirmationMenu> {
+public class ConfirmationScreen extends AbstractSimpleScreen<ConfirmationMenu> {
     private static final int BG_WIDTH = 176;
     private static final int BG_HEIGHT = 82;
     private static final ResourceLocation BACKGROUND =

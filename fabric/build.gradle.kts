@@ -29,6 +29,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${property("fabric_loader_version")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin")}")
+    modImplementation("dev.matthiesen:matthiesen-lib-fabric:${property("matthiesen_lib_version")}") { isTransitive = false }
     modImplementation("com.cobblemon:fabric:${property("cobblemon_version")}") { isTransitive = false }
     modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-fabric,1.21.1")
     modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Fabric-fabric,1.21.1")

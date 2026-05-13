@@ -6,10 +6,11 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.StaticButtons;
 import dev.matthiesen.common.cobblemon_move_tutor.util.*;
+import dev.matthiesen.common.matthiesen_lib.menu.AbstractNoInventoryMenu;
+import dev.matthiesen.common.matthiesen_lib.menu.button.NoHighlightSlotButton;
+import dev.matthiesen.common.matthiesen_lib.menu.button.SlotButton;
+import dev.matthiesen.common.matthiesen_lib.utility.SoundsPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectMoveMenu extends AbstractMenu {
+public class SelectMoveMenu extends AbstractNoInventoryMenu {
 
     public static final int PAGE_SIZE = 28;
 
@@ -68,7 +69,7 @@ public class SelectMoveMenu extends AbstractMenu {
 
     private void addDisplaySlots() {
         // Title slot
-        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
+        addSlot(new NoHighlightSlotButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
 
         // Move slots: rows 1-4, cols 1-7  →  28 display slots
         for (int row = 1; row <= 4; row++) {
@@ -76,14 +77,14 @@ public class SelectMoveMenu extends AbstractMenu {
                 int si = (row - 1) * 7 + (col - 1) + FIRST_MOVE_SLOT;
                 int x  = 8 + col * 18;
                 int y  = 18 + row * 18;
-                addSlot(new Button(container, si, x, y));
+                addSlot(new SlotButton(container, si, x, y));
             }
         }
 
         // Navigation slots (row 5)
-        addSlot(new Button(container, PREV_SLOT, PREV_X, NAV_Y));
-        addSlot(new NoHighlightButton(container, PAGE_SLOT, PAGE_X, NAV_Y));
-        addSlot(new Button(container, NEXT_SLOT, NEXT_X, NAV_Y));
+        addSlot(new SlotButton(container, PREV_SLOT, PREV_X, NAV_Y));
+        addSlot(new NoHighlightSlotButton(container, PAGE_SLOT, PAGE_X, NAV_Y));
+        addSlot(new SlotButton(container, NEXT_SLOT, NEXT_X, NAV_Y));
     }
 
     private void populatePage(int page) {

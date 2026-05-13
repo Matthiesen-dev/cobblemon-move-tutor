@@ -4,11 +4,10 @@ import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.platform.ICurrencyProvider;
-import dev.matthiesen.common.cobblemon_move_tutor.util.SoundsPlayer;
+import dev.matthiesen.common.matthiesen_lib.utility.SoundsPlayer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractCurrencyProvider implements ICurrencyProvider {

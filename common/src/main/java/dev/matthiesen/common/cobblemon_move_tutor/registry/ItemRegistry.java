@@ -1,7 +1,8 @@
 package dev.matthiesen.common.cobblemon_move_tutor.registry;
 
-import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.cobblemon_move_tutor.item.GuiItem;
+import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Supplier;
@@ -17,6 +18,6 @@ public class ItemRegistry {
 
     @SuppressWarnings("SameParameterValue")
     private static <T extends Item> Supplier<T> register(String id, Supplier<T> item) {
-        return CobblemonMoveTutorCommon.COMMON_PLATFORM.registerItem(id, item);
+        return MatthiesenLib.registerItem(Constants.modResource(id), item);
     }
 }

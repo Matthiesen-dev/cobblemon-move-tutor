@@ -3,10 +3,11 @@ package dev.matthiesen.common.cobblemon_move_tutor.ui;
 import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.StaticButtons;
 import dev.matthiesen.common.cobblemon_move_tutor.util.*;
+import dev.matthiesen.common.matthiesen_lib.menu.AbstractNoInventoryMenu;
+import dev.matthiesen.common.matthiesen_lib.menu.button.NoHighlightSlotButton;
+import dev.matthiesen.common.matthiesen_lib.menu.button.SlotButton;
+import dev.matthiesen.common.matthiesen_lib.utility.SoundsPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,7 +16,7 @@ import net.minecraft.world.inventory.ClickType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PokemonSelectionMenu extends AbstractMenu {
+public class PokemonSelectionMenu extends AbstractNoInventoryMenu {
 
     public static final int TITLE_SLOT = 0;
     public static final int FIRST_POKEMON_SLOT = 1; // slots 1-6 → party indices 0-5
@@ -58,10 +59,10 @@ public class PokemonSelectionMenu extends AbstractMenu {
     }
 
     private void addDisplaySlots() {
-        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
+        addSlot(new NoHighlightSlotButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
         for (int i = 0; i < 6; i++) {
             final int si = FIRST_POKEMON_SLOT + i;
-            addSlot(new Button(container, si, POKEMON_X[i], POKEMON_Y));
+            addSlot(new SlotButton(container, si, POKEMON_X[i], POKEMON_Y));
         }
     }
 
