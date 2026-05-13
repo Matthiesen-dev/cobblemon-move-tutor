@@ -37,6 +37,6 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "matthiesen_lib"
 mandatory = true
-versionRange = "[0.1.0-ALPHA.4,)"
+versionRange = "[1.0.0,2.0.0)"
 ordering = "AFTER"
 side = "BOTH"
