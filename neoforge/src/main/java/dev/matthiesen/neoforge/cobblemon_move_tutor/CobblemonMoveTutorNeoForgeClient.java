@@ -3,7 +3,6 @@ package dev.matthiesen.neoforge.cobblemon_move_tutor;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommonClient;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -16,7 +15,7 @@ public class CobblemonMoveTutorNeoForgeClient {
         modBus.register(this);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent
     public void registerScreens(RegisterMenuScreensEvent event) {
         CobblemonMoveTutorCommonClient.registerMenuScreens();
     }
