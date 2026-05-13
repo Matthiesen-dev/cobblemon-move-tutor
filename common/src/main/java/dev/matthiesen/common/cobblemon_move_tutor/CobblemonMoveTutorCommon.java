@@ -69,15 +69,4 @@ public class CobblemonMoveTutorCommon {
             currencyProviderRegistry.register("impactor", ImpactorCurrencyProvider::new);
         }
     }
-
-    public static void onStartup() {
-        Constants.createInfoLog("Server starting, Setting up");
-    }
-
-    public static void onShutdown() {
-        Constants.createInfoLog("Server stopping, shutting down");
-        COMMON_CONFIG_MANAGER.saveConfig();
-        CURRENCY_PROVIDERS_CONFIG_MANGER.saveConfig();
-        PERMISSIONS_CONFIG_MANAGER.saveConfig();
-    }
 }
