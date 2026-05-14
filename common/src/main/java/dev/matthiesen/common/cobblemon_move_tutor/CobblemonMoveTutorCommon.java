@@ -5,7 +5,6 @@ import dev.matthiesen.common.cobblemon_move_tutor.providers.*;
 import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.*;
 import dev.matthiesen.common.cobblemon_move_tutor.config.*;
-import dev.matthiesen.common.cobblemon_move_tutor.permissions.ModPermissions;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
 import dev.matthiesen.common.matthiesen_lib.config.ConfigManager;
 
@@ -32,7 +31,9 @@ public class CobblemonMoveTutorCommon {
         return PERMISSIONS_CONFIG_MANAGER.getConfig();
     }
 
-    public static ModPermissions permissions;
+    public static PermissionRegistry.Permissions getPermissions() {
+        return PermissionRegistry.getPermissions();
+    }
 
     public static void loadConfig() {
         COMMON_CONFIG_MANAGER.loadConfig();
@@ -42,9 +43,10 @@ public class CobblemonMoveTutorCommon {
 
     public static void initialize() {
         Constants.createInfoLog("Initializing common logic");
-        permissions = new ModPermissions();
+//        permissions = new ModPermissions();
 
         // Initialize registries
+        PermissionRegistry.init();
         ItemRegistry.init();
         MenuTypesRegistry.init();
         CommandRegistry.init();

@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
-import dev.matthiesen.common.cobblemon_move_tutor.permissions.ModPermissions;
+import dev.matthiesen.common.cobblemon_move_tutor.registry.PermissionRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
 import dev.matthiesen.common.matthiesen_lib.command.AbstractCommand;
 import net.minecraft.commands.CommandBuildContext;
@@ -22,16 +22,16 @@ public class MoveTutorCMD extends AbstractCommand {
     public void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {
         dispatcher.register(
                 Commands.literal("move-tutor")
-                        .requires(src -> ModPermissions.checkPermission(
+                        .requires(src -> PermissionRegistry.checkPermission(
                                 src,
-                                CobblemonMoveTutorCommon.permissions.MOVE_TUTOR_PERMISSION
+                                CobblemonMoveTutorCommon.getPermissions().MOVE_TUTOR_PERMISSION
                         ))
                         .executes(this::action)
                         .then(
                                 Commands.literal("other")
-                                        .requires(src -> ModPermissions.checkPermission(
+                                        .requires(src -> PermissionRegistry.checkPermission(
                                                 src,
-                                                CobblemonMoveTutorCommon.permissions.MOVE_TUTOR_OTHER_PERMISSION
+                                                CobblemonMoveTutorCommon.getPermissions().MOVE_TUTOR_OTHER_PERMISSION
                                         ))
                                         .then(
                                                 Commands.argument("player", EntityArgument.player())
@@ -40,9 +40,9 @@ public class MoveTutorCMD extends AbstractCommand {
                         )
                         .then(
                                 Commands.literal("reload")
-                                        .requires(src -> ModPermissions.checkPermission(
+                                        .requires(src -> PermissionRegistry.checkPermission(
                                                 src,
-                                                CobblemonMoveTutorCommon.permissions.MOVE_TUTOR_RELOAD_PERMISSION
+                                                CobblemonMoveTutorCommon.getPermissions().MOVE_TUTOR_RELOAD_PERMISSION
                                         ))
                                         .executes(this::reload)
                         )
