@@ -3,13 +3,15 @@ package dev.matthiesen.common.cobblemon_move_tutor.permissions;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
+import dev.matthiesen.common.matthiesen_lib.interfaces.Permission;
+import dev.matthiesen.common.matthiesen_lib.permission.AbstractPermission;
 import dev.matthiesen.common.matthiesen_lib.permission.PermissionLevel;
 import net.minecraft.commands.CommandSourceStack;
 
 public class ModPermissions {
-    public final ModPermission MOVE_TUTOR_PERMISSION;
-    public final ModPermission MOVE_TUTOR_OTHER_PERMISSION;
-    public final ModPermission MOVE_TUTOR_RELOAD_PERMISSION;
+    public final Permission MOVE_TUTOR_PERMISSION;
+    public final Permission MOVE_TUTOR_OTHER_PERMISSION;
+    public final Permission MOVE_TUTOR_RELOAD_PERMISSION;
 
     public ModPermissions() {
         this.MOVE_TUTOR_PERMISSION = register("command.move-tutor",
@@ -29,13 +31,27 @@ public class ModPermissions {
         return PermissionLevel.CHEAT_COMMANDS_AND_COMMAND_BLOCKS;
     }
 
-    public static boolean checkPermission(CommandSourceStack source, ModPermission permission) {
+    public static boolean checkPermission(CommandSourceStack source, Permission permission) {
         return MatthiesenLib.getPermissionValidator().hasPermission(source, permission);
     }
 
-    private ModPermission register(String node, int level) {
-        var newPermission = new ModPermission(Constants.MOD_ID + "." + node, toPermLevel(level));
+    private Permission register(String node, int level) {
+        var newPermission = modPermission(node, toPermLevel(level));
         MatthiesenLib.registerPermission(newPermission);
         return newPermission;
+    }
+
+    private Permission modPermission(String node, PermissionLevel level) {
+        return new AbstractPermission(node, level) {
+            @Override
+            protected String getModId() {
+                return Constants.MOD_ID;
+            }
+
+            @Override
+            protected String getPermissionNamespace() {
+                return "CobblemonPokeTotem";
+            }
+        };
     }
 }
