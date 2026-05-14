@@ -1,8 +1,8 @@
 package dev.matthiesen.common.cobblemon_move_tutor.permissions;
 
-import com.cobblemon.mod.common.api.permission.Permission;
-import com.cobblemon.mod.common.api.permission.PermissionLevel;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
+import dev.matthiesen.common.matthiesen_lib.interfaces.Permission;
+import dev.matthiesen.common.matthiesen_lib.permission.PermissionLevel;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 

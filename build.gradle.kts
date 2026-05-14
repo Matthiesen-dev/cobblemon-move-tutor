@@ -23,6 +23,14 @@ allprojects {
         maven("https://repo.spongepowered.org/repository/maven-public")
         maven("https://api.modrinth.com/maven")
         maven("https://maven.impactdev.net/repository/development")
+        maven("https://central.sonatype.com/repository/maven-snapshots/") {
+            name = "Central Portal Snapshots"
+            content {
+                includeModule("dev.matthiesen", "matthiesen-lib-common")
+                includeModule("dev.matthiesen", "matthiesen-lib-fabric")
+                includeModule("dev.matthiesen", "matthiesen-lib-neoforge")
+            }
+        }
     }
 
     tasks {

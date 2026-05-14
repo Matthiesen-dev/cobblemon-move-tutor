@@ -1,9 +1,9 @@
 package dev.matthiesen.common.cobblemon_move_tutor.permissions;
 
-import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.permission.PermissionLevel;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
+import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
+import dev.matthiesen.common.matthiesen_lib.permission.PermissionLevel;
 import net.minecraft.commands.CommandSourceStack;
 
 public class ModPermissions {
@@ -12,18 +12,12 @@ public class ModPermissions {
     public final ModPermission MOVE_TUTOR_RELOAD_PERMISSION;
 
     public ModPermissions() {
-        this.MOVE_TUTOR_PERMISSION = new ModPermission(
-                Constants.MOD_ID + ".command.move-tutor",
-                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_PERMISSION_LEVEL)
-        );
-        this.MOVE_TUTOR_OTHER_PERMISSION = new ModPermission(
-                Constants.MOD_ID + ".command.move-tutor.other",
-                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_OTHER_PERMISSION_LEVEL)
-        );
-        this.MOVE_TUTOR_RELOAD_PERMISSION = new ModPermission(
-                Constants.MOD_ID + ".command.move-tutor.reload",
-                toPermLevel(CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_RELOAD_PERMISSION_LEVEL)
-        );
+        this.MOVE_TUTOR_PERMISSION = register("command.move-tutor",
+                CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_PERMISSION_LEVEL);
+        this.MOVE_TUTOR_OTHER_PERMISSION = register("command.move-tutor.other",
+                CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_OTHER_PERMISSION_LEVEL);
+        this.MOVE_TUTOR_RELOAD_PERMISSION = register("command.move-tutor.reload",
+                CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_RELOAD_PERMISSION_LEVEL);
     }
 
     public PermissionLevel toPermLevel(int permLevel) {
@@ -36,6 +30,12 @@ public class ModPermissions {
     }
 
     public static boolean checkPermission(CommandSourceStack source, ModPermission permission) {
-        return Cobblemon.INSTANCE.getPermissionValidator().hasPermission(source, permission);
+        return MatthiesenLib.getPermissionValidator().hasPermission(source, permission);
+    }
+
+    private ModPermission register(String node, int level) {
+        var newPermission = new ModPermission(Constants.MOD_ID + "." + node, toPermLevel(level));
+        MatthiesenLib.registerPermission(newPermission);
+        return newPermission;
     }
 }
