@@ -12,8 +12,10 @@ public class CobblemonMoveTutorCommonClient {
     }
 
     public static void registerMenuScreens() {
-        MatthiesenLibClient.registerMenuScreen(MenuTypesRegistry.CONFIRMATION_SCREEN.get(), ConfirmationScreen::new);
-        MatthiesenLibClient.registerMenuScreen(MenuTypesRegistry.POKEMON_SELECTION_SCREEN.get(), PokemonSelectionScreen::new);
-        MatthiesenLibClient.registerMenuScreen(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), SelectMoveScreen::new);
+        MatthiesenLibClient.registerMenuScreens(registry -> {
+            registry.register(MenuTypesRegistry.CONFIRMATION_SCREEN, ConfirmationScreen::new);
+            registry.register(MenuTypesRegistry.SELECT_MOVE_SCREEN, SelectMoveScreen::new);
+            registry.register(MenuTypesRegistry.POKEMON_SELECTION_SCREEN, PokemonSelectionScreen::new);
+        });
     }
 }

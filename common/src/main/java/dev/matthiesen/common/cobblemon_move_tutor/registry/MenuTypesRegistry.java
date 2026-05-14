@@ -1,11 +1,7 @@
 package dev.matthiesen.common.cobblemon_move_tutor.registry;
 
-import dev.matthiesen.common.cobblemon_move_tutor.Constants;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.ConfirmationMenu;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.PokemonSelectionMenu;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.SelectMoveMenu;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.TutorMenu;
-import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
+import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.ui.*;
 import net.minecraft.world.inventory.MenuType;
 
 import java.util.function.Supplier;
@@ -24,6 +20,6 @@ public class MenuTypesRegistry {
     }
 
     public static <T extends MenuType<?>> Supplier<T> register(String name, Supplier<T> menuType) {
-        return MatthiesenLib.registerMenuType(Constants.modResource(name), menuType);
+        return CobblemonMoveTutorCommon.REGISTRY.registerMenuType(name, menuType);
     }
 }
