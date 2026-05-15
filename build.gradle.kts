@@ -23,12 +23,16 @@ allprojects {
         maven("https://repo.spongepowered.org/repository/maven-public")
         maven("https://api.modrinth.com/maven")
         maven("https://maven.impactdev.net/repository/development")
-        maven("https://central.sonatype.com/repository/maven-snapshots/") {
-            name = "Central Portal Snapshots"
+        maven("https://maven.matthiesen.dev/releases") {
+            name = "devMatthiesenMavenReleases"
             content {
-                includeModule("dev.matthiesen", "matthiesen-lib-common")
-                includeModule("dev.matthiesen", "matthiesen-lib-fabric")
-                includeModule("dev.matthiesen", "matthiesen-lib-neoforge")
+                includeGroup("dev.matthiesen")
+            }
+        }
+        maven("https://maven.matthiesen.dev/snapshots") {
+            name = "devMatthiesenMavenSnapshots"
+            content {
+                includeGroup("dev.matthiesen")
             }
         }
     }
