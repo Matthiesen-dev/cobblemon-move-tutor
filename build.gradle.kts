@@ -19,10 +19,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven("https://artefacts.cobblemon.com/releases/")
-        maven("https://repo.spongepowered.org/repository/maven-public")
-        maven("https://api.modrinth.com/maven")
-        maven("https://maven.impactdev.net/repository/development")
         maven("https://maven.matthiesen.dev/releases") {
             name = "devMatthiesenMavenReleases"
             content {
@@ -33,6 +29,14 @@ allprojects {
             name = "devMatthiesenMavenSnapshots"
             content {
                 includeGroup("dev.matthiesen")
+            }
+        }
+        maven("https://artefacts.cobblemon.com/releases/")
+        maven("https://repo.spongepowered.org/repository/maven-public")
+        maven("https://api.modrinth.com/maven")
+        maven("https://maven.impactdev.net/repository/development") {
+            content {
+                excludeGroup("dev.matthiesen")
             }
         }
     }
