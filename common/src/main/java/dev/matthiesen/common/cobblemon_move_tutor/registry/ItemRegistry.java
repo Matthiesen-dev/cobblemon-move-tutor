@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Supplier;
 
-public final class ItemRegistry extends AbstractItemRegistry {
+public class ItemRegistry extends AbstractItemRegistry {
     private static final ItemRegistry INSTANCE = new ItemRegistry();
 
     public ItemRegistry() {
