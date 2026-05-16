@@ -4,7 +4,11 @@ import dev.matthiesen.common.cobblemon_move_tutor.commands.MoveTutorCMD;
 import dev.matthiesen.common.matthiesen_lib.registry.AbstractCommandRegistry;
 
 public class CommandRegistry extends AbstractCommandRegistry {
+    private static final CommandRegistry INSTANCE = new CommandRegistry();
+
+    public static void init() {}
+
     static {
-        register(new MoveTutorCMD());
+        INSTANCE.register(new MoveTutorCMD());
     }
 }
