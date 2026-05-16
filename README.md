@@ -6,6 +6,7 @@ them more versatile in battles.
 
 ## Requirements
 - [Cobblemon](https://modrinth.com/mod/cobblemon)
+- [Matthiesen Lib](https://modrinth.com/mod/matthiesen-lib)
 
 ### Optional compatibility
 - [CobbleDollars](https://modrinth.com/mod/cobbledollars)

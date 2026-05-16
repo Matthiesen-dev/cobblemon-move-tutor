@@ -1,22 +1,24 @@
 package dev.matthiesen.common.cobblemon_move_tutor.registry;
 
-import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.cobblemon_move_tutor.item.GuiItem;
+import dev.matthiesen.common.matthiesen_lib.registry.AbstractItemRegistry;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Supplier;
 
-public class ItemRegistry {
-    public static void init() {}
+public class ItemRegistry extends AbstractItemRegistry {
+    private static final ItemRegistry INSTANCE = new ItemRegistry();
 
-    public static Supplier<Item> GUI_ITEM;
-
-    static {
-        GUI_ITEM = register("gui_item", GuiItem::new);
+    protected ItemRegistry() {
+        super(Constants.MOD_ID);
     }
 
-    @SuppressWarnings("SameParameterValue")
-    private static <T extends Item> Supplier<T> register(String id, Supplier<T> item) {
-        return CobblemonMoveTutorCommon.COMMON_PLATFORM.registerItem(id, item);
+    public static void init() {}
+
+    public static final Supplier<Item> GUI_ITEM;
+
+    static {
+        GUI_ITEM = INSTANCE.register("gui_item", GuiItem::new);
     }
 }

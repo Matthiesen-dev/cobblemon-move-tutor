@@ -6,9 +6,9 @@ import com.cobblemon.mod.common.api.molang.MoLangFunctions;
 import com.cobblemon.mod.common.api.storage.party.PartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.SelectMoveMenu;
 import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.function.Function;
@@ -21,13 +21,13 @@ public class PlayerFunctionsExtension {
 
             // q.player.open_village_tutor(<slot 0-5>)
             map.put("open_village_tutor", params -> {
-                sharedTutorFn(params, ((ServerPlayer) player), "village");
+                sharedTutorFn(params, player, "village");
                 return 0;
             });
 
             // q.player.open_admin_tutor(<slot 0-5>)
             map.put("open_admin_tutor", params -> {
-                sharedTutorFn(params, ((ServerPlayer) player), "admin");
+                sharedTutorFn(params, player, "admin");
                 return 0;
             });
 
@@ -35,7 +35,7 @@ public class PlayerFunctionsExtension {
         });
     }
 
-    public static void sharedTutorFn(MoParams params, ServerPlayer player, String type) {
+    public static void sharedTutorFn(MoParams params, Player player, String type) {
         int slot = params.getInt(0);
         if (slot < 0 || slot >= 6) {
             Constants.createErrorLog(
@@ -46,8 +46,15 @@ public class PlayerFunctionsExtension {
             );
             return;
         }
-        PartyStore storage = Cobblemon.INSTANCE.getStorage().getParty(player);
+        if (!(player instanceof ServerPlayer serverPlayer)) {
+            Constants.createErrorLog(
+                    "Player %player% is not a ServerPlayer and cannot open tutor menu"
+                    .replaceAll("%player%", player.getName().getString())
+            );
+            return;
+        }
+        PartyStore storage = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
         Pokemon pokemon = storage.get(slot);
-        TutorMenuProvider.open.selectMoveMenu(player, pokemon, type);
+        TutorMenuProvider.open.selectMoveMenu(serverPlayer, pokemon, type);
     }
 }
