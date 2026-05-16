@@ -6,6 +6,10 @@ import dev.matthiesen.common.matthiesen_lib.registry.AbstractCommandRegistry;
 public class CommandRegistry extends AbstractCommandRegistry {
     private static final CommandRegistry INSTANCE = new CommandRegistry();
 
+    protected CommandRegistry() {
+        super();
+    }
+
     public static void init() {}
 
     static {
