@@ -11,8 +11,6 @@ import dev.matthiesen.common.matthiesen_lib.config.ConfigManager;
 public class CobblemonMoveTutorCommon {
     public static final CurrencyProviderRegistry currencyProviderRegistry =
             new CurrencyProviderRegistry();
-    public static final MatthiesenLib.RegistryBuilder REGISTRY =
-            new MatthiesenLib.RegistryBuilder(Constants.MOD_ID);
 
     public static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
             new ConfigManager<>(CommonConfig.class, "common");

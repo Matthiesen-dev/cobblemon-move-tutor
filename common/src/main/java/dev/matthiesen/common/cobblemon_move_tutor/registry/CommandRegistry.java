@@ -1,17 +1,10 @@
 package dev.matthiesen.common.cobblemon_move_tutor.registry;
 
 import dev.matthiesen.common.cobblemon_move_tutor.commands.MoveTutorCMD;
-import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
-import dev.matthiesen.common.matthiesen_lib.command.AbstractCommand;
+import dev.matthiesen.common.matthiesen_lib.registry.AbstractCommandRegistry;
 
-public class CommandRegistry {
-    public static void init() {}
-
+public class CommandRegistry extends AbstractCommandRegistry {
     static {
         register(new MoveTutorCMD());
-    }
-
-    public static void register(AbstractCommand command) {
-        MatthiesenLib.registerCommand(command);
     }
 }
