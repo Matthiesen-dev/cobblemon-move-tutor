@@ -17,6 +17,12 @@ env:
       {"project_id":"LdBYVaPS","dependency_type":"optional"}
     ]
 
+# The dependencies above correspond to:
+# - Cobblemon (MdwFAVRL)
+# - Matthiesen Lib (cPmFkPpB)
+# - CobbleDollars (s7N7AsqL)
+# - Impactor (LdBYVaPS)
+
 jobs:
   prepare:
     runs-on: ubuntu-latest
