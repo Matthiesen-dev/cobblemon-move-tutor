@@ -1,0 +1,64 @@
+[versions]
+kotlin = "2.2.20"
+shadow = "9.3.1"
+architectury-loom = "1.14-SNAPSHOT"
+architectury-plugin = "3.4-SNAPSHOT"
+minecraft = "1.21.1"
+fabric-loader = "0.17.2"
+fabric-api = "0.116.6+1.21.1"
+fabric-kotlin = "1.13.6+kotlin.2.2.20"
+neoforge = "21.1.182"
+kotlin-for-forge = "5.10.0"
+matthiesen-lib = "1.2.0-SNAPSHOT"
+cobblemon = "1.7.3+1.21.1"
+molang = "1.1.20"
+adventure-key = "4.13.0"
+sponge-mixin = "0.8.5"
+modmenu = "v6Xx3fbU"
+placeholder-api = "U5bhVym2"
+cobbledollars-fabric = "2.0.0+Beta-5.1-fabric,1.21.1"
+cobbledollars-neoforge = "2.0.0+Beta-5.1-neoforge,1.21.1"
+impactor-fabric = "5.3.5+1.21.1-Fabric-fabric,1.21.1"
+impactor-neoforge = "5.3.5+1.21.1-Neoforge-neoforge,1.21.1"
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+architectury-loom = { id = "dev.architectury.loom", version.ref = "architectury-loom" }
+architectury-plugin = { id = "architectury-plugin", version.ref = "architectury-plugin" }
+
+[libraries]
+kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+architectury-loom = { group = "dev.architectury", name = "architectury-loom", version.ref = "architectury-loom" }
+architectury-plugin = { group = "architectury-plugin", name = "architectury-plugin.gradle.plugin", version.ref = "architectury-plugin" }
+shadow-gradle = { group = "com.gradleup.shadow", name = "shadow-gradle-plugin", version.ref = "shadow" }
+minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
+minecraft-net = { group = "net.minecraft", name = "minecraft", version.ref = "minecraft" }
+fabric-loader = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabric-loader" }
+fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.ref = "fabric-api" }
+fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "fabric-kotlin" }
+neoforge = { group = "net.neoforged", name = "neoforge", version.ref = "neoforge" }
+kotlinforforge = { group = "thedarkcolour", name = "kotlinforforge-neoforge", version.ref = "kotlin-for-forge" }
+matthiesen-lib-common = { group = "dev.matthiesen", name = "matthiesen-lib-common", version.ref = "matthiesen-lib" }
+matthiesen-lib-fabric = { group = "dev.matthiesen", name = "matthiesen-lib-fabric", version.ref = "matthiesen-lib" }
+matthiesen-lib-neoforge = { group = "dev.matthiesen", name = "matthiesen-lib-neoforge", version.ref = "matthiesen-lib" }
+cobblemon-common = { group = "com.cobblemon", name = "mod", version.ref = "cobblemon" }
+cobblemon-fabric = { group = "com.cobblemon", name = "fabric", version.ref = "cobblemon" }
+cobblemon-neoforge = { group = "com.cobblemon", name = "neoforge", version.ref = "cobblemon" }
+adventure-key = { group = "net.kyori", name = "adventure-key", version.ref = "adventure-key" }
+sponge-mixin = { group = "org.spongepowered", name = "mixin", version.ref = "sponge-mixin" }
+cobbledollars-fabric = { group = "maven.modrinth", name = "cobbledollars", version.ref = "cobbledollars-fabric" }
+cobbledollars-neoforge = { group = "maven.modrinth", name = "cobbledollars", version.ref = "cobbledollars-neoforge" }
+impactor-fabric = { group = "maven.modrinth", name = "impactor", version.ref = "impactor-fabric" }
+impactor-neoforge = { group = "maven.modrinth", name = "impactor", version.ref = "impactor-neoforge" }
+modmenu = { group = "maven.modrinth", name = "modmenu", version.ref = "modmenu" }
+placeholder-api = { group = "maven.modrinth", name = "placeholder-api", version.ref = "placeholder-api" }
+
+[bundles]
+commonModCompileOnly = ["cobbledollars-fabric", "impactor-fabric"]
+commonModImplementationNoTransitive = ["matthiesen-lib-common", "cobblemon-common"]
+fabricModImplementation = ["fabric-loader", "fabric-api", "fabric-language-kotlin"]
+fabricModImplementationNoTransitive = ["matthiesen-lib-fabric", "cobblemon-fabric"]
+fabricModRuntimeOnly = ["modmenu", "placeholder-api"]
+neoforgeModImplementationNoTransitive = ["matthiesen-lib-neoforge", "cobblemon-neoforge"]
+neoforgeModCompileOnly = ["cobbledollars-neoforge", "impactor-neoforge"]
+
