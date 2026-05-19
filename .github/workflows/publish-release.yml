@@ -14,7 +14,7 @@ env:
       {"project_id":"MdwFAVRL","dependency_type":"required"},
       {"project_id":"cPmFkPpB","dependency_type":"required"},
       {"project_id":"s7N7AsqL","dependency_type":"optional"},
-      {"project_id":"LdBYVaPS","dependency_type":"optional"},
+      {"project_id":"LdBYVaPS","dependency_type":"optional"}
     ]
 
 jobs:
