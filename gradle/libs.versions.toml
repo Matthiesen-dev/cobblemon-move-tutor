@@ -20,6 +20,7 @@ cobbledollars-fabric = "2.0.0+Beta-5.1-fabric,1.21.1"
 cobbledollars-neoforge = "2.0.0+Beta-5.1-neoforge,1.21.1"
 impactor-fabric = "5.3.5+1.21.1-Fabric-fabric,1.21.1"
 impactor-neoforge = "5.3.5+1.21.1-Neoforge-neoforge,1.21.1"
+publish = "0.35.0"
 
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
@@ -27,6 +28,7 @@ architectury-loom = { id = "dev.architectury.loom", version.ref = "architectury-
 architectury-plugin = { id = "architectury-plugin", version.ref = "architectury-plugin" }
 
 [libraries]
+publish = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "publish" }
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 architectury-loom = { group = "dev.architectury", name = "architectury-loom", version.ref = "architectury-loom" }
 architectury-plugin = { group = "architectury-plugin", name = "architectury-plugin.gradle.plugin", version.ref = "architectury-plugin" }

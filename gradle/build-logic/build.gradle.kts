@@ -15,5 +15,6 @@ dependencies {
     implementation(libs.architectury.loom)
     implementation(libs.architectury.plugin)
     implementation(libs.shadow.gradle)
+    implementation(libs.publish)
 }
 
