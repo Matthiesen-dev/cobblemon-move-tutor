@@ -37,6 +37,7 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "matthiesen_lib"
 mandatory = true
-versionRange = "[1.0.1,2.0.0)"
+#versionRange = "[1.0.1,2.0.0)"
+versionRange = "" # TODO Remove this; Allows any version for now, so we can use PR snapshots
 ordering = "AFTER"
 side = "BOTH"
