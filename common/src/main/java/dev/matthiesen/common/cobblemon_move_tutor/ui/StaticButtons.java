@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
-import dev.matthiesen.common.matthiesen_lib.utility.ItemBuilder;
+import dev.matthiesen.common.matthiesen_lib_api.utility.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
 import net.minecraft.ChatFormatting;

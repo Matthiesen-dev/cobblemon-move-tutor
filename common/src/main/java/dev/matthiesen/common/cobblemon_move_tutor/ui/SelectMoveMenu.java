@@ -10,7 +10,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.util.*;
 import dev.matthiesen.common.matthiesen_lib.menu.AbstractNoInventoryMenu;
 import dev.matthiesen.common.matthiesen_lib.menu.button.NoHighlightSlotButton;
 import dev.matthiesen.common.matthiesen_lib.menu.button.SlotButton;
-import dev.matthiesen.common.matthiesen_lib.utility.SoundsPlayer;
+import dev.matthiesen.common.matthiesen_lib_api.utility.SoundsPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;

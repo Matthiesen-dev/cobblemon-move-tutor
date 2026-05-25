@@ -3,7 +3,7 @@ package dev.matthiesen.common.cobblemon_move_tutor.registry;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
-import dev.matthiesen.common.matthiesen_lib.permission.*;
+import dev.matthiesen.common.matthiesen_lib_api.permission.*;
 import net.minecraft.commands.CommandSourceStack;
 
 public class PermissionRegistry {

@@ -6,7 +6,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.*;
 import dev.matthiesen.common.cobblemon_move_tutor.config.*;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
-import dev.matthiesen.common.matthiesen_lib.config.ConfigManager;
+import dev.matthiesen.common.matthiesen_lib_api.config.ConfigManager;
 
 public class CobblemonMoveTutorCommon {
     public static final CurrencyProviderRegistry currencyProviderRegistry =

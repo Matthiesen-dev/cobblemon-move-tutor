@@ -3,8 +3,7 @@ package dev.matthiesen.common.cobblemon_move_tutor.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
-import dev.matthiesen.common.cobblemon_move_tutor.Constants;
-import dev.matthiesen.common.matthiesen_lib.permission.PermissionLevel;
+import dev.matthiesen.common.matthiesen_lib_api.permission.PermissionLevel;
 
 public class PermissionsConfig {
     @SerializedName("permissionlevels")

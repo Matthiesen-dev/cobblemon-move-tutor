@@ -9,7 +9,7 @@ fabric-api = "0.116.6+1.21.1"
 fabric-kotlin = "1.13.6+kotlin.2.2.20"
 neoforge = "21.1.182"
 kotlin-for-forge = "5.10.0"
-matthiesen-lib = "1.2.0-SNAPSHOT"
+matthiesen-lib = "PR-10-SNAPSHOT"
 cobblemon = "1.7.3+1.21.1"
 molang = "1.1.20"
 adventure-key = "4.13.0"
@@ -40,6 +40,9 @@ fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.r
 fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "fabric-kotlin" }
 neoforge = { group = "net.neoforged", name = "neoforge", version.ref = "neoforge" }
 kotlinforforge = { group = "thedarkcolour", name = "kotlinforforge-neoforge", version.ref = "kotlin-for-forge" }
+matthiesen-lib-api-common = { group = "dev.matthiesen", name = "matthiesen-lib-api-common", version.ref = "matthiesen-lib" }
+matthiesen-lib-api-fabric = { group = "dev.matthiesen", name = "matthiesen-lib-api-fabric", version.ref = "matthiesen-lib" }
+matthiesen-lib-api-neoforge = { group = "dev.matthiesen", name = "matthiesen-lib-api-neoforge", version.ref = "matthiesen-lib" }
 matthiesen-lib-common = { group = "dev.matthiesen", name = "matthiesen-lib-common", version.ref = "matthiesen-lib" }
 matthiesen-lib-fabric = { group = "dev.matthiesen", name = "matthiesen-lib-fabric", version.ref = "matthiesen-lib" }
 matthiesen-lib-neoforge = { group = "dev.matthiesen", name = "matthiesen-lib-neoforge", version.ref = "matthiesen-lib" }
@@ -57,10 +60,10 @@ placeholder-api = { group = "maven.modrinth", name = "placeholder-api", version.
 
 [bundles]
 commonModCompileOnly = ["cobbledollars-fabric", "impactor-fabric"]
-commonModImplementationNoTransitive = ["matthiesen-lib-common", "cobblemon-common"]
+commonModImplementationNoTransitive = ["matthiesen-lib-api-common", "matthiesen-lib-common", "cobblemon-common"]
 fabricModImplementation = ["fabric-loader", "fabric-api", "fabric-language-kotlin"]
-fabricModImplementationNoTransitive = ["matthiesen-lib-fabric", "cobblemon-fabric"]
+fabricModImplementationNoTransitive = ["matthiesen-lib-api-fabric", "matthiesen-lib-fabric", "cobblemon-fabric"]
 fabricModRuntimeOnly = ["modmenu", "placeholder-api"]
-neoforgeModImplementationNoTransitive = ["matthiesen-lib-neoforge", "cobblemon-neoforge"]
+neoforgeModImplementationNoTransitive = ["matthiesen-lib-api-neoforge", "matthiesen-lib-neoforge", "cobblemon-neoforge"]
 neoforgeModCompileOnly = ["cobbledollars-neoforge", "impactor-neoforge"]
 

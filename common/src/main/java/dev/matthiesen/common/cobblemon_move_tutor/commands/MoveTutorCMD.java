@@ -6,7 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.PermissionRegistry;
 import dev.matthiesen.common.cobblemon_move_tutor.util.TutorMenuProvider;
-import dev.matthiesen.common.matthiesen_lib.command.AbstractCommand;
+import dev.matthiesen.common.matthiesen_lib_api.command.AbstractCommand;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
