@@ -148,7 +148,7 @@ jobs:
       - name: Build Discord Embed Payload
         id: build_payload
         run: |
-          payload=$(jq -n \
+          payload=$(jq -cn \
             --arg title "New Release: ${{ env.MOD_NAME }} ${{ needs.prepare.outputs.version }}" \
             --arg description "${{ github.event.release.body }}" \
             --arg modrinth_url "https://modrinth.com/mod/${{ secrets.MODRINTH_ID }}/" \
@@ -177,7 +177,7 @@ jobs:
                     }
                   ]
                 }
-              ]
+              ],
               "components": [
                 {
                   "type": 1,
