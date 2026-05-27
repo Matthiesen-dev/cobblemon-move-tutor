@@ -151,11 +151,6 @@ jobs:
           payload=$(jq -cn \
             --arg title "New Release: ${{ env.MOD_NAME }} ${{ needs.prepare.outputs.version }}" \
             --arg description "${{ github.event.release.body }}" \
-            --arg modrinth_url "https://modrinth.com/mod/${{ secrets.MODRINTH_ID }}/" \
-            --arg github_url "${{ github.event.release.html_url }}" \
-            --arg mc_version "${{ env.MODRINTH_GAME_VERSION }}" \
-            --arg fabric_version "${{ env.FABRIC_LOADER_VERSION }}" \
-            --arg neoforge_version "${{ env.NEOFORGE_LOADER_VERSION }}" \
             '{
               "username": "Matthiesen Release Bot",
               "avatar_url": "https://raw.githubusercontent.com/Matthiesen-dev/.github/refs/heads/main/logo-transparent.png",
@@ -167,32 +162,23 @@ jobs:
                   "fields": [
                     {
                         "name": "Available Platforms",
-                        "value": "- Fabric `$fabric_version`\n- NeoForge `$neoforge_version`",
+                        "value": "- Fabric `${{ env.FABRIC_LOADER_VERSION }}`\n- NeoForge `${{ env.NEOFORGE_LOADER_VERSION }}`",
                         "inline": true
                     },
                     {
                         "name": "MC Version",
-                        "value": "`$mc_version`",
+                        "value": "`${{ env.MODRINTH_GAME_VERSION }}`",
                         "inline": true
-                    }
-                  ]
-                }
-              ],
-              "components": [
-                {
-                  "type": 1,
-                  "components": [
-                    {
-                      "type": 2,
-                      "label": "View on Modrinth",
-                      "style": 5,
-                      "url": $modrinth_url
                     },
                     {
-                      "type": 2,
-                      "label": "View on GitHub",
-                      "style": 5,
-                      "url": $github_url
+                        "name":  "Download on Modrinth",
+                        "value": "[Modrinth]("https://modrinth.com/mod/${{ secrets.MODRINTH_ID }}/")",
+                        "inline": false
+                    },
+                    {
+                        "name":  "Download on GitHub",
+                        "value": "[GitHub Release](${{ github.event.release.html_url }})",
+                        "inline": true
                     }
                   ]
                 }
