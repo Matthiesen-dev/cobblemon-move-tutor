@@ -159,6 +159,9 @@ jobs:
                   "title": $title,
                   "description": $description,
                   "color": 5763719,
+                  "thumbnail": {
+                    "url": "https://raw.githubusercontent.com/Matthiesen-dev/.github/refs/heads/main/mod-logos/cobblemon-move-tutor.png"
+                  },
                   "fields": [
                     {
                         "name": "Available Platforms",
