@@ -41,6 +41,11 @@ public class CobblemonMoveTutorCommon {
         PERMISSIONS_CONFIG_MANAGER.loadConfig();
     }
 
+    public static void reload() {
+        loadConfig();
+        Constants.createInfoLog("Reloaded Cobblemon Move Tutor configs");
+    }
+
     public static void initialize() {
         Constants.createInfoLog("Initializing common logic");
 
