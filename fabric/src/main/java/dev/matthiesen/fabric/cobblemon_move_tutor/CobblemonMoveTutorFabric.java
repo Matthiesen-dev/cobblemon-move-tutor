@@ -11,9 +11,5 @@ public class CobblemonMoveTutorFabric implements ModInitializer {
         Constants.createInfoLog("Loading for Fabric Mod Loader");
         CobblemonMoveTutorCommon.loadConfig();
         CobblemonMoveTutorCommon.initialize();
-
-        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> {
-            if (success) CobblemonMoveTutorCommon.reload();
-        });
     }
 }

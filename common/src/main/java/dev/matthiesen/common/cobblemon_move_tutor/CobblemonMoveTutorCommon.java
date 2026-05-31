@@ -6,6 +6,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.*;
 import dev.matthiesen.common.cobblemon_move_tutor.config.*;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
+import dev.matthiesen.common.matthiesen_lib_api.MatthiesenLibApi;
 import dev.matthiesen.common.matthiesen_lib_api.config.ConfigManager;
 
 public class CobblemonMoveTutorCommon {
@@ -60,6 +61,8 @@ public class CobblemonMoveTutorCommon {
 
         // Extend Cobblemon's Molang functions
         PlayerFunctionsExtension.register();
+
+        MatthiesenLibApi.registerReloadRunnable(Constants.MOD_ID, CobblemonMoveTutorCommon::reload);
     }
 
     private static void loadCurrencyProviders() {
