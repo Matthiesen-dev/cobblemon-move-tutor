@@ -10,6 +10,7 @@ import net.impactdev.impactor.api.economy.currency.Currency;
 import net.impactdev.impactor.api.economy.accounts.Account;
 import net.kyori.adventure.key.Key;
 import net.minecraft.server.level.ServerPlayer;
+import org.intellij.lang.annotations.Subst;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
@@ -41,6 +42,7 @@ public class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
     }
 
     private Currency getCurrency() {
+        @Subst("impactor:dollars")
         String impactorCurrency = getConfig().impactorCurrency;
         Optional<Currency> currency = ECONOMY_SERVICE.currencies().currency(Key.key(impactorCurrency));
         if (currency.isEmpty()) {

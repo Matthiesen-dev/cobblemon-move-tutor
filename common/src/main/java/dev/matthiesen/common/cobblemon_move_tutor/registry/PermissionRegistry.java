@@ -54,7 +54,7 @@ public class PermissionRegistry {
 
             @Override
             protected String getPermissionNamespace() {
-                return "CobblemonPokeTotem";
+                return "CobblemonMoveTutor";
             }
         };
     }

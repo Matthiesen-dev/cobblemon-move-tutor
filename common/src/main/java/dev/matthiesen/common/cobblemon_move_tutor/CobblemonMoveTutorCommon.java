@@ -13,33 +13,10 @@ public class CobblemonMoveTutorCommon {
     public static final CurrencyProviderRegistry currencyProviderRegistry =
             new CurrencyProviderRegistry();
 
-    private static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
-            new ConfigManager<>(CommonConfig.class, "common", Constants.MOD_ID);
-    private static final ConfigManager<CurrencyProvidersConfig> CURRENCY_PROVIDERS_CONFIG_MANGER =
-            new ConfigManager<>(CurrencyProvidersConfig.class, "currency_providers", Constants.MOD_ID);
-    private static final ConfigManager<PermissionsConfig> PERMISSIONS_CONFIG_MANAGER =
-            new ConfigManager<>(PermissionsConfig.class, "permissions", Constants.MOD_ID);
-
-    public static CommonConfig getCommonConfig() {
-        return COMMON_CONFIG_MANAGER.getConfig();
-    }
-
-    public static CurrencyProvidersConfig getCurrencyProvidersConfig() {
-        return CURRENCY_PROVIDERS_CONFIG_MANGER.getConfig();
-    }
-
-    public static PermissionsConfig getPermissionsConfig() {
-        return PERMISSIONS_CONFIG_MANAGER.getConfig();
-    }
-
-    public static PermissionRegistry.Permissions getPermissions() {
-        return PermissionRegistry.getPermissions();
-    }
-
     public static void loadConfig() {
-        COMMON_CONFIG_MANAGER.loadConfig();
-        CURRENCY_PROVIDERS_CONFIG_MANGER.loadConfig();
-        PERMISSIONS_CONFIG_MANAGER.loadConfig();
+        MoveTutorConfigManager.getCommonConfigManager().loadConfig();
+        MoveTutorConfigManager.getCurrencyProvidersConfigManager().loadConfig();
+        MoveTutorConfigManager.getPermissionsConfigManager().loadConfig();
     }
 
     public static void reload() {
@@ -78,5 +55,21 @@ public class CobblemonMoveTutorCommon {
             Constants.createInfoLog("Found Impactor, loading compatibility");
             currencyProviderRegistry.register("impactor", ImpactorCurrencyProvider::new);
         }
+    }
+
+    public static CommonConfig getCommonConfig() {
+        return MoveTutorConfigManager.getCommonConfigManager().getConfig();
+    }
+
+    public static CurrencyProvidersConfig getCurrencyProvidersConfig() {
+        return MoveTutorConfigManager.getCurrencyProvidersConfigManager().getConfig();
+    }
+
+    public static PermissionsConfig getPermissionsConfig() {
+        return MoveTutorConfigManager.getPermissionsConfigManager().getConfig();
+    }
+
+    public static PermissionRegistry.Permissions getPermissions() {
+        return PermissionRegistry.getPermissions();
     }
 }
