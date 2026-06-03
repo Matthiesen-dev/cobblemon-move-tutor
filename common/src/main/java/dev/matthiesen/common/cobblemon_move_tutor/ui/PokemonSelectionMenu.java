@@ -16,7 +16,7 @@ import net.minecraft.world.inventory.ClickType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PokemonSelectionMenu extends AbstractNoInventoryMenu {
+public final class PokemonSelectionMenu extends AbstractNoInventoryMenu {
 
     public static final int TITLE_SLOT = 0;
     public static final int FIRST_POKEMON_SLOT = 1; // slots 1-6 → party indices 0-5

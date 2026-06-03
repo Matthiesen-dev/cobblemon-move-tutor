@@ -14,7 +14,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
-public class MoveTutorCMD extends AbstractCommand {
+public final class MoveTutorCMD extends AbstractCommand {
     public static final String SELECTION_TYPE = "admin";
 
     public MoveTutorCMD() {}

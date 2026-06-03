@@ -7,10 +7,10 @@ import net.minecraft.world.inventory.MenuType;
 
 import java.util.function.Supplier;
 
-public class MenuTypesRegistry extends AbstractMenuTypeRegistry {
+public final class MenuTypesRegistry extends AbstractMenuTypeRegistry {
     private static final MenuTypesRegistry INSTANCE = new MenuTypesRegistry();
 
-    protected MenuTypesRegistry() {
+    public MenuTypesRegistry() {
         super(Constants.MOD_ID);
     }
 

@@ -11,7 +11,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.platform.ICurrencyProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
-public class MoveManager {
+public final class MoveManager {
     public static boolean validatePokemon(Pokemon oldPokemon, ServerPlayer player) {
         if (Cobblemon.INSTANCE.getStorage().getParty(player).get(oldPokemon.getUuid()) == null) {
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.unknownPokemon"));

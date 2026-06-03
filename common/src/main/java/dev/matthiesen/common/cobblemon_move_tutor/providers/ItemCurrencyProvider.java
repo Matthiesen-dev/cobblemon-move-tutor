@@ -13,7 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 
-public class ItemCurrencyProvider extends AbstractCurrencyProvider {
+public final class ItemCurrencyProvider extends AbstractCurrencyProvider {
     @Override
     public String currencyName() {
         return getConfig().currencyDisplayName;

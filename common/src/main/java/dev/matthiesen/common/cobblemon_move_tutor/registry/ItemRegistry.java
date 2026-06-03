@@ -7,10 +7,10 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Supplier;
 
-public class ItemRegistry extends AbstractItemRegistry {
+public final class ItemRegistry extends AbstractItemRegistry {
     private static final ItemRegistry INSTANCE = new ItemRegistry();
 
-    protected ItemRegistry() {
+    public ItemRegistry() {
         super(Constants.MOD_ID);
     }
 

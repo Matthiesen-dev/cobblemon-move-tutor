@@ -1,6 +1,6 @@
 package dev.matthiesen.common.cobblemon_move_tutor.util;
 
-public class ModelData {
+public final class ModelData {
     public static class GUI_BUTTON {
         public static final int GUI_CONFIRM = 1001;
         public static final int GUI_CANCEL = 1002;

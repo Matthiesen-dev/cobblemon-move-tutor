@@ -6,7 +6,7 @@ import dev.matthiesen.common.cobblemon_move_tutor.ui.client.PokemonSelectionScre
 import dev.matthiesen.common.cobblemon_move_tutor.ui.client.SelectMoveScreen;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLibClient;
 
-public class CobblemonMoveTutorCommonClient {
+public final class CobblemonMoveTutorCommonClient {
     public static void initialize() {
         Constants.createInfoLog("Initializing client logic");
     }

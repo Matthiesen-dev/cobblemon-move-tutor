@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectMoveMenu extends AbstractNoInventoryMenu {
+public final class SelectMoveMenu extends AbstractNoInventoryMenu {
 
     public static final int PAGE_SIZE = 28;
 

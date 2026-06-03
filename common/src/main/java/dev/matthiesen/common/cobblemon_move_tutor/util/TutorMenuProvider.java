@@ -13,7 +13,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.MenuConstructor;
 import net.minecraft.world.item.ItemStack;
 
-public class TutorMenuProvider extends MenuProvider {
+public final class TutorMenuProvider extends MenuProvider {
     public static SimpleMenuProvider createProvider(MenuConstructor constructor) {
         return new SimpleMenuProvider(constructor, Component.empty());
     }

@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PokemonUtility {
+public final class PokemonUtility {
     public static Component[] loreBuilder(Pokemon pokemon) {
         String moveOne = !pokemon.getMoveSet().getMoves().isEmpty() ?
                 Objects.requireNonNull(pokemon.getMoveSet().get(0)).getDisplayName().getString() : "Empty";

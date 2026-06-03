@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfirmationMenu extends AbstractNoInventoryMenu {
+public final class ConfirmationMenu extends AbstractNoInventoryMenu {
 
     // Slot indices
     public static final int CANCEL_SLOT = 0;

@@ -9,7 +9,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @Mod(value = Constants.MOD_ID, dist = Dist.CLIENT)
-public class CobblemonMoveTutorNeoForgeClient {
+public final class CobblemonMoveTutorNeoForgeClient {
     public CobblemonMoveTutorNeoForgeClient(IEventBus modBus) {
         CobblemonMoveTutorCommonClient.initialize();
         modBus.register(this);

@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
+public final class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
     private static final EconomyService ECONOMY_SERVICE = EconomyService.instance();
 
     @Override

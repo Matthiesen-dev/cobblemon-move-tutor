@@ -6,7 +6,7 @@ import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
 import dev.matthiesen.common.matthiesen_lib_api.permission.*;
 import net.minecraft.commands.CommandSourceStack;
 
-public class PermissionRegistry {
+public final class PermissionRegistry {
     public static Permission MOVE_TUTOR_PERMISSION = register("command.move-tutor",
             CobblemonMoveTutorCommon.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_PERMISSION_LEVEL);
     public static Permission MOVE_TUTOR_OTHER_PERMISSION = register("command.move-tutor.other",

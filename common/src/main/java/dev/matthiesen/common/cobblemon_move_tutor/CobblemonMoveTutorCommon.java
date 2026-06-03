@@ -5,11 +5,11 @@ import dev.matthiesen.common.cobblemon_move_tutor.providers.*;
 import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.*;
 import dev.matthiesen.common.cobblemon_move_tutor.config.*;
+import dev.matthiesen.common.cobblemon_move_tutor.util.MetricManager;
 import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
 import dev.matthiesen.common.matthiesen_lib_api.MatthiesenLibApi;
-import dev.matthiesen.common.matthiesen_lib_api.config.ConfigManager;
 
-public class CobblemonMoveTutorCommon {
+public final class CobblemonMoveTutorCommon {
     public static final CurrencyProviderRegistry currencyProviderRegistry =
             new CurrencyProviderRegistry();
 
@@ -40,6 +40,7 @@ public class CobblemonMoveTutorCommon {
         PlayerFunctionsExtension.register();
 
         MatthiesenLibApi.registerReloadRunnable(Constants.MOD_ID, CobblemonMoveTutorCommon::reload);
+        MatthiesenLibApi.registerServerEventHandler(Constants.MOD_ID, MetricManager.getServerEventHandler());
         MatthiesenLibApi.registerModToMetrics(Constants.MOD_ID);
     }
 

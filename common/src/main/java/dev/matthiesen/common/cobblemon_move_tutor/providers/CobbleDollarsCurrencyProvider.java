@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class CobbleDollarsCurrencyProvider extends AbstractCurrencyProvider {
+public final class CobbleDollarsCurrencyProvider extends AbstractCurrencyProvider {
     @Override
     public String currencyName() {
         return "cobbledollars";

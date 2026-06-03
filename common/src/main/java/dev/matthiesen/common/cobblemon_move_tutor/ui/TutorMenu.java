@@ -4,7 +4,7 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 
-public class TutorMenu<T extends AbstractContainerMenu> extends MenuType<T> {
+public final class TutorMenu<T extends AbstractContainerMenu> extends MenuType<T> {
     public TutorMenu(MenuSupplier<T> menuSupplier) {
         super(menuSupplier, FeatureFlagSet.of());
     }

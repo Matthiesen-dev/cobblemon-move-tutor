@@ -11,7 +11,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
-public class StaticButtons {
+public final class StaticButtons {
     public static ItemBuilder getBaseGuiItem(int model) {
         return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                 .hideAdditional()
