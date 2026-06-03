@@ -13,11 +13,11 @@ public class CobblemonMoveTutorCommon {
     public static final CurrencyProviderRegistry currencyProviderRegistry =
             new CurrencyProviderRegistry();
 
-    public static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
+    private static final ConfigManager<CommonConfig> COMMON_CONFIG_MANAGER =
             new ConfigManager<>(CommonConfig.class, "common", Constants.MOD_ID);
-    public static final ConfigManager<CurrencyProvidersConfig> CURRENCY_PROVIDERS_CONFIG_MANGER =
+    private static final ConfigManager<CurrencyProvidersConfig> CURRENCY_PROVIDERS_CONFIG_MANGER =
             new ConfigManager<>(CurrencyProvidersConfig.class, "currency_providers", Constants.MOD_ID);
-    public static final ConfigManager<PermissionsConfig> PERMISSIONS_CONFIG_MANAGER =
+    private static final ConfigManager<PermissionsConfig> PERMISSIONS_CONFIG_MANAGER =
             new ConfigManager<>(PermissionsConfig.class, "permissions", Constants.MOD_ID);
 
     public static CommonConfig getCommonConfig() {
@@ -63,6 +63,7 @@ public class CobblemonMoveTutorCommon {
         PlayerFunctionsExtension.register();
 
         MatthiesenLibApi.registerReloadRunnable(Constants.MOD_ID, CobblemonMoveTutorCommon::reload);
+        MatthiesenLibApi.registerModToMetrics(Constants.MOD_ID);
     }
 
     private static void loadCurrencyProviders() {
