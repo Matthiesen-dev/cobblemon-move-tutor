@@ -23,4 +23,8 @@ public final class Constants {
     public static void createErrorLog(String message) {
         LOGGER.error(message);
     }
+
+    public static void createErrorLog(String message, Throwable throwable) {
+        LOGGER.error(message, throwable);
+    }
 }

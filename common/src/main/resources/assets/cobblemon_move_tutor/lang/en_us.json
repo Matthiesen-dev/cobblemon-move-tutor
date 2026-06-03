@@ -19,5 +19,7 @@
   "cobblemon_move_tutor.msg.buyMoveFree": "Taught %s to %s for free.",
   "cobblemon_move_tutor.msg.notEnoughMoney": "Not enough funds, You need %s %s to buy this move",
   "cobblemon_move_tutor.msg.invalidCurrency": "Type currency - %s not supported.",
-  "cobblemon_move_tutor.msg.invalidCurrencyItem": "The item %s is not a valid currency."
+  "cobblemon_move_tutor.msg.invalidCurrencyItem": "The item %s is not a valid currency.",
+  "cobblemon_move_tutor.gui.lore.error": "An error occurred while loading move data.",
+  "cobblemon_move_tutor.msg.learnMoveFailed": "Failed to teach %s to %s."
 }

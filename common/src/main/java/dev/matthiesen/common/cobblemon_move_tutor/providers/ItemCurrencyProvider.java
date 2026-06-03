@@ -4,7 +4,9 @@ import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
+import dev.matthiesen.common.cobblemon_move_tutor.Constants;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CurrencyProvidersConfig;
+import dev.matthiesen.common.cobblemon_move_tutor.util.MetricManager;
 import dev.matthiesen.common.matthiesen_lib_api.utility.ItemDecoder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -26,20 +28,27 @@ public final class ItemCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
-        var config = getConfig();
-        Item currencyItem = ItemDecoder.stringToItem(config.itemId, CobblemonItems.RARE_CANDY);
-        if (currencyItem == Items.AIR) {
-            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrencyItem", config.itemId).withStyle(ChatFormatting.RED));
-            player.closeContainer();
+        try {
+            var config = getConfig();
+            Item currencyItem = ItemDecoder.stringToItem(config.itemId, CobblemonItems.RARE_CANDY);
+            if (currencyItem == Items.AIR) {
+                player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrencyItem", config.itemId).withStyle(ChatFormatting.RED));
+                player.closeContainer();
+                return false;
+            }
+
+            if (getPlayerBalance(player, currencyItem) < price) {
+                return notEnoughFunds(player, price);
+            }
+
+            subtractPlayerBalance(player, currencyItem, price);
+            return true;
+        } catch (RuntimeException e) {
+            MetricManager.ERROR_TRACKER.trackError(e);
+            Constants.createErrorLog("Error processing ItemCurrencyProvider transaction for player %player%"
+                    .replace("%player%", player.getDisplayName().getString()), e);
             return false;
         }
-
-        if (getPlayerBalance(player, currencyItem) < price) {
-            return notEnoughFunds(player, price);
-        }
-
-        subtractPlayerBalance(player, currencyItem, price);
-        return true;
     }
 
     private int getPlayerBalance(ServerPlayer player, Item currencyItem) {

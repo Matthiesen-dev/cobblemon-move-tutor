@@ -40,8 +40,8 @@ public final class CobblemonMoveTutorCommon {
         PlayerFunctionsExtension.register();
 
         MatthiesenLibApi.registerReloadRunnable(Constants.MOD_ID, CobblemonMoveTutorCommon::reload);
-        MatthiesenLibApi.registerServerEventHandler(Constants.MOD_ID, MetricManager.getServerEventHandler());
         MatthiesenLibApi.registerModToMetrics(Constants.MOD_ID);
+        MetricManager.getMetricContext().ready();
     }
 
     private static void loadCurrencyProviders() {
