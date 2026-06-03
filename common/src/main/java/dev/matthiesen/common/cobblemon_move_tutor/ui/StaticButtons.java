@@ -1,17 +1,17 @@
-package dev.matthiesen.common.cobblemon_move_tutor.ui.buttons;
+package dev.matthiesen.common.cobblemon_move_tutor.ui;
 
 import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.ItemRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.util.ItemBuilder;
+import dev.matthiesen.common.matthiesen_lib_api.utility.ItemBuilder;
 import dev.matthiesen.common.cobblemon_move_tutor.util.ModelData;
 import dev.matthiesen.common.cobblemon_move_tutor.util.PokemonUtility;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
-public class StaticButtons {
+public final class StaticButtons {
     public static ItemBuilder getBaseGuiItem(int model) {
         return new ItemBuilder(ItemRegistry.GUI_ITEM.get())
                 .hideAdditional()

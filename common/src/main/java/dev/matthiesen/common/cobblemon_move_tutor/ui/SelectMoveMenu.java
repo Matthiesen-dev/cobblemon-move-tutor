@@ -6,10 +6,11 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.common.cobblemon_move_tutor.CobblemonMoveTutorCommon;
 import dev.matthiesen.common.cobblemon_move_tutor.config.CommonConfig;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.MenuTypesRegistry;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.Button;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.NoHighlightButton;
-import dev.matthiesen.common.cobblemon_move_tutor.ui.buttons.StaticButtons;
 import dev.matthiesen.common.cobblemon_move_tutor.util.*;
+import dev.matthiesen.common.matthiesen_lib.menu.AbstractNoInventoryMenu;
+import dev.matthiesen.common.matthiesen_lib.menu.button.NoHighlightSlotButton;
+import dev.matthiesen.common.matthiesen_lib.menu.button.SlotButton;
+import dev.matthiesen.common.matthiesen_lib_api.utility.SoundsPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectMoveMenu extends AbstractMenu {
+public final class SelectMoveMenu extends AbstractNoInventoryMenu {
 
     public static final int PAGE_SIZE = 28;
 
@@ -31,9 +32,11 @@ public class SelectMoveMenu extends AbstractMenu {
     public static final int PREV_SLOT = 29;
     public static final int PAGE_SLOT = 30;
     public static final int NEXT_SLOT = 31;
+    public static final int SELECTED_SLOT = 32;
 
     // Standard chest offsets: slot (row, col) → x = 8 + col*18, y = 18 + row*18
     private static final int TITLE_X = 80, TITLE_Y = 18; // row 0, col 4
+    private static final int SELECTED_X = 2, SELECTED_Y = 78;
     private static final int NAV_Y   = 108; // row 5
     private static final int PREV_X  = 8; //        col 0
     private static final int PAGE_X  = 80; //        col 4
@@ -54,7 +57,7 @@ public class SelectMoveMenu extends AbstractMenu {
         this.selectedPokemon = pokemon;
         this.type = type;
         this.allMoves = new ArrayList<>(PokemonUtility.getFilteredMoves(pokemon, getTutorConfig()));
-        this.container = new SimpleContainer(32);
+        this.container = new SimpleContainer(33);
         addDisplaySlots();
         populatePage(0);
     }
@@ -62,13 +65,13 @@ public class SelectMoveMenu extends AbstractMenu {
     @SuppressWarnings("unused")
     public SelectMoveMenu(int containerID, Inventory inventory) {
         super(MenuTypesRegistry.SELECT_MOVE_SCREEN.get(), containerID);
-        this.container = new SimpleContainer(32);
+        this.container = new SimpleContainer(33);
         addDisplaySlots();
     }
 
     private void addDisplaySlots() {
         // Title slot
-        addSlot(new NoHighlightButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
+        addSlot(new NoHighlightSlotButton(container, TITLE_SLOT, TITLE_X, TITLE_Y));
 
         // Move slots: rows 1-4, cols 1-7  →  28 display slots
         for (int row = 1; row <= 4; row++) {
@@ -76,14 +79,15 @@ public class SelectMoveMenu extends AbstractMenu {
                 int si = (row - 1) * 7 + (col - 1) + FIRST_MOVE_SLOT;
                 int x  = 8 + col * 18;
                 int y  = 18 + row * 18;
-                addSlot(new Button(container, si, x, y));
+                addSlot(new SlotButton(container, si, x, y));
             }
         }
 
         // Navigation slots (row 5)
-        addSlot(new Button(container, PREV_SLOT, PREV_X, NAV_Y));
-        addSlot(new NoHighlightButton(container, PAGE_SLOT, PAGE_X, NAV_Y));
-        addSlot(new Button(container, NEXT_SLOT, NEXT_X, NAV_Y));
+        addSlot(new SlotButton(container, PREV_SLOT, PREV_X, NAV_Y));
+        addSlot(new NoHighlightSlotButton(container, PAGE_SLOT, PAGE_X, NAV_Y));
+        addSlot(new SlotButton(container, NEXT_SLOT, NEXT_X, NAV_Y));
+        addSlot(new NoHighlightSlotButton(container, SELECTED_SLOT, SELECTED_X, SELECTED_Y));
     }
 
     private void populatePage(int page) {
@@ -108,6 +112,7 @@ public class SelectMoveMenu extends AbstractMenu {
         container.setItem(PREV_SLOT, StaticButtons.buildPrevItem());
         container.setItem(PAGE_SLOT, StaticButtons.buildPageItem(page + 1, totalPages));
         container.setItem(NEXT_SLOT, StaticButtons.buildNextItem());
+        container.setItem(SELECTED_SLOT, PokemonUtility.pokemonToItem(selectedPokemon));
     }
 
     private int getTotalPages() {

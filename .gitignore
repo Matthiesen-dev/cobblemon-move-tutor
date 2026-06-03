@@ -23,6 +23,7 @@ build
 # other
 eclipse
 run
+.link/
 
 # Files from Forge MDK
 forge*changelog.txt

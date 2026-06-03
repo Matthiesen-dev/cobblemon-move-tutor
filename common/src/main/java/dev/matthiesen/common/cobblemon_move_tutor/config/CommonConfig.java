@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
-public class CommonConfig {
+public final class CommonConfig {
     @SerializedName("currencyConfig")
     public CurrencyConfig currencyConfig = new CurrencyConfig();
 

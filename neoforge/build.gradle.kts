@@ -2,16 +2,13 @@ plugins {
     id("com.gradleup.shadow")
     id("dev.architectury.loom")
     id("architectury-plugin")
+    id("move-tutor.shadow-platform-conventions")
+//    id("move-tutor.publishing-conventions")
 }
 
 architectury {
     platformSetupLoomIde()
     neoForge()
-}
-
-loom {
-    enableTransitiveAccessWideners.set(true)
-    silentMojangMappingsLicense()
 }
 
 repositories {
@@ -27,67 +24,30 @@ val shadowBundle: Configuration by configurations.creating {
 }
 
 dependencies {
-    minecraft("net.minecraft:minecraft:${property("minecraft_version")}")
+    minecraft(libs.minecraft.net)
     mappings(loom.officialMojangMappings())
-    neoForge("net.neoforged:neoforge:${property("neoforge_version")}")
+    neoForge(libs.neoforge)
     implementation(project(":common", configuration = "namedElements"))
     "developmentNeoForge"(project(":common", configuration = "namedElements")) { isTransitive = false }
     shadowBundle(project(":common", configuration = "transformProductionNeoForge"))
-    modImplementation("com.cobblemon:neoforge:${property("cobblemon_version")}") { isTransitive = false }
-    forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
+    libs.bundles.neoforgeModImplementationNoTransitive.get().forEach { dependency ->
+        modImplementation(dependency.copy()) { isTransitive = false }
+    }
+    forgeRuntimeLibrary(libs.kotlinforforge) {
         exclude("net.neoforged.fancymodloader", "loader")
     }
-    modCompileOnly("maven.modrinth:cobbledollars:${property("cobbledollars_version")}-neoforge,1.21.1")
-    modCompileOnly("maven.modrinth:impactor:${property("impactor_version")}-Neoforge-neoforge,1.21.1")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
+    add("modCompileOnly", libs.bundles.neoforgeModCompileOnly)
 }
 
 tasks {
-    test {
-        useJUnitPlatform()
-    }
-
     processResources {
-        inputs.property("mod_id", project.property("mod_id").toString())
-        inputs.property("version", project.version)
-        inputs.property("mod_name", project.property("mod_name").toString())
-        inputs.property("mod_description", project.property("mod_description").toString())
-        inputs.property("mod_license", project.property("mod_license").toString())
-        inputs.property("mod_author", project.property("mod_author").toString())
-        inputs.property("github_url", project.property("github_url").toString())
-        inputs.property("modrinth_url", project.property("modrinth_url").toString())
-
         filesMatching("META-INF/neoforge.mods.toml") {
             expand(project.properties)
         }
     }
 
-    jar {
-        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
-        archiveClassifier.set("dev-slim")
-    }
-
     shadowJar {
         exclude("fabric.mod.json")
-        archiveClassifier.set("dev-shadow")
-        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
         configurations = listOf(shadowBundle)
-    }
-
-    remapJar {
-        dependsOn(shadowJar)
-        inputFile.set(shadowJar.flatMap { it.archiveFile })
-        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
-        archiveVersion.set("${rootProject.version}")
-    }
-
-    remapSourcesJar {
-        dependsOn(shadowJar)
-        inputFile.set(shadowJar.flatMap { it.archiveFile })
-        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
-        archiveVersion.set("${project.version}")
-        archiveClassifier.set("sources")
     }
 }

@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class CurrencyProviderRegistry {
+public final class CurrencyProviderRegistry {
     @NotNull
     private final Map<String, Supplier<ICurrencyProvider>> PROVIDERS = new HashMap<>();
 
