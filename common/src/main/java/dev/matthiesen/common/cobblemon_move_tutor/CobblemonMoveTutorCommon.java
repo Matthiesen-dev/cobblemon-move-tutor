@@ -2,7 +2,6 @@ package dev.matthiesen.common.cobblemon_move_tutor;
 
 import dev.matthiesen.common.cobblemon_move_tutor.molang.PlayerFunctionsExtension;
 import dev.matthiesen.common.cobblemon_move_tutor.providers.*;
-import dev.matthiesen.common.cobblemon_move_tutor.platform.*;
 import dev.matthiesen.common.cobblemon_move_tutor.registry.*;
 import dev.matthiesen.common.cobblemon_move_tutor.config.*;
 import dev.matthiesen.common.cobblemon_move_tutor.util.MetricManager;
@@ -27,6 +26,7 @@ public final class CobblemonMoveTutorCommon {
     public static void initialize() {
         Constants.createInfoLog("Initializing common logic");
 
+        MetricManager.init();
         // Initialize registries
         PermissionRegistry.init();
         ItemRegistry.init();
@@ -40,8 +40,6 @@ public final class CobblemonMoveTutorCommon {
         PlayerFunctionsExtension.register();
 
         MatthiesenLibApi.registerReloadRunnable(Constants.MOD_ID, CobblemonMoveTutorCommon::reload);
-        MatthiesenLibApi.registerModToMetrics(Constants.MOD_ID);
-        MetricManager.getMetricContext().ready();
     }
 
     private static void loadCurrencyProviders() {
