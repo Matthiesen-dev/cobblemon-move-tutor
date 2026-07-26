@@ -1,0 +1,80 @@
+package dev.matthiesen.cobblemon_move_tutor.common.providers;
+
+import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.mod.common.api.moves.MoveTemplate;
+import com.cobblemon.mod.common.pokemon.Pokemon;
+import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
+import dev.matthiesen.cobblemon_move_tutor.common.config.CurrencyProvidersConfig;
+import dev.matthiesen.matthiesen_core.common.utility.item.ItemDecoder;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.NotNull;
+
+public final class ItemCurrencyProvider extends AbstractCurrencyProvider {
+    @Override
+    public String currencyName() {
+        return getConfig().currencyDisplayName;
+    }
+
+    @Override
+    public String currencyDisplayName() {
+        return getConfig().currencyDisplayName;
+    }
+
+    @Override
+    public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
+        try {
+            var config = getConfig();
+            Item currencyItem = ItemDecoder.stringToItem(config.itemId, CobblemonItems.RARE_CANDY);
+            if (currencyItem == Items.AIR) {
+                player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrencyItem", config.itemId).withStyle(ChatFormatting.RED));
+                player.closeContainer();
+                return false;
+            }
+
+            if (getPlayerBalance(player, currencyItem) < price) {
+                return notEnoughFunds(player, price);
+            }
+
+            subtractPlayerBalance(player, currencyItem, price);
+            return true;
+        } catch (RuntimeException e) {
+            CobblemonMoveTutor.INSTANCE.createErrorLog("Error processing ItemCurrencyProvider transaction for player %player%"
+                    .replace("%player%", player.getDisplayName().getString()), e);
+            return false;
+        }
+    }
+
+    private int getPlayerBalance(ServerPlayer player, Item currencyItem) {
+        int balance = 0;
+        for (var itemStack : player.getInventory().items) {
+            if (itemStack.getItem() == currencyItem) {
+                balance += itemStack.getCount();
+            }
+        }
+        return balance;
+    }
+
+    private void subtractPlayerBalance(ServerPlayer player, Item currencyItem, int amount) {
+        int remaining = amount;
+        for (var itemStack : player.getInventory().items) {
+            if (itemStack.getItem() == currencyItem) {
+                int count = itemStack.getCount();
+                if (count >= remaining) {
+                    itemStack.shrink(remaining);
+                    break;
+                } else {
+                    itemStack.setCount(0);
+                    remaining -= count;
+                }
+            }
+        }
+    }
+
+    private CurrencyProvidersConfig.ItemProvider getConfig() {
+        return CobblemonMoveTutor.INSTANCE.getCurrencyProvidersConfig().itemProvider;
+    }
+}

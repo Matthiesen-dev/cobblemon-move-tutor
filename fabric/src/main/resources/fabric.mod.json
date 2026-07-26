@@ -25,16 +25,15 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.matthiesen.fabric.cobblemon_move_tutor.CobblemonMoveTutorFabric"
+      "dev.matthiesen.cobblemon_move_tutor.fabric.CobblemonMoveTutorFabric"
     ],
     "client": [
-      "dev.matthiesen.fabric.cobblemon_move_tutor.CobblemonMoveTutorFabricClient"
+      "dev.matthiesen.cobblemon_move_tutor.fabric.CobblemonMoveTutorFabricClient"
     ]
   },
   "depends": {
     "minecraft": "1.21.1",
     "cobblemon": ">=1.7.3 <1.8.0",
-    "matthiesen_lib_api": ">=1.5.1 <2.0.0",
-    "matthiesen_lib": ">=1.5.1 <2.0.0"
+    "matthiesen_core": ">=1.0.0-beta.7 <2.0.0"
   }
 }
