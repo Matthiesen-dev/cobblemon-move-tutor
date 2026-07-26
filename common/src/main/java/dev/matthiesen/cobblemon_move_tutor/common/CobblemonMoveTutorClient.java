@@ -16,7 +16,7 @@ public final class CobblemonMoveTutorClient extends AbstractCommonClientMod {
     public void initialize() {
         createInfoLog("Initializing client logic");
 
-        INSTANCE.getScreenManager().registerMenuScreens(registry -> {
+        getScreenManager().registerMenuScreens(registry -> {
             registry.register(MenuTypesRegistry.CONFIRMATION_SCREEN, ConfirmationScreen::new);
             registry.register(MenuTypesRegistry.SELECT_MOVE_SCREEN, SelectMoveScreen::new);
             registry.register(MenuTypesRegistry.POKEMON_SELECTION_SCREEN, PokemonSelectionScreen::new);

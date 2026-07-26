@@ -7,6 +7,7 @@ import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
 import dev.matthiesen.cobblemon_move_tutor.common.registry.PermissionRegistry;
 import dev.matthiesen.cobblemon_move_tutor.common.util.TutorMenuProvider;
 import dev.matthiesen.matthiesen_core.common.api.command.CoreCommand;
+import dev.matthiesen.matthiesen_core.common.utility.commands.CommandBuilder;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -24,31 +25,21 @@ public final class MoveTutorCMD implements CoreCommand {
     @Override
     public void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registry, Commands.CommandSelection context) {
         dispatcher.register(
-                Commands.literal("move-tutor")
-                        .requires(src -> PermissionRegistry.checkPermission(
-                                src,
-                                CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_PERMISSION
-                        ))
+                CommandBuilder.create("move-tutor")
+                        .requires(src -> PermissionRegistry.checkPermission(src, CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_PERMISSION))
                         .executes(this::action)
-                        .then(
-                                Commands.literal("other")
-                                        .requires(src -> PermissionRegistry.checkPermission(
-                                                src,
-                                                CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_OTHER_PERMISSION
-                                        ))
-                                        .then(
-                                                Commands.argument("player", EntityArgument.player())
-                                                        .executes(this::other)
-                                        )
+                        .then("other", other -> other
+                                        .requires(src ->
+                                                PermissionRegistry.checkPermission(src, CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_OTHER_PERMISSION))
+                                        .argument("player", EntityArgument.player(), player -> player
+                                                .executes(this::other))
                         )
-                        .then(
-                                Commands.literal("reload")
-                                        .requires(src -> PermissionRegistry.checkPermission(
-                                                src,
-                                                CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_RELOAD_PERMISSION
-                                        ))
-                                        .executes(this::reload)
+                        .then("reload", reload -> reload
+                                .requires(src ->
+                                        PermissionRegistry.checkPermission(src, CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_RELOAD_PERMISSION))
+                                .executes(this::reload)
                         )
+                        .build()
         );
     }
 
