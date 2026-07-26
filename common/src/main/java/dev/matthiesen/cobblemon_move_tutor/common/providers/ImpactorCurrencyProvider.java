@@ -10,8 +10,6 @@ import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public final class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
-    private static final EconomyProvider ECONOMY_PROVIDER = CobblemonMoveTutor.INSTANCE.getEconomyManager().getEconomyProvider(BuiltInEconomyProviders.IMPACTOR);
-
     @Override
     public String currencyName() {
         return "impactor";
@@ -24,6 +22,7 @@ public final class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
+        EconomyProvider ECONOMY_PROVIDER = CobblemonMoveTutor.INSTANCE.getEconomyManager().getEconomyProvider(BuiltInEconomyProviders.IMPACTOR);
         try {
             if (!ECONOMY_PROVIDER.hasEnough(player, price, getConfig().impactorCurrency)) {
                 return notEnoughFunds(player, price);

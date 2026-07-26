@@ -10,8 +10,6 @@ import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public final class ItemCurrencyProvider extends AbstractCurrencyProvider {
-    private static final EconomyProvider ECONOMY_PROVIDER = CobblemonMoveTutor.INSTANCE.getEconomyManager().getEconomyProvider(BuiltInEconomyProviders.ITEM);
-
     @Override
     public String currencyName() {
         return getConfig().currencyDisplayName;
@@ -24,12 +22,13 @@ public final class ItemCurrencyProvider extends AbstractCurrencyProvider {
 
     @Override
     public boolean buy(@NotNull ServerPlayer player, @NotNull Pokemon pokemon, @NotNull MoveTemplate move, int price) {
+        EconomyProvider ECONOMY_PROVIDER = CobblemonMoveTutor.INSTANCE.getEconomyManager().getEconomyProvider(BuiltInEconomyProviders.ITEM);
         try {
-            var config = getConfig();
-            if (!ECONOMY_PROVIDER.hasEnough(player, price, config.itemId)) {
+            if (!ECONOMY_PROVIDER.hasEnough(player, price, getConfig().itemId)) {
                 return notEnoughFunds(player, price);
             }
-            return ECONOMY_PROVIDER.withdraw(player, price, config.itemId);
+
+            return ECONOMY_PROVIDER.withdraw(player, price, getConfig().itemId);
         } catch (RuntimeException e) {
             CobblemonMoveTutor.INSTANCE.createErrorLog("Error processing ItemCurrencyProvider transaction for player %player%"
                     .replace("%player%", player.getDisplayName().getString()), e);
