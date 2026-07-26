@@ -8,5 +8,6 @@ public final class CobblemonMoveTutorFabricClient implements ClientModInitialize
     public void onInitializeClient() {
         var instance = CobblemonMoveTutorClient.INSTANCE;
         instance.initialize();
+        instance.registerScreens();
     }
 }
