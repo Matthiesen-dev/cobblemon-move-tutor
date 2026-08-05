@@ -34,11 +34,6 @@ public final class MoveTutorCMD implements CoreCommand {
                                         .argument("player", EntityArgument.player(), player -> player
                                                 .executes(this::other))
                         )
-                        .then("reload", reload -> reload
-                                .requires(src ->
-                                        PermissionRegistry.checkPermission(src, CobblemonMoveTutor.INSTANCE.getPermissions().MOVE_TUTOR_RELOAD_PERMISSION))
-                                .executes(this::reload)
-                        )
                         .build()
         );
     }
@@ -56,14 +51,6 @@ public final class MoveTutorCMD implements CoreCommand {
         TutorMenuProvider.open.pokemonSelectionMenu(targetPlayer, SELECTION_TYPE);
         if (player != null)
             player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.openedForOther", targetPlayer.getDisplayName().getString()));
-        return 1;
-    }
-
-    private int reload(CommandContext<CommandSourceStack> ctx) {
-        ServerPlayer player = ctx.getSource().getPlayer();
-        CobblemonMoveTutor.INSTANCE.loadConfig();
-        if (player != null)
-            player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.cmd.configReloaded"));
         return 1;
     }
 }

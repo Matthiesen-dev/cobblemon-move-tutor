@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.moves.MoveSet;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
-import dev.matthiesen.cobblemon_move_tutor.common.config.CommonConfig;
+import dev.matthiesen.cobblemon_move_tutor.common.config.MoveTutorConfig;
 import dev.matthiesen.cobblemon_move_tutor.common.platform.ICurrencyProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,7 +30,7 @@ public final class MoveManager {
 
     public static void learnMove(ServerPlayer player, Pokemon pokemon, MoveTemplate move, Runnable returnToSelect) {
         try {
-            CommonConfig serverConfig = CobblemonMoveTutor.INSTANCE.getCommonConfig();
+            var serverConfig = MoveTutorConfig.SERVER_CONFIG;
 
             if (!validatePokemon(pokemon, player)) {
                 return;
@@ -48,10 +48,10 @@ public final class MoveManager {
                 return;
             }
 
-            ICurrencyProvider currencyProvider = CobblemonMoveTutor.INSTANCE.getCurrencyProviderRegistry().get(serverConfig.currencyConfig.currencyType);
+            ICurrencyProvider currencyProvider = CobblemonMoveTutor.INSTANCE.getCurrencyProviderRegistry().get(serverConfig.currency_type.get());
 
             if (currencyProvider == null) {
-                player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currencyConfig.currencyType));
+                player.sendSystemMessage(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currency_type.get()));
                 return;
             }
 

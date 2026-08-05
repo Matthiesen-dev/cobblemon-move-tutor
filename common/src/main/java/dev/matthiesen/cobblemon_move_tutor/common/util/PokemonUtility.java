@@ -7,7 +7,7 @@ import com.cobblemon.mod.common.api.pokemon.moves.Learnset;
 import com.cobblemon.mod.common.item.PokemonItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
-import dev.matthiesen.cobblemon_move_tutor.common.config.CommonConfig;
+import dev.matthiesen.cobblemon_move_tutor.common.config.MoveTutorConfig;
 import dev.matthiesen.matthiesen_core.common.utility.item.ItemBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -142,30 +142,30 @@ public final class PokemonUtility {
         try {
             Learnset moves = pokemon.getForm().getMoves();
 
-            var commonConfig = CobblemonMoveTutor.INSTANCE.getCommonConfig();
+            var commonConfig = MoveTutorConfig.SERVER_CONFIG;
 
             if (moves.getLevelUpMoves().values().stream().anyMatch(list -> list.contains(move))) {
-                return commonConfig.currencyConfig.levelMovePrice;
+                return commonConfig.currency_levelMovePrice.getAsInt();
             }
 
             if (moves.getTmMoves().contains(move)) {
-                return commonConfig.currencyConfig.tmMovePrice;
+                return commonConfig.currency_tmMovePrice.getAsInt();
             }
 
             if (moves.getLegacyMoves().contains(move)) {
-                return commonConfig.currencyConfig.legacyMovePrice;
+                return commonConfig.currency_legacyMovePrice.getAsInt();
             }
 
             if (moves.getTutorMoves().contains(move)) {
-                return commonConfig.currencyConfig.tutorMovePrice;
+                return commonConfig.currency_tutorMovePrice.getAsInt();
             }
 
             if (moves.getSpecialMoves().contains(move)) {
-                return commonConfig.currencyConfig.specialMovePrice;
+                return commonConfig.currency_specialMovePrice.getAsInt();
             }
 
             if (moves.getEggMoves().contains(move)) {
-                return commonConfig.currencyConfig.eggMovePrice;
+                return commonConfig.currency_eggMovePrice.getAsInt();
             }
 
             return 0;
@@ -208,11 +208,11 @@ public final class PokemonUtility {
             var price = PokemonUtility.getMovePrice(pokemon, move);
 
             if (price > 0) {
-                var serverConfig = CobblemonMoveTutor.INSTANCE.getCommonConfig();
-                var currencyProvider = CobblemonMoveTutor.INSTANCE.getCurrencyProviderRegistry().get(serverConfig.currencyConfig.currencyType);
+                var serverConfig = MoveTutorConfig.SERVER_CONFIG;
+                var currencyProvider = CobblemonMoveTutor.INSTANCE.getCurrencyProviderRegistry().get(serverConfig.currency_type.get());
 
                 if (currencyProvider == null) {
-                    lore.add(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currencyConfig.currencyType).withStyle(ChatFormatting.RED));
+                    lore.add(Component.translatable("cobblemon_move_tutor.msg.invalidCurrency", serverConfig.currency_type.get()).withStyle(ChatFormatting.RED));
                 } else {
                     lore.add(currencyProvider.lore(price).copy().withStyle(ChatFormatting.YELLOW));
                 }
@@ -227,17 +227,17 @@ public final class PokemonUtility {
         }
     }
 
-    public static Set<MoveTemplate> getFilteredMoves(Pokemon pokemon, CommonConfig.TutorConfig config) {
+    public static Set<MoveTemplate> getFilteredMoves(Pokemon pokemon, MoveTutorConfig.TutorConfig config) {
         try {
             Learnset moves = pokemon.getForm().getMoves();
             return PokemonUtility.getAllMoves(moves).stream()
-                    .filter(move -> config.levelMove || moves.getLevelUpMoves().values().stream().noneMatch(list -> list.contains(move)))
-                    .filter(move -> config.eggMove || !moves.getEggMoves().contains(move))
-                    .filter(move -> config.tutorMove || !moves.getTutorMoves().contains(move))
-                    .filter(move -> config.tmMove || !moves.getTmMoves().contains(move))
-                    .filter(move -> config.legacyMove || !moves.getLegacyMoves().contains(move))
-                    .filter(move -> config.specialMove || !moves.getSpecialMoves().contains(move))
-                    .filter(move -> !config.hideAlreadyKnownMoves || !PokemonUtility.isLearnedMove(pokemon, move))
+                    .filter(move -> config.levelMove() || moves.getLevelUpMoves().values().stream().noneMatch(list -> list.contains(move)))
+                    .filter(move -> config.eggMove() || !moves.getEggMoves().contains(move))
+                    .filter(move -> config.tutorMove() || !moves.getTutorMoves().contains(move))
+                    .filter(move -> config.tmMove() || !moves.getTmMoves().contains(move))
+                    .filter(move -> config.legacyMove() || !moves.getLegacyMoves().contains(move))
+                    .filter(move -> config.specialMove() || !moves.getSpecialMoves().contains(move))
+                    .filter(move -> !config.hideAlreadyKnownMoves() || !PokemonUtility.isLearnedMove(pokemon, move))
                     .collect(Collectors.toSet());
         } catch (RuntimeException e) {
             CobblemonMoveTutor.INSTANCE.createErrorLog("getFilteredMoves", e);

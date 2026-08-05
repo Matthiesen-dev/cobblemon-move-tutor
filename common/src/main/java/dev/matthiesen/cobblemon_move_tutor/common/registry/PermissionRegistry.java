@@ -1,6 +1,7 @@
 package dev.matthiesen.cobblemon_move_tutor.common.registry;
 
 import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
+import dev.matthiesen.cobblemon_move_tutor.common.config.MoveTutorConfig;
 import dev.matthiesen.matthiesen_core.common.api.permissions.Permission;
 import dev.matthiesen.matthiesen_core.common.api.permissions.PermissionLevel;
 import dev.matthiesen.matthiesen_core.common.utility.AbstractPermission;
@@ -8,16 +9,13 @@ import net.minecraft.commands.CommandSourceStack;
 
 public final class PermissionRegistry {
     public static Permission MOVE_TUTOR_PERMISSION = register("command.move-tutor",
-            CobblemonMoveTutor.INSTANCE.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_PERMISSION_LEVEL);
+            MoveTutorConfig.PERMISSIONS_CONFIG.permissionLevels_cmdMoveTutor.getAsInt());
     public static Permission MOVE_TUTOR_OTHER_PERMISSION = register("command.move-tutor.other",
-            CobblemonMoveTutor.INSTANCE.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_OTHER_PERMISSION_LEVEL);
-    public static Permission MOVE_TUTOR_RELOAD_PERMISSION = register("command.move-tutor.reload",
-            CobblemonMoveTutor.INSTANCE.getPermissionsConfig().permissionLevels.COMMAND_MOVE_TUTOR_RELOAD_PERMISSION_LEVEL);
+            MoveTutorConfig.PERMISSIONS_CONFIG.permissionLevels_cmdMoveTutor_other.getAsInt());
 
     public static class Permissions {
         public Permission MOVE_TUTOR_PERMISSION = PermissionRegistry.MOVE_TUTOR_PERMISSION;
         public Permission MOVE_TUTOR_OTHER_PERMISSION = PermissionRegistry.MOVE_TUTOR_OTHER_PERMISSION;
-        public Permission MOVE_TUTOR_RELOAD_PERMISSION = PermissionRegistry.MOVE_TUTOR_RELOAD_PERMISSION;
     }
 
     public static Permissions getPermissions() {

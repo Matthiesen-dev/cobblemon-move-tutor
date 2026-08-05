@@ -3,8 +3,7 @@ package dev.matthiesen.cobblemon_move_tutor.common.ui;
 import com.cobblemon.mod.common.CobblemonSounds;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
-import dev.matthiesen.cobblemon_move_tutor.common.config.CommonConfig;
+import dev.matthiesen.cobblemon_move_tutor.common.config.MoveTutorConfig;
 import dev.matthiesen.cobblemon_move_tutor.common.registry.MenuTypesRegistry;
 import dev.matthiesen.cobblemon_move_tutor.common.util.ModelData;
 import dev.matthiesen.cobblemon_move_tutor.common.util.MoveManager;
@@ -160,11 +159,11 @@ public final class SelectMoveMenu extends AbstractNoInventoryMenu {
         }
     }
 
-    private CommonConfig.TutorConfig getTutorConfig() {
+    private MoveTutorConfig.TutorConfig getTutorConfig() {
         if (type == null || type.isEmpty() || !type.equals("admin")) {
-            return CobblemonMoveTutor.INSTANCE.getCommonConfig().villageTutorConfig;
+            return MoveTutorConfig.TutorConfig.villageTutorConfig();
         }
-        return CobblemonMoveTutor.INSTANCE.getCommonConfig().adminTutorConfig;
+        return MoveTutorConfig.TutorConfig.adminTutorConfig();
     }
 }
 

@@ -9,7 +9,7 @@ fabric-api = "0.116.6+1.21.1"
 fabric-kotlin = "1.13.6+kotlin.2.2.20"
 neoforge = "21.1.182"
 kotlin-for-forge = "5.10.0"
-matthiesen-core = "1.0.0-beta.8"
+matthiesen-core = "1.0.0-beta.37"
 cobblemon = "1.7.3+1.21.1"
 molang = "1.1.20"
 adventure-key = "4.13.0"
@@ -21,6 +21,7 @@ cobbledollars-neoforge = "2.0.0+Beta-5.1-neoforge,1.21.1"
 impactor-fabric = "5.3.5+1.21.1-Fabric-fabric,1.21.1"
 impactor-neoforge = "5.3.5+1.21.1-Neoforge-neoforge,1.21.1"
 publish = "0.35.0"
+forge-config-api-port = "21.1.6"
 
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
@@ -40,11 +41,9 @@ fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.r
 fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "fabric-kotlin" }
 neoforge = { group = "net.neoforged", name = "neoforge", version.ref = "neoforge" }
 kotlinforforge = { group = "thedarkcolour", name = "kotlinforforge-neoforge", version.ref = "kotlin-for-forge" }
-
 matthiesen-core-common = { group = "dev.matthiesen", name = "matthiesen-core-common", version.ref = "matthiesen-core" }
 matthiesen-core-fabric = { group = "dev.matthiesen", name = "matthiesen-core-fabric", version.ref = "matthiesen-core" }
 matthiesen-core-neoforge = { group = "dev.matthiesen", name = "matthiesen-core-neoforge", version.ref = "matthiesen-core" }
-
 cobblemon-common = { group = "com.cobblemon", name = "mod", version.ref = "cobblemon" }
 cobblemon-fabric = { group = "com.cobblemon", name = "fabric", version.ref = "cobblemon" }
 cobblemon-neoforge = { group = "com.cobblemon", name = "neoforge", version.ref = "cobblemon" }
@@ -56,14 +55,16 @@ impactor-fabric = { group = "maven.modrinth", name = "impactor", version.ref = "
 impactor-neoforge = { group = "maven.modrinth", name = "impactor", version.ref = "impactor-neoforge" }
 modmenu = { group = "maven.modrinth", name = "modmenu", version.ref = "modmenu" }
 placeholder-api = { group = "maven.modrinth", name = "placeholder-api", version.ref = "placeholder-api" }
+forge-config-api-port-common = { group = "fuzs.forgeconfigapiport", name = "forgeconfigapiport-common-neoforgeapi", version.ref = "forge-config-api-port" }
+forge-config-api-port-fabric = { group = "fuzs.forgeconfigapiport", name = "forgeconfigapiport-fabric", version.ref = "forge-config-api-port" }
 
 [bundles]
-commonModCompileOnly = ["cobbledollars-fabric", "impactor-fabric"]
+commonModCompileOnly = ["cobbledollars-fabric", "impactor-fabric", "forge-config-api-port-common"]
 commonModImplementationNoTransitive = ["cobblemon-common", "matthiesen-core-common"]
 
 fabricModImplementation = ["fabric-loader", "fabric-api", "fabric-language-kotlin"]
 fabricModImplementationNoTransitive = ["cobblemon-fabric", "matthiesen-core-fabric"]
-fabricModRuntimeOnly = ["modmenu", "placeholder-api"]
+fabricModRuntimeOnly = ["modmenu", "placeholder-api", "forge-config-api-port-fabric"]
 
 neoforgeModImplementationNoTransitive = ["cobblemon-neoforge", "matthiesen-core-neoforge"]
 neoforgeModCompileOnly = ["cobbledollars-neoforge", "impactor-neoforge"]

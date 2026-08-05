@@ -1,9 +1,6 @@
 package dev.matthiesen.cobblemon_move_tutor.common;
 
-import dev.matthiesen.cobblemon_move_tutor.common.config.CommonConfig;
-import dev.matthiesen.cobblemon_move_tutor.common.config.CurrencyProvidersConfig;
-import dev.matthiesen.cobblemon_move_tutor.common.config.MoveTutorConfigManager;
-import dev.matthiesen.cobblemon_move_tutor.common.config.PermissionsConfig;
+import dev.matthiesen.cobblemon_move_tutor.common.config.*;
 import dev.matthiesen.cobblemon_move_tutor.common.molang.PlayerFunctionsExtension;
 import dev.matthiesen.cobblemon_move_tutor.common.providers.CobbleDollarsCurrencyProvider;
 import dev.matthiesen.cobblemon_move_tutor.common.providers.ImpactorCurrencyProvider;
@@ -12,6 +9,7 @@ import dev.matthiesen.cobblemon_move_tutor.common.registry.*;
 import dev.matthiesen.libs.faststats.Token;
 import dev.matthiesen.matthiesen_core.common.AbstractCommonMod;
 import dev.matthiesen.matthiesen_core.common.api.events.PlatformEvents;
+import dev.matthiesen.matthiesen_core.common.api.platform.loader.ModConfigType;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +33,8 @@ public final class CobblemonMoveTutor extends AbstractCommonMod {
     @Override
     public void initialize() {
         super.initialize();
-        loadConfig();
+        registerModConfig(MOD_ID, ModConfigType.SERVER, MoveTutorConfig.SERVER_SPEC, "cobblemon_move_tutor/server.toml");
+        registerModConfig(MOD_ID, ModConfigType.STARTUP, MoveTutorConfig.PERMISSIONS_SPEC, "cobblemon_move_tutor/permissions.toml");
 
         PermissionRegistry.init();
         ItemRegistry.init();
@@ -43,11 +42,10 @@ public final class CobblemonMoveTutor extends AbstractCommonMod {
         CommandRegistry.init();
 
         PlayerFunctionsExtension.register();
-        loadCurrencyProviders();
 
-        PlatformEvents.SERVER_RELOAD.subscribe(event -> {
-            loadConfig();
-            createInfoLog("Reloaded Cobblemon Move Tutor configuration");
+        PlatformEvents.SERVER_STARTING.subscribe(event -> {
+            loadCurrencyProviders();
+            createInfoLog("Loaded server resources");
         });
 
         createInfoLog("Initialized Cobblemon Move Tutor");
@@ -56,12 +54,6 @@ public final class CobblemonMoveTutor extends AbstractCommonMod {
     @Override
     public @NotNull @Token String getMetricsToken() {
         return METRICS_TOKEN;
-    }
-
-    public void loadConfig() {
-        MoveTutorConfigManager.getCommonConfigManager().loadConfig();
-        MoveTutorConfigManager.getCurrencyProvidersConfigManager().loadConfig();
-        MoveTutorConfigManager.getPermissionsConfigManager().loadConfig();
     }
 
     private void loadCurrencyProviders() {
@@ -80,18 +72,6 @@ public final class CobblemonMoveTutor extends AbstractCommonMod {
 
     public CurrencyProviderRegistry getCurrencyProviderRegistry() {
         return currencyProviderRegistry;
-    }
-
-    public CommonConfig getCommonConfig() {
-        return MoveTutorConfigManager.getCommonConfigManager().getConfig();
-    }
-
-    public CurrencyProvidersConfig getCurrencyProvidersConfig() {
-        return MoveTutorConfigManager.getCurrencyProvidersConfigManager().getConfig();
-    }
-
-    public PermissionsConfig getPermissionsConfig() {
-        return MoveTutorConfigManager.getPermissionsConfigManager().getConfig();
     }
 
     public PermissionRegistry.Permissions getPermissions() {
