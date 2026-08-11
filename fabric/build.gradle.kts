@@ -3,7 +3,6 @@ plugins {
     id("dev.architectury.loom")
     id("architectury-plugin")
     id("move-tutor.shadow-platform-conventions")
-//    id("move-tutor.publishing-conventions")
 }
 
 architectury {

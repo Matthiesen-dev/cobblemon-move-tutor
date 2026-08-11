@@ -2,7 +2,6 @@ plugins {
     id("dev.architectury.loom")
     id("architectury-plugin")
     id("move-tutor.minecraft-module-conventions")
-//    id("move-tutor.publishing-conventions")
 }
 
 architectury {
