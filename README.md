@@ -16,7 +16,7 @@ them more versatile in battles.
 - [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) (Fabric only)
 
 ### Optional compatibility
-- [CobbleDollars](https://modrinth.com/mod/cobbledollars)
+- [CobbleDollars](https://modrinth.com/mod/cobbledollars) (Disabled for now, will be re-enabled when CobbleDollars is updated to support Cobblemon 1.8.0)
 - [Impactor](https://modrinth.com/mod/impactor)
 
 ## Docs
