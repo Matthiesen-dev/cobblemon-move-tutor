@@ -59,10 +59,11 @@ public final class CobblemonMoveTutor extends AbstractCommonMod {
     private void loadCurrencyProviders() {
         currencyProviderRegistry.register("item", ItemCurrencyProvider::new);
 
-        if (getCommonUtils().isModLoaded("cobbledollars")) {
-            createInfoLog("Found Cobbledollars, loading compatibility");
-            currencyProviderRegistry.register("cobbledollars", CobbleDollarsCurrencyProvider::new);
-        }
+        // TODO: Re-enable this when Cobbledollars is updated to support Cobblemon 1.8.0
+//        if (getCommonUtils().isModLoaded("cobbledollars")) {
+//            createInfoLog("Found Cobbledollars, loading compatibility");
+//            currencyProviderRegistry.register("cobbledollars", CobbleDollarsCurrencyProvider::new);
+//        }
 
         if (getCommonUtils().isModLoaded("impactor")) {
             createInfoLog("Found Impactor, loading compatibility");

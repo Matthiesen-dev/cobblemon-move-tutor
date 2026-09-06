@@ -2,22 +2,24 @@ package dev.matthiesen.cobblemon_move_tutor.common.molang;
 
 import com.bedrockk.molang.runtime.MoParams;
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.molang.MoLangFunctions;
+import com.cobblemon.mod.common.api.molang.function.PlayerMoLangFunctions;
 import com.cobblemon.mod.common.api.storage.party.PartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import dev.matthiesen.cobblemon_move_tutor.common.CobblemonMoveTutor;
 import dev.matthiesen.cobblemon_move_tutor.common.util.TutorMenuProvider;
+import kotlin.jvm.functions.Function1;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.HashMap;
-import java.util.function.Function;
+import java.util.Map;
 
 public final class PlayerFunctionsExtension {
     public static void register() {
         CobblemonMoveTutor.INSTANCE.createInfoLog("Registering Cobblemon Molang Player function extensions");
-        MoLangFunctions.INSTANCE.getPlayerFunctions().add(player -> {
-            HashMap<String, Function<MoParams, Object>> map = new HashMap<>();
+
+        PlayerMoLangFunctions.INSTANCE.getCustom().add(player -> {
+            Map<String, Function1<MoParams, Object>> map = new HashMap<>();
 
             // q.player.open_village_tutor(<slot 0-5>)
             map.put("open_village_tutor", params -> {
