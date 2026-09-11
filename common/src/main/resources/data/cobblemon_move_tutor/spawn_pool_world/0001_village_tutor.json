@@ -12,7 +12,7 @@
       "type": "npc",
       "spawnablePositionType": "grounded",
       "bucket": "common",
-      "weight": 5,
+      "weight": 60.0,
       "condition": {
         "timeRange": "day",
         "biomes": [
