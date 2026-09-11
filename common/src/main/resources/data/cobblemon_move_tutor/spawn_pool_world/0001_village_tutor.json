@@ -22,6 +22,32 @@
           "#minecraft:village"
         ]
       }
+    },
+    {
+      "id": "village_tutor-2",
+      "npc": "cobblemon_move_tutor:village_tutor",
+      "presets": [
+        "natural"
+      ],
+      "type": "npc",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "weight": 100.0,
+      "condition": {
+        "timeRange": "day",
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:lectern"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing",
+          "#cobblemon:is_spooky"
+        ]
+      }
     }
   ]
 }
