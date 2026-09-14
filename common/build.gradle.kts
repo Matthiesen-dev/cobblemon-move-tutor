@@ -15,7 +15,7 @@ dependencies {
     libs.bundles.commonModImplementationNoTransitive.get().forEach { dependency ->
         modImplementation(dependency.copy()) { isTransitive = false }
     }
-    modApi(files("${rootProject.rootDir}/jars/molang-${libs.versions.molang.get()}.jar"))
+    modApi(libs.bundles.commonModApi)
     add("modCompileOnly", libs.bundles.commonModCompileOnly)
     implementation(libs.adventure.key)
 }

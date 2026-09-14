@@ -22,6 +22,7 @@ version = resolvedModVersion
 
 repositories {
     mavenCentral()
+    maven("https://maven.cobbled-creators.org/releases/")
     maven("https://maven.matthiesen.dev/releases") {
         name = "devMatthiesenMavenReleases"
     }
