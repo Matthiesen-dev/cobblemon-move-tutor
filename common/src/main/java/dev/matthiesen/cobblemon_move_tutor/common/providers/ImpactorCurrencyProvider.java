@@ -11,11 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 public final class ImpactorCurrencyProvider extends AbstractCurrencyProvider {
     @Override
-    public String currencyName() {
-        return "impactor";
-    }
-
-    @Override
     public String currencyDisplayName() {
         return MoveTutorConfig.SERVER_CONFIG.currencyProvider_impactor_displayName.get();
     }
