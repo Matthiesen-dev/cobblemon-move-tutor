@@ -13,11 +13,6 @@ import java.math.BigInteger;
 
 public final class CobbleDollarsCurrencyProvider extends AbstractCurrencyProvider {
     @Override
-    public String currencyName() {
-        return "cobbledollars";
-    }
-
-    @Override
     public String currencyDisplayName() {
         return MoveTutorConfig.SERVER_CONFIG.currencyProvider_cobbleDollars_displayName.get();
     }

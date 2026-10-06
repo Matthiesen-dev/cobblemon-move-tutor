@@ -11,7 +11,6 @@ import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
-    public abstract String currencyName();
     public abstract String currencyDisplayName();
 
     public boolean notEnoughFunds(ServerPlayer player, int price) {
@@ -27,7 +26,7 @@ public abstract class AbstractCurrencyProvider implements ICurrencyProvider {
 
     @Override
     public @NotNull Component lore(int price) {
-        return Component.translatable("cobblemon_move_tutor.gui.lore.price", String.valueOf(price), currencyName());
+        return Component.translatable("cobblemon_move_tutor.gui.lore.price", String.valueOf(price), currencyDisplayName());
     }
 
     @Override
