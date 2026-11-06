@@ -18,6 +18,8 @@ dependencies {
     modApi(libs.bundles.commonModApi)
     add("modCompileOnly", libs.bundles.commonModCompileOnly)
     implementation(libs.adventure.key)
+
+    implementation(libs.bundles.commonImplementation)
 }
 
 tasks {

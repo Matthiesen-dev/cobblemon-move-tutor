@@ -2,11 +2,9 @@ package dev.matthiesen.cobblemon_move_tutor.common;
 
 import dev.matthiesen.cobblemon_move_tutor.common.config.*;
 import dev.matthiesen.cobblemon_move_tutor.common.molang.PlayerFunctionsExtension;
-import dev.matthiesen.cobblemon_move_tutor.common.providers.CobbleDollarsCurrencyProvider;
-import dev.matthiesen.cobblemon_move_tutor.common.providers.ImpactorCurrencyProvider;
-import dev.matthiesen.cobblemon_move_tutor.common.providers.ItemCurrencyProvider;
+import dev.matthiesen.cobblemon_move_tutor.common.providers.*;
 import dev.matthiesen.cobblemon_move_tutor.common.registry.*;
-import dev.matthiesen.libs.faststats.Token;
+import dev.faststats.Token;
 import dev.matthiesen.matthiesen_core.common.AbstractCommonMod;
 import dev.matthiesen.matthiesen_core.common.api.events.PlatformEvents;
 import dev.matthiesen.matthiesen_core.common.api.platform.loader.ModConfigType;

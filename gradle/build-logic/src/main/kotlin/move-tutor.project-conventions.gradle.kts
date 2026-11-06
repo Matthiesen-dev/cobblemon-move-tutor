@@ -40,6 +40,8 @@ repositories {
             excludeGroup("dev.matthiesen")
         }
     }
+    maven("https://repo.faststats.dev/releases")
+    maven("https://repo.faststats.dev/snapshots")
 }
 
 dependencies {
