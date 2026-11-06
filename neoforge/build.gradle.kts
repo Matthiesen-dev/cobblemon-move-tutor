@@ -36,6 +36,7 @@ dependencies {
         exclude("net.neoforged.fancymodloader", "loader")
     }
     add("modCompileOnly", libs.bundles.neoforgeModCompileOnly)
+    modRuntimeOnly(libs.bundles.neoforgeModRuntimeOnly)
 }
 
 tasks {
